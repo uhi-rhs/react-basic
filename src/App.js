@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import DraggableMarker from './components/DraggableMarker';
+import DropMarker from './components/DropMarker';
+import Intro from './components/Intro';
+import MarkerComment from './components/MarkerComment';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+    <div className="App">   
+    <Route exact path="/" component={Intro} />
+   <Route exact path="/drop_marker" component={DropMarker} />
+   <Route exact path="/draggable_marker" component={DraggableMarker} />
+   <Route exact path="/marker_comment" component={MarkerComment} />
+    <Route exect path="/">
+   <Link to={"/drop_marker"}>
+   <h2>Drop Marker</h2>                
+    </Link>
+    <Link to={"/draggable_marker"}>
+   <h2>Draggable Marker</h2>
+   </Link>
+   <Link to={"/marker_comment"}>
+   <h2>Marker Comment</h2>
+   </Link>
+   </Route>
     </div>
+    </Router>
   );
 }
 

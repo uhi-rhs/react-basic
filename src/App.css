@@ -28,6 +28,27 @@
   color: #61dafb;
 }
 
+
+.marker {
+  cursor: pointer;
+}
+
+#icon {
+  height: 30px;
+  width: auto;
+}
+
+.comment {
+  background: rgb(255, 255, 255);
+  position: absolute;
+  top: 40px;
+  right: 50px;
+  padding: 10px 10px;
+  margin: 0;
+  font-size: 14px;
+  border-radius: 3px;
+  }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
