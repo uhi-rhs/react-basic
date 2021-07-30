@@ -2,7 +2,6 @@ import React, {useState, useCallback} from 'react'
 import InteractiveMap, {Marker} from 'react-map-gl'
 import Pin from './Pin'
 import Comment from './Comment'
-import { waitForDomChange } from '@testing-library/dom';
 
 export default function MarkerComment() {
 
@@ -21,23 +20,19 @@ export default function MarkerComment() {
         visible: false
     })
 
-    function handleClick({ lngLat: [longitude, latitude] }){
+
+    const handleClick = ({ lngLat: [longitude, latitude] }) => {
         if(!marker.visible){
-        setMarker({...marker, latitude: latitude, longitude: longitude, visible: true}, console.log(marker))
-        }
+            setMarker({...marker, latitude: latitude, longitude: longitude, visible: true}, console.log(marker))
+            }
     }
 
-    const formSubmit = (event) => {
-        console.log(event)
-        setMarker({...marker, comment: 'test'})
-        console.log(marker.comment)
+  
+    const addComment = (marker) => {
+        // console.log(comment)
+        setMarker({...marker, marker})
     }
 
-    // function formSubmit(e){
-    //     console.log(e)
-    // }
-    
-    console.log(marker.visible)
 
     return (
         <InteractiveMap
@@ -50,7 +45,7 @@ export default function MarkerComment() {
         >
       {marker.visible ? 
 
-       <Comment />
+       <Comment marker={marker} onAdd={addComment}/>
       
       : null} 
       
@@ -63,6 +58,8 @@ export default function MarkerComment() {
       {marker.visible ? <Pin /> : null}  
                            
       </Marker>
+
+      <h1>{marker.comment}</h1>
         </InteractiveMap>
     )
 }
