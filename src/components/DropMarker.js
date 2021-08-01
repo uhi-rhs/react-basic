@@ -1,7 +1,6 @@
-import React, {useState, useCallback} from 'react'
+import React, {useState} from 'react'
 
 import InteractiveMap, {Marker} from 'react-map-gl'
-import Pin from './Pin'
 
 export default function DropMarker() {
 

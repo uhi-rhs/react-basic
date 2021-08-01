@@ -19,19 +19,19 @@ export default function DraggableMarker() {
         longitude: -3.3979
       });
 
-    const [ events, logEvents] = useState({});
+    // const [ events, logEvents] = useState({});
 
-    const onMarkerDragStart = useCallback(event => {
-        console.log('drag start')
-        logEvents(_events => ({ ..._events, onDragStart: event.lngLat}));
-    },[]);
+    // const onMarkerDragStart = useCallback(event => {
+    //     console.log('drag start')
+    //     logEvents(_events => ({ ..._events, onDragStart: event.lngLat}));
+    // },[]);
 
-    const onMarkerDrag = useCallback(event => {
-        logEvents(_events => ({..._events, onDrag: event.lngLat}));
-    },[]);
+    // const onMarkerDrag = useCallback(event => {
+    //     logEvents(_events => ({..._events, onDrag: event.lngLat}));
+    // },[]);
 
     const onMarkerDragEnd = useCallback(event => {
-        logEvents(_events => ({..._events, onDragEnd: event.lngLat}));
+        // logEvents(_events => ({..._events, onDragEnd: event.lngLat}));
         setMarker({
             longitude: event.lngLat[0],
             latitude: event.lngLat[1]

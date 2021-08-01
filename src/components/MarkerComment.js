@@ -1,7 +1,12 @@
 import React, {useState, useCallback} from 'react'
 import InteractiveMap, {Marker, Popup} from 'react-map-gl'
+import 'mapbox-gl/dist/mapbox-gl.css'
+import mapboxgl from 'mapbox-gl'
 import Pin from './Pin'
 import Comment from './Comment'
+
+//eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 export default function MarkerComment() {
 
