@@ -15,12 +15,13 @@ function App() {
    <Route exact path="/draggable_marker" component={DraggableMarker} />
    <Route exact path="/marker_comment" component={MarkerComment} />
     <Route exect path="/">
-   <Link to={"/drop_marker"}>
+
+   {/* <Link to={"/drop_marker"}>
    <h2>Drop Marker</h2>                
     </Link>
     <Link to={"/draggable_marker"}>
    <h2>Draggable Marker</h2>
-   </Link>
+   </Link> */}
    <Link to={"/marker_comment"}>
    <h2>Marker Comment</h2>
    </Link>
