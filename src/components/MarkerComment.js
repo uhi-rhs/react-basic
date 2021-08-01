@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react'
-import InteractiveMap, {Marker} from 'react-map-gl'
+import InteractiveMap, {Marker, Popup} from 'react-map-gl'
 import Pin from './Pin'
 import Comment from './Comment'
 
@@ -19,7 +19,7 @@ export default function MarkerComment() {
         comment: '',
         visible: false
     })
-
+    const [ popup, setPopup] = useState(null)
 
     const handleClick = ({ lngLat: [longitude, latitude] }) => {
         if(!marker.visible){
@@ -27,12 +27,22 @@ export default function MarkerComment() {
             }
     }
 
-  
     const addComment = (marker) => {
-        // console.log(comment)
         setMarker({...marker, marker})
+        setPopup(true)
     }
 
+    const onMarkerDragEnd = useCallback(e => {
+
+        setMarker(prevMarker => ({
+            ...prevMarker,
+            comment: prevMarker.comment,
+            longitude: e.lngLat[0],
+            latitude: e.lngLat[1],
+            visible: true
+        })               
+        )
+    },[])
 
     return (
         <InteractiveMap
@@ -43,23 +53,47 @@ export default function MarkerComment() {
           }}
           onClick={handleClick}
         >
+           <div className="instructions">
+               <h2>How to play:</h2>
+               <ul>
+                   <li>
+                       Choose where you think the site should be
+                   </li>
+                   <li>
+                       Add a comment to say why you think this is a good site
+                   </li>
+               </ul>
+               <p>Remember: where are the views? How can you use the sun to help energy savings? How can you create shelter from things like wind and rain?</p>
+           </div>
       {marker.visible ? 
 
-       <Comment marker={marker} onAdd={addComment}/>
-      
-      : null} 
-      
-      
+       <Comment marker={marker} onAdd={addComment}/>   : null} 
+        
       <Marker 
       longitude={marker.longitude}
       latitude={marker.latitude}
       draggable={true}
-      >
+      onDragEnd={onMarkerDragEnd}>
+      
       {marker.visible ? <Pin /> : null}  
-                           
+   
       </Marker>
 
-      <h1>{marker.comment}</h1>
+        {popup && (
+            <Popup
+            tipSize={5}
+            anchor="bottom-left"
+            dynamicPosition={true}
+            longitude={marker.longitude}
+            latitude={marker.latitude}
+            closeOnClick={false}
+            onClose={setPopup}
+            offsetLeft={15}
+            offsetTop={0}>
+
+            <h4>{marker.comment}</h4>
+            </Popup>  
+        )}            
         </InteractiveMap>
     )
 }

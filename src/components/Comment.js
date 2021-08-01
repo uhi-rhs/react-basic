@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const Comment = ({onAdd, marker}) => {
+const Comment = ({onAdd, marker, onPopUp}) => {
 
     const [comment, setComment] = useState('')
     
@@ -12,9 +12,6 @@ const Comment = ({onAdd, marker}) => {
             alert('Please add a comment')
             return
         }
-        // console.log('1', e.target.value)
-        // console.log('2', marker)
-        // console.log('3',comment)
         onAdd({ ...marker, comment:comment })
         setComment('')
     }

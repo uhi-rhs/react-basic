@@ -11,7 +11,7 @@ const pinStyle = {
 
 export default function Pin(props) {
 
-    const { size = 20} = props;
+    const { size = 30} = props;
 
     return (
         <svg height={size} viewBox="0 0 24 24" style={pinStyle}>
