@@ -54,8 +54,7 @@ export default function DraggableMarker() {
             offsetTop={0}
             offsetLeft={0}
             draggable={true}
-            onDragStart={onMarkerDragStart}
-            onDrag={onMarkerDrag}
+           
             onDragEnd={onMarkerDragEnd}
             className="marker"
             >
