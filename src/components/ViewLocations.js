@@ -13,6 +13,8 @@ const ViewLocations = () => {
             zoom: 14
     })
 
+    const [ selectedSite, setSelectedSite ] = useState(null)
+
     const [locations, setLocations] = useState([])
 
     useEffect(() => {
@@ -28,7 +30,6 @@ const ViewLocations = () => {
     console.log(locations)
     console.log(viewPort)
 
-
     return (
         <div className="location-container">
            <ReactMapGL 
@@ -43,12 +44,33 @@ const ViewLocations = () => {
                     key={location.id}
                     latitude={location.properties.lat.number}
                     longitude={location.properties.lng.number}
-
-
                    >
+                       <button className="marker-btn"
+                       onClick={(e) => {
+                           e.preventDefault();
+                           setSelectedSite(location)
+                           console.log(selectedSite)
+                       }}
+                       >
                        <Pin />
+                       </button>
+                       
                    </Marker>
                ))}
+
+               {selectedSite && (
+                   <Popup
+                    latitude={selectedSite.properties.lat.number}
+                    longitude={selectedSite.properties.lng.number}
+                    onClose={() => {
+                        setSelectedSite(null);
+                    }}
+                   >
+                       <div>
+                           <h2>{selectedSite.properties.comment.rich_text[0].plain_text}</h2>
+                       </div>
+                   </Popup>
+               )}
            </ReactMapGL>
         </div>
     )
