@@ -43,7 +43,7 @@ export default function MarkerComment() {
             publish: false,
             user_id: user_id
         }
-        axios.post('http://localhost:5000/api/locations/add', submission)
+        axios.post('http://localhost:5000/api/rhs/add', submission)
     }
 
     const addComment = (marker) => {
