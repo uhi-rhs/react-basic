@@ -4,6 +4,8 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import mapboxgl from 'mapbox-gl'
 import Pin from './Pin'
 import Comment from './Comment'
+import axios from 'axios'
+import uuid from 'react-uuid'
 
 //eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
@@ -32,8 +34,21 @@ export default function MarkerComment() {
             }
     }
 
+    const saveSubmission = async (marker) => {
+        const user_id = uuid()
+        const submission = {
+            lat: marker.latitude,
+            lng: marker.longitude,
+            comment: marker.comment,
+            publish: false,
+            user_id: user_id
+        }
+        axios.post('http://localhost:5000/api/locations/add', submission)
+    }
+
     const addComment = (marker) => {
         setMarker({...marker, marker})
+        saveSubmission(marker)
         setPopup(true)
     }
 

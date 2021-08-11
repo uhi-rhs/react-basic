@@ -23,7 +23,6 @@
 }
 
 
-
 #icon {
   height: 30px;
   width: auto;
@@ -74,12 +73,3 @@
     padding: 3px 7px;
     font-size: 17px;
   }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
