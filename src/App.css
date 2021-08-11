@@ -73,3 +73,24 @@
     padding: 3px 7px;
     font-size: 17px;
   }
+
+  .postit-container {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
+   
+    text-align: center;
+  }
+
+  .postit {
+    padding: 5px;
+    background: pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    
+    
+  }

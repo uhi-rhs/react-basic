@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Intro() {
     return (
-        <div>
-            <p>Information about the features accessible from these links</p>
+        <div className="intro">
+            <p>Links below lead to prototype features. Marker Comment submissions will be saved</p>
         </div>
     )
 }
