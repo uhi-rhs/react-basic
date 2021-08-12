@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import mapboxgl from 'mapbox-gl'
 import Pin from './Pin'
 import Comment from './Comment'
+import Instructions from './Instructions'
 import axios from 'axios'
 import uuid from 'react-uuid'
 
@@ -27,6 +28,13 @@ export default function MarkerComment() {
         visible: false
     })
     const [ popup, setPopup] = useState(null)
+
+    const [ instructions ] = useState({
+        header: "How to Play",
+        item1: "Click to drop a pin where you think the site should be",
+        item2: "Add a comment to say why you think this is a good site",
+        body: "Remember: where are the views? How can you use the sun to help energy savings? How can you create shelter from things like wind and rain?"
+    })
 
     const handleClick = ({ lngLat: [longitude, latitude] }) => {
         if(!marker.visible){
@@ -73,18 +81,7 @@ export default function MarkerComment() {
           }}
           onClick={handleClick}
         >
-           <div className="instructions">
-               <h2>How to play:</h2>
-               <ul>
-                   <li>
-                       Choose where you think the site should be
-                   </li>
-                   <li>
-                       Add a comment to say why you think this is a good site
-                   </li>
-               </ul>
-               <p>Remember: where are the views? How can you use the sun to help energy savings? How can you create shelter from things like wind and rain?</p>
-           </div>
+           <Instructions instructions={instructions}/>
       {marker.visible ? 
 
        <Comment marker={marker} onAdd={addComment}/>   : null} 

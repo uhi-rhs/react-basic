@@ -7,9 +7,16 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  padding: 10px;
+  padding: 20px;
   margin: 10px;
+  border-radius: 5px;
   
+}
+
+.instructions-header {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .marker {
@@ -76,9 +83,10 @@
 
   .postit-container {
     margin: 20px;
+    padding: 20px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: 5px;
+    grid-gap: 40px;
    
     text-align: center;
   }
@@ -89,8 +97,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 120px;
-    height: 120px;
-    
-    
+    width: 250px;
+    height: 250px;
+    font-size: 2rem;
+    font-weight: bold;
   }
