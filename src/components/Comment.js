@@ -1,10 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 
-const Comment = ({onAdd, marker, onPopUp}) => {
+const Comment = ({onAdd, marker}) => {
 
     const [comment, setComment] = useState('')
-    
 
     const onSubmit = (e) => {
         e.preventDefault()

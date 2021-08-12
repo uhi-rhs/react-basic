@@ -1,9 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
+import PageHeader from './PageHeader';
 
 const ViewPIComments = () => {
 
     const [ comments, setComments ] = useState([])
+
+    const [pageInfo] = useState({
+        title: "Postit Comments",
+        body: "Showing feedback on a consultation"
+    })
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -17,7 +23,7 @@ const ViewPIComments = () => {
 
     return (
         <div>
-            <h1>Feedback</h1>
+            <PageHeader info={pageInfo}/>
             <div className="postit-container">
                 
                 {console.log(comments)}

@@ -1,4 +1,51 @@
 .App {
+
+}
+
+
+/* NAV */
+
+.page-header {
+  display: flex;
+  /* justify-items: center; */
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+
+.page-header-title {
+  display: flex;
+}
+
+.page-header-title {
+
+}
+
+.page-header-body {
+  padding-left: 20px;
+  padding-top: 21.5px;
+}
+
+#BIUndo {
+  padding: 10px;
+  margin: 10px;
+}
+
+
+.link-container {
+  display: flex;
+  padding: 10px;
+  justify-content: space-around;
+}
+
+.intro {
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.dbs-container {
+  padding: 50px;
 }
 
 .instructions {
@@ -87,7 +134,6 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 40px;
-   
     text-align: center;
   }
 
@@ -101,4 +147,31 @@
     height: 250px;
     font-size: 2rem;
     font-weight: bold;
+  }
+
+  .popup {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* House Styles Component - Display House Images */
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    padding: 10px;
+  }
+
+  .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .image img {
+    width: 400px;
+    height: auto;
   }

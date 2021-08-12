@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import ReactMapGL, {Marker, Popup} from 'react-map-gl'
 import axios from 'axios';
 import Pin from './Pin'
+import PageHeader from './PageHeader';
 
 const ViewLocations = () => {
 
@@ -10,12 +11,23 @@ const ViewLocations = () => {
             longitude: -3.3979,
             width: '100vw',
             height: '100vh',
-            zoom: 14
+            zoom: 17
     })
-
     const [ selectedSite, setSelectedSite ] = useState(null)
-
     const [locations, setLocations] = useState([])
+    // const [ pin ] = useState(null)
+
+    const colour = (id) => {
+        const col = '#'
+        const hex = id.slice(-7, -1)
+        const hexcol = col.concat(hex);
+        return hexcol
+    }
+
+    const [pageInfo] = useState({
+        title: "View Locations",
+        body: "Showing proposed sites with comments"
+    })
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -27,14 +39,17 @@ const ViewLocations = () => {
         console.log('fetch')
     }, [])
 
-    console.log(locations)
-    console.log(viewPort)
+    // console.log(locations)
+    // console.log(viewPort)
 
     return (
+        <>
+        <PageHeader info={pageInfo}/>
         <div className="location-container">
            <ReactMapGL 
            {...viewPort} 
            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+           mapStyle="mapbox://styles/mapbox/satellite-v9"
            onViewportChange={viewPort => {
                setViewport(viewPort);
            }}
@@ -45,6 +60,7 @@ const ViewLocations = () => {
                     latitude={location.properties.lat.number}
                     longitude={location.properties.lng.number}
                    >
+                       
                        <button className="marker-btn"
                        onClick={(e) => {
                            e.preventDefault();
@@ -52,7 +68,7 @@ const ViewLocations = () => {
                            console.log(selectedSite)
                        }}
                        >
-                       <Pin />
+                       <Pin pin={{size: 60, stroke: 'none', fill: colour(location.id)}}/>
                        </button>
                        
                    </Marker>
@@ -60,19 +76,25 @@ const ViewLocations = () => {
 
                {selectedSite && (
                    <Popup
+                    tipSize={10}
+                    anchor="bottom-left"
+                    dynamicPosition={true}
+                    offsetLeft={55}
+                    offsetTop={0}
                     latitude={selectedSite.properties.lat.number}
                     longitude={selectedSite.properties.lng.number}
                     onClose={() => {
                         setSelectedSite(null);
                     }}
                    >
-                       <div>
+                       <div className="popup">
                            <h2>{selectedSite.properties.comment.rich_text[0].plain_text}</h2>
                        </div>
                    </Popup>
                )}
            </ReactMapGL>
         </div>
+        </>
     )
 }
 

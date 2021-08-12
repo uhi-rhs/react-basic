@@ -19,6 +19,12 @@ export default function DraggableMarker() {
         longitude: -3.3979
       });
 
+    const [ pin ] = useState({
+      size: 60,
+      stroke: 'none',
+      fill: 'yellow'
+    })
+
     // const [ events, logEvents] = useState({});
 
     // const onMarkerDragStart = useCallback(event => {
@@ -58,7 +64,7 @@ export default function DraggableMarker() {
             onDragEnd={onMarkerDragEnd}
             className="marker"
             >
-            <Pin size={30} />
+            <Pin pin={pin} />
             </Marker>
 
         </ReactMapGL>

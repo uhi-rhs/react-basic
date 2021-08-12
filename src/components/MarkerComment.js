@@ -7,6 +7,7 @@ import Comment from './Comment'
 import Instructions from './Instructions'
 import axios from 'axios'
 import uuid from 'react-uuid'
+import PageHeader from './PageHeader'
 
 //eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
@@ -18,7 +19,7 @@ export default function MarkerComment() {
         longitude: -3.3979,
         width: '100vw',
         height: '100vh',
-        zoom: 15
+        zoom: 17
       });
 
     const [marker, setMarker] = useState({
@@ -28,6 +29,17 @@ export default function MarkerComment() {
         visible: false
     })
     const [ popup, setPopup] = useState(null)
+
+    const [ pin ] = useState({
+        fill: 'yellow',
+        stroke: 'none',
+        size: 40
+    })
+
+    const [pageInfo] = useState({
+        title: "Drop Marker",
+        body: "Gathering data on proposed sites - saves to CMS"
+    })
 
     const [ instructions ] = useState({
         header: "How to Play",
@@ -73,26 +85,31 @@ export default function MarkerComment() {
     },[])
 
     return (
+        <>
+         <PageHeader info={pageInfo}/>
         <InteractiveMap
         {...viewport} 
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/mapbox/satellite-v9"
         onViewportChange={viewport => {
             setViewport(viewport);
           }}
           onClick={handleClick}
         >
+            {/* <PageHeader info={pageInfo}/> */}
            <Instructions instructions={instructions}/>
       {marker.visible ? 
 
        <Comment marker={marker} onAdd={addComment}/>   : null} 
         
       <Marker 
+      
       longitude={marker.longitude}
       latitude={marker.latitude}
       draggable={true}
       onDragEnd={onMarkerDragEnd}>
       
-      {marker.visible ? <Pin /> : null}  
+      {marker.visible ? <Pin pin={pin}/> : null}  
    
       </Marker>
 
@@ -112,5 +129,6 @@ export default function MarkerComment() {
             </Popup>  
         )}            
         </InteractiveMap>
+        </>
     )
 }

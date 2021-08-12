@@ -1,9 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
+import PageHeader from './PageHeader'
 
 const Gallery = () => {
 
     const [ images, setImages ] = useState([])
+    
+    const [pageInfo] = useState({
+        title: "Gallery",
+        body: "Images from the Database"
+    })
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -16,8 +22,11 @@ const Gallery = () => {
     }, [])
 
     return (
+        
         <div>
-            <h1>Hi</h1>
+            <PageHeader info={pageInfo} />
+            {console.log('page info', pageInfo)}
+         <h1> NOTE: Images stored in Notion pages / databases are not currently accessible through the Notion API </h1>
                 {console.log(images)}
                 {images.map((image) => (
                     <div key={image.properties.image.files[0].name}>

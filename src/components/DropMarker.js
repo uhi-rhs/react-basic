@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 
 import InteractiveMap, {Marker} from 'react-map-gl'
+import PageHeader from './PageHeader';
 
 export default function DropMarker() {
 
@@ -14,10 +15,17 @@ export default function DropMarker() {
 
     const [markers, setMarkers] = useState([])
 
+    const [pageInfo] = useState({
+        title: "Prototype Drop Marker",
+        body: "Uses house icon instead of pin"
+    })
+
     const handleClick = ({ lngLat: [longitude, latitude] }) => 
     setMarkers(markers => [...markers, { longitude, latitude }]);
 
     return (
+        <>
+        <PageHeader info={pageInfo}/>
         <InteractiveMap
         onClick={handleClick}
       
@@ -40,5 +48,6 @@ export default function DropMarker() {
                 </Marker>
             )) : null}
         </InteractiveMap>
+        </>
     )
 }
