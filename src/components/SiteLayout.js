@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react'
-import ReactMapGL, {Marker, Popup} from 'react-map-gl'
+import ReactMapGL, {Marker} from 'react-map-gl'
 import axios from 'axios';
 import PageHeader from './PageHeader';
 import Spinner from './Spinner'
@@ -59,6 +59,8 @@ const SiteLayout = ({isLoading, setIsLoading}) => {
         // });
     },[]);
 
+
+
     useEffect(() => {
         const fetchItems = async () => {
             const result = await axios(`http://localhost:5000/api/rhs/project_properties`)
@@ -88,10 +90,14 @@ const SiteLayout = ({isLoading, setIsLoading}) => {
         {...viewPort} 
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/mapbox/satellite-v9"
+        maxZoom={17}
+        minZoom={17}
+        dragPan={false}
         onViewportChange={viewPort => {
             setViewport(viewPort);
         }}
         >
+            
             {houses.map((house) => ( 
                 <Marker
                  key={house.id}
