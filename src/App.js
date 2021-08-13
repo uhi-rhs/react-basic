@@ -12,8 +12,8 @@ import HouseStyles from './components/HouseStyles';
 import MainHeader from './components/MainHeader';
 import axios from 'axios';
 import DBNav from './components/DBNav';
-
 import { useState, useEffect } from 'react'
+import SiteLayout from './components/SiteLayout';
 
 function App() {
 
@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     const fetchItems = async () => {
         const result = await axios(`http://localhost:5000/api/rhs/databases`)
-        console.log(result.data)
+        // console.log(result.data)
         setDatabases(result.data)   
         setIsLoading(false)     
         setDBTitles(getTitles(result.data))    
@@ -41,8 +41,8 @@ function App() {
     console.log('fetch')
 }, [])
 
-console.log(databases)
-console.log(dbTitles)
+// console.log(databases)
+// console.log(dbTitles)
 
   return (
     <Router>
@@ -59,6 +59,10 @@ console.log(dbTitles)
    <Route exact path="/marker_comment" component={MarkerComment} />
    <Route exact path="/view_locations" component={ViewLocations} />
    <Route exact path="/houses" component={HouseStyles} />
+
+   <Route exact path="/site_layout"> 
+    <SiteLayout isLoading={isLoading} setIsLoading={setIsLoading}/>
+   </Route>
   
     <Route exact path="/">
       <DBNav dbs={databases} isLoading={isLoading}/>

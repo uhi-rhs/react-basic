@@ -26,6 +26,9 @@ const MainHeader = () => {
             <Link to={"/houses"}>
             <h2>Houses</h2>
             </Link> 
+            <Link to={"/site_layout"}>
+            <h2>Site Layout</h2>
+            </Link> 
         </div>
     )
 }
