@@ -5,6 +5,8 @@ import PageHeader from './PageHeader';
 import Spinner from './Spinner'
 import SiteHouseRect from './SiteHouseRect';
 
+// new branch
+
 const SiteLayout = ({isLoading, setIsLoading}) => {
 
     const [viewPort, setViewport] = useState({
