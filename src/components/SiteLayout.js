@@ -63,7 +63,7 @@ const SiteLayout = ({isLoading, setIsLoading}) => {
 
     useEffect(() => {
         const fetchItems = async () => {
-            const result = await axios(`http://localhost:5000/api/rhs/project_properties`)
+            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/project_properties`)
             setProjectProperties(result.data)
             setNumberOfHouses(8)  
             setViewport(prevViewPort => ({

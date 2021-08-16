@@ -31,7 +31,7 @@ const ViewLocations = () => {
 
     useEffect(() => {
         const fetchItems = async () => {
-            const result = await axios(`http://localhost:5000/api/rhs`)
+            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs`)
             console.log(result.data)
             setLocations(result.data)            
         }

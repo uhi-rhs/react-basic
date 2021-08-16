@@ -13,7 +13,7 @@ const Gallery = () => {
 
     useEffect(() => {
         const fetchItems = async () => {
-            const result = await axios(`http://localhost:5000/api/rhs/images_test`)
+            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/images_test`)
             console.log(result)
             setImages(result.data)
         }

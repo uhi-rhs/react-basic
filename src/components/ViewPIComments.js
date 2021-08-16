@@ -13,7 +13,7 @@ const ViewPIComments = () => {
 
     useEffect(() => {
         const fetchItems = async () => {
-            const result = await axios(`http://localhost:5000/api/rhs/braemar_postits`)
+            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/braemar_postits`)
             console.log(result)
             setComments(result.data)
         }
@@ -22,7 +22,7 @@ const ViewPIComments = () => {
     }, [])
 
     return (
-        <div>
+        <div className="postit-page">
             <PageHeader info={pageInfo}/>
             <div className="postit-container">
                 

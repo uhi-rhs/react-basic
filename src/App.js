@@ -28,10 +28,12 @@ function App() {
     })
     return titles
   }
+  // const key = process.env.REACT_APP_API_URL
+  // console.log(key)
 
   useEffect(() => {
     const fetchItems = async () => {
-        const result = await axios(`http://localhost:5000/api/rhs/databases`)
+        const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/databases`)
         // console.log(result.data)
         setDatabases(result.data)   
         setIsLoading(false)     

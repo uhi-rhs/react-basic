@@ -63,7 +63,7 @@ export default function MarkerComment() {
             publish: false,
             user_id: user_id
         }
-        axios.post('http://localhost:5000/api/rhs/add', submission)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/rhs/add`, submission)
     }
 
     const addComment = (marker) => {
