@@ -3,6 +3,8 @@ import ReactMapGL, {Marker, Popup} from 'react-map-gl'
 import axios from 'axios';
 import Pin from './Pin'
 import PageHeader from './PageHeader';
+import Spinner from './Spinner'
+
 
 const ViewLocations = () => {
 

@@ -33,19 +33,41 @@
 }
 
 .link-container {
-  display: flex;
-  padding: 10px;
+  /* display: flex;
+  padding: 10px; */
   justify-content: space-around;
+  margin: 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  text-align: center;
 }
 
 .link-container h2 {
+  color: #5c9ad3;
   font-size: 1rem;
+  border-style: solid;
+  padding: 10px;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 5px;
 }
 
 .intro {
   padding-bottom: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  background: #5c9ad3;
+}
+.intro h1 {
+  color: white;
+}
+
+.intro-image {
+  height: 60px;
+  width: auto;
+  padding-top: 15px;
 }
 
 .dbs-container {
@@ -144,7 +166,7 @@
     margin: 20px;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 40px;
     text-align: center;
   }
@@ -186,4 +208,76 @@
   .image img {
     width: 400px;
     height: auto;
+  }
+
+
+  .form-view {
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    background: url('images/houses/h-4-l-shape.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+
+  /* Media Queries */
+
+
+  @media(max-width: 1580px) {
+    .image-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .img {
+      width: 300px;
+    }
+  }
+
+  @media(max-width: 1580px) {
+    .postit-container {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  
+  }
+
+  @media(max-width: 1260px) {
+    .image-grid, .postit-container  {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .img {
+      width: 200px;
+    }
+  }
+
+  @media(max-width: 930px) {
+    .postit-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .img {
+      width: 200px;
+    }
+  }
+
+  @media(max-width: 700px) {
+    .image-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .img {
+      width: 200px;
+    }
+    .postit {
+      width: 200px;
+      height: 200px;
+      font-size: 1.5rem;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .image-grid, .postit-container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .img {
+      width: 300px;
+    }
   }

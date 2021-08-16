@@ -15,8 +15,8 @@ mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worke
 export default function MarkerComment() {
 
     const [viewport, setViewport] = useState({
-        latitude: 57.0064,
-        longitude: -3.3979,
+        latitude: 57.00536795702396,
+        longitude: -3.4021350554388357,
         width: '100vw',
         height: '100vh',
         zoom: 17
