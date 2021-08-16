@@ -62,9 +62,9 @@ function App() {
    <Route exact path="/view_locations" component={ViewLocations} />
    <Route exact path="/houses" component={HouseStyles} />
 
-   <Route exact path="/site_layout"> 
+   {/* <Route exact path="/site_layout"> 
     <SiteLayout isLoading={isLoading} setIsLoading={setIsLoading}/>
-   </Route>
+   </Route> */}
   
     <Route exact path="/">
       <DBNav dbs={databases} isLoading={isLoading}/>
