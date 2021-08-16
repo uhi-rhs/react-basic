@@ -19,15 +19,15 @@ function App() {
 
   const [ isLoading, setIsLoading ] = useState(true)
   const [ databases, setDatabases ] = useState([])
-  const [dbTitles, setDBTitles] = useState([])
+  // const [dbTitles, setDBTitles] = useState([])
 
-  const getTitles = (dblist) => {
-    const titles = []
-    dblist.results.map((db) => {
-      titles.push(db.title[0].text.content)
-    })
-    return titles
-  }
+  // const getTitles = (dblist) => {
+  //   const titles = []
+  //   dblist.results.map((db) => {
+  //     titles.push(db.title[0].text.content)
+  //   })
+  //   return titles
+  // }
   // const key = process.env.REACT_APP_API_URL
   // console.log(key)
 
@@ -37,7 +37,7 @@ function App() {
         // console.log(result.data)
         setDatabases(result.data)   
         setIsLoading(false)     
-        setDBTitles(getTitles(result.data))    
+        // setDBTitles(getTitles(result.data))    
     }
     fetchItems()
     console.log('fetch')
