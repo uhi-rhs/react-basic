@@ -13,7 +13,6 @@ import MainHeader from './components/MainHeader';
 import axios from 'axios';
 import DBNav from './components/DBNav';
 import { useState, useEffect } from 'react'
-import SiteLayout from './components/SiteLayout';
 
 function App() {
 
