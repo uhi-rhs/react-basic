@@ -13,6 +13,7 @@ import axios from 'axios';
 import Projects from './components/Projects';
 import FormView from './components/FormView'
 import FormResponses from './components/FormResponses';
+import ProjectComment from './components/ProjectComment'
 import { useState, useEffect } from 'react'
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
    <Route exact path="/houses" component={HouseStyles} />
    <Route exact path="/form_view" component={FormView} />
    <Route exact path="/form_responses" component={FormResponses} />
+   <Route exact path="/project_comment" component={ProjectComment} />
 
    {/* <Route exact path="/site_layout"> 
     <SiteLayout isLoading={isLoading} setIsLoading={setIsLoading}/>

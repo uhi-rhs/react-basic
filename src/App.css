@@ -188,6 +188,53 @@
     padding: 0;
   }
 
+  /* Project Comment */
+
+  .project-comment {
+    height: 100vh;
+    width: 100vw;
+    background: url('images/sites/braemar-plan-3.png');
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .comment-form {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+  }
+
+  /* .form-input {
+    padding: 20px 20px;
+    margin: 20px 20px;    
+  } */
+
+  /* .form-control input {
+    height: 75px;
+  } */
+  
+  /* .form-input {
+    border-radius: 5px;
+  } */
+
+  textarea {
+    font: inherit;
+    font-size: inherit;
+    /* width: 100%; */
+    padding: 10px;
+    margin: 10px 0px;
+    border-radius: 5px;
+  }
+
+  /* #textarea {
+    font: 'Arial';
+  } */
+
+
   /* House Styles Component - Display House Images */
 
   .image-grid {
