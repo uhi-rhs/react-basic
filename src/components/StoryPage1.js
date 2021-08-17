@@ -17,7 +17,7 @@ const StoryPage1 = ({pageContent, nextPage, prevPage}) => {
             <button
                 label="continue"
                 onClick={_continue}
-            ></button>
+            >Next</button>
         </div>
     )
 }

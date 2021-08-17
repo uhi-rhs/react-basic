@@ -35,6 +35,9 @@ const MainHeader = () => {
             <Link to={"/form_responses"}>
                 <h2>Form Responses</h2>
             </Link>
+            <Link to={"/story_example"}>
+                <h2>Story Example</h2>
+            </Link>
         </div>
     )
 }
