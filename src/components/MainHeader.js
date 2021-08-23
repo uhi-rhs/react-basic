@@ -38,6 +38,9 @@ const MainHeader = () => {
             <Link to={"/story_example"}>
                 <h2>Story Example</h2>
             </Link>
+            <Link to={"/landing_page"} >
+                <h2>Landing Page Example</h2>
+            </Link>
         </div>
     )
 }

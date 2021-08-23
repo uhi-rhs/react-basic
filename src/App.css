@@ -45,7 +45,7 @@
 }
 
 .link-container h2 {
-  color: #5c9ad3;
+  color: #1D81EA;
   font-size: 1rem;
   border-style: solid;
   padding: 10px;
@@ -58,7 +58,7 @@
   padding-bottom: 10px;
   display: flex;
   justify-content: space-around;
-  background: #5c9ad3;
+  background: #1D81EA;
 }
 .intro h1 {
   color: white;
@@ -221,6 +221,64 @@
     background-attachment: fixed;
   }
 
+
+  /* Landing Page */
+
+  .landing-page {
+    background: url('images/map-with-comments.jpeg');
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+
+  }
+
+  .landing-page-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+
+  }
+
+  .landing-page-header {
+    display: flex;
+    height: 300px;
+    background-color: #1D81EA;
+    color: #fff;
+    position: relative;
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .landing-page-header-text {
+    padding-left: 40px;
+  }
+
+  .landing-page-header img {
+    height: 90%;
+    width: auto;
+  }
+
+  .landing-page-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    padding: 10px;
+  }
+
+  .page {
+    padding: 5px;
+    border-radius: 5px;
+    background: #914930;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 150px;
+    font-size: 2rem;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0,0,0, 0.2);
+  }
 
   /* Media Queries */
 
