@@ -1,5 +1,6 @@
 .App {
 
+  color: #110805
 }
 
 
@@ -18,10 +19,6 @@
   display: flex;
 }
 
-.page-header-title {
-
-}
-
 .page-header-body {
   padding-left: 20px;
   padding-top: 21.5px;
@@ -30,22 +27,43 @@
 #BIUndo {
   padding: 10px;
   margin: 10px;
+  color: #110805;
 }
 
 .link-container {
-  display: flex;
-  padding: 10px;
   justify-content: space-around;
+  margin: 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  text-align: center;
 }
 
 .link-container h2 {
+  color: #1D81EA;
   font-size: 1rem;
+  border-style: solid;
+  padding: 10px;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 5px;
 }
 
 .intro {
   padding-bottom: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  background: #1D81EA;
+}
+.intro h1 {
+  color: white;
+}
+
+.intro-image {
+  height: 60px;
+  width: auto;
+  padding-top: 15px;
 }
 
 .dbs-container {
@@ -144,7 +162,7 @@
     margin: 20px;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 40px;
     text-align: center;
   }
@@ -186,4 +204,177 @@
   .image img {
     width: 400px;
     height: auto;
+  }
+
+
+  .form-view {
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    background: url('images/houses/h-4-l-shape.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+
+  /* Landing Page */
+
+  .landing-page {
+    background: url('images/map-with-comments.jpeg');
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+
+  }
+
+  .landing-page-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+
+  }
+
+  .landing-page-header {
+    display: flex;
+    height: 300px;
+    background-color: #1D81EA;
+    color: #fff;
+    position: relative;
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .landing-page-header-text {
+    padding-left: 40px;
+  }
+
+  .landing-page-header img {
+    height: 90%;
+    width: auto;
+  }
+
+  .landing-page-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    padding: 10px;
+  }
+
+  .page {
+    padding: 5px;
+    border-radius: 5px;
+    background: #8b8785;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 150px;
+    font-size: 2rem;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0,0,0, 0.2);
+  }
+
+  .story {
+    background: #736A72;
+    height: 100vh;
+  }
+
+  .story-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: #736A72;
+    
+  }
+
+  .story-container .btn-back {
+    position: fixed;
+    left: 24vw;
+    top: 50vh;
+  }
+
+  .story-container .btn-next {
+    position: fixed;
+    right: 24vw;
+    top: 50vh;
+  }
+
+  .story-card {
+    width: 500px;
+    background: #F8F9F2;
+  }
+
+  .story-card p, h1, h3 {
+    padding: 10px;
+  }
+
+  .story-card img {
+    width: inherit;
+  }
+
+  .story-card iframe {
+    width: inherit;
+  }
+
+  /* Media Queries */
+
+
+  @media(max-width: 1580px) {
+    .image-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .img {
+      width: 300px;
+    }
+  }
+
+  @media(max-width: 1580px) {
+    .postit-container {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  
+  }
+
+  @media(max-width: 1260px) {
+    .image-grid, .postit-container  {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .img {
+      width: 200px;
+    }
+  }
+
+  @media(max-width: 930px) {
+    .postit-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .img {
+      width: 200px;
+    }
+  }
+
+  @media(max-width: 700px) {
+    .image-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .img {
+      width: 200px;
+    }
+    .postit {
+      width: 200px;
+      height: 200px;
+      font-size: 1.5rem;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .image-grid, .postit-container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .img {
+      width: 300px;
+    }
   }
