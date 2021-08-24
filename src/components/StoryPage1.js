@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 
 const StoryPage1 = ({pageContent, nextPage, prevPage}) => {
 
@@ -8,6 +9,10 @@ const StoryPage1 = ({pageContent, nextPage, prevPage}) => {
         e.preventDefault();
         nextPage();
     }
+
+    // Icon from react icons:
+    // FaAngleLeft
+    // FaAngleRight
 
     return (
         <div className="story-container">

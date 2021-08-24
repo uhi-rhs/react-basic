@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 
 const StoryPage2 = ({pageContent, nextPage, prevPage}) => {
 
