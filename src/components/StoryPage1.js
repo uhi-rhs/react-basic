@@ -25,7 +25,9 @@ const StoryPage1 = ({pageContent, nextPage, prevPage}) => {
                 label="continue"
                 onClick={_continue}
                 className="btn-next"
-            >Next</button>
+            >
+                <FaAngleRight id="FaAngleRight" label="Next" style={{height: '5em', width: '3em', cursor: 'pointer'}}/>
+            </button>
         </div>
     )
 }

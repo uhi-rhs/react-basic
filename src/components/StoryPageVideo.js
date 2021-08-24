@@ -24,7 +24,10 @@ const StoryPageVideo = ({pageContent, prevPage}) => {
                 label="back"
                 onClick={_back}
                 className="btn-back"
-            >Back</button>
+            >
+            <FaAngleLeft id="FaAngleRight" label="Next" style={{height: '5em', width: '3em', cursor: 'pointer'}}/>
+
+            </button>
             <div className="story-card">
             <p>{text3}</p>
             

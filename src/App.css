@@ -30,6 +30,8 @@
   color: #110805;
 }
 
+
+
 .link-container {
   justify-content: space-around;
   margin: 10px;
@@ -294,12 +296,29 @@
     position: fixed;
     left: 24vw;
     top: 50vh;
+    background: #736A72;
+    border-width: 0px;
   }
 
   .story-container .btn-next {
     position: fixed;
     right: 24vw;
     top: 50vh;
+    background: #736A72;
+    border-width: 0px;
+  }
+
+  #FaAngleRight {
+    background: inherit;
+    color: white;
+    /* height: '3em'; 
+    width: '3em';
+    cursor: 'pointer'; */
+  }
+
+  #FaAngleLeft {
+    background: inherit;
+    border-width: 0px;
   }
 
   .story-card {
