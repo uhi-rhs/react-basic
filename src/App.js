@@ -15,6 +15,7 @@ import FormView from './components/FormView'
 import FormResponses from './components/FormResponses';
 import Story from './components/Story';
 import LandingPage from './components/LandingPage';
+import SiteLayout from './components/SiteLayout';
 import { useState, useEffect } from 'react'
 
 function App() {
@@ -65,11 +66,12 @@ function App() {
    <Route exact path="/form_responses" component={FormResponses} />
    <Route exact path="/story_example" component={Story} />
    <Route exact path="/landing_page" component={LandingPage} />
+   <Route exact path="/landing_page" component={LandingPage} />
 
 
-   {/* <Route exact path="/site_layout"> 
+   <Route exact path="/site_layout"> 
     <SiteLayout isLoading={isLoading} setIsLoading={setIsLoading}/>
-   </Route> */}
+   </Route>
   
     <Route exact path="/">
       <Projects dbs={databases} isLoading={isLoading}/>
