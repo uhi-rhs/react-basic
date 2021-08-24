@@ -280,6 +280,42 @@
     box-shadow: 0 3px 10px rgba(0,0,0, 0.2);
   }
 
+  .story-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+  }
+
+  .story-container .btn-back {
+    position: fixed;
+    left: 24vw;
+    top: 50vh;
+  }
+
+  .story-container .btn-next {
+    position: fixed;
+    right: 24vw;
+    top: 50vh;
+  }
+
+  .story-card {
+    width: 500px;
+    background: #55709B;
+  }
+
+  .story-card p, h1, h3 {
+    padding: 10px;
+  }
+
+  .story-card img {
+    width: inherit;
+  }
+
+  .story-card iframe {
+    width: inherit;
+  }
+
   /* Media Queries */
 
 

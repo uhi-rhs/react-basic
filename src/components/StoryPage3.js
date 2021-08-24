@@ -15,16 +15,21 @@ const StoryPage3 = ({pageContent, nextPage, prevPage}) => {
     };
 
     return (
-        <div>
-            <img src={image2} alt="" />
-            <p>{text2}</p>
-            <button
+        <div className="story-container">
+             <button
                 label="back"
                 onClick={_back}
+                className="btn-back"
             >Back</button>
+            <div className="story-card">
+            <img src={image2} alt="" />
+            <p>{text2}</p>
+            </div>
+           
             <button
                 label="continue"
                 onClick={_continue}
+                className="btn-next"
             >Next</button>
         </div>
     )
