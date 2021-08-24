@@ -228,7 +228,7 @@
     background: url('images/map-with-comments.jpeg');
     background-size: cover;
     background-attachment: fixed;
-    height: 100vh;
+    height: 100%;
 
   }
 
@@ -268,7 +268,7 @@
   .page {
     padding: 5px;
     border-radius: 5px;
-    background: #914930;
+    background: #8b8785;
     color: white;
     display: flex;
     align-items: center;

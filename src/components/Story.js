@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import image1 from '../images/crusher-overview.png';
 import image2 from '../images/crusher-building-elevation.png';
 import StoryPage1 from './StoryPage1';
@@ -15,7 +15,7 @@ const Story = () => {
     })
 
     // hard coded data for testing
-    const [story, setStory] = useState({
+    const [story] = useState({
         name: "The Crusher Site Option 1 Terrace",
         client: "The Glenuig COmmunity and PH38 Development Company",
         title: "Crusher Site",
@@ -30,69 +30,109 @@ const Story = () => {
 
     const [step, setStep] = useState(1)
 
+    
+
     console.log(step)
 
     // Move to next page
     const nextPage = () => {
         const newStep = step;
-        setStep({
-            step: (newStep + 1)
-        });
+        setStep(newStep + 1);
     }
 
     // Move to previous page
     const prevPage = () => {
-        const { step } = step;
-        setStep({
-            step: step - 1
-        });
+        const newStep = step;
+        setStep(newStep - 1);
     }
 
-    switch(step) {
-        case 1: 
-            console.log('step 1')
-            return (
-                <div className="container">
-                <PageHeader info={pageInfo}/>
-                <StoryPage1 
-                    pageContent={story}
-                    nextPage={nextPage}
-                    prevPage={prevPage}
-                    />
-                </div>
-            )
-        case 2: 
-            console.log('step 2')
-            return (
-                <div className="container">
-                    <PageHeader info={pageInfo}/>
-                    <StoryPage2 pageContent={story}
-                    nextPage={nextPage}
-                    prevPage={prevPage}
-                    />
-                </div>
-            )
-        case 3: 
-            return (
-                <div className="container">
-                <PageHeader info={pageInfo}/>
-                <StoryPage3 pageContent={story}
-                nextPage={nextPage}
-                prevPage={prevPage}
-                />
-                </div>
-            )
-        case 4: 
-            return (
-                <div className="container">
-                <PageHeader info={pageInfo}/>
-                <StoryPageVideo pageContent={story}
-                nextPage={nextPage}
-                prevPage={prevPage}
-                />
-                </div>
-            )
+
+    if (step === 1) {
+        return  <div className="container">
+        <PageHeader info={pageInfo}/>
+        <StoryPage1 
+            pageContent={story}
+            nextPage={nextPage}
+            prevPage={prevPage}
+            />
+        </div>
     }
+    if (step === 2) {
+        return    <div className="container">
+        <PageHeader info={pageInfo}/>
+        <StoryPage2 pageContent={story}
+        nextPage={nextPage}
+        prevPage={prevPage}
+        />
+    </div>
+    }
+    if (step === 3) {
+        return <div className="container">
+        <PageHeader info={pageInfo}/>
+        <StoryPage3 pageContent={story}
+        nextPage={nextPage}
+        prevPage={prevPage}
+        />
+        </div>
+    }
+    if (step === 4) {
+        return <div className="container">
+        <PageHeader info={pageInfo}/>
+        <StoryPageVideo pageContent={story}
+        nextPage={nextPage}
+        prevPage={prevPage}
+        />
+        </div>
+    }
+    return <div><h1>No Data</h1></div>
+
+    
+    // switch(step) {
+    //     case 1: 
+    //         console.log('step 1')
+    //         return (
+    //             <div className="container">
+    //             <PageHeader info={pageInfo}/>
+    //             <StoryPage1 
+    //                 pageContent={story}
+    //                 nextPage={nextPage}
+    //                 prevPage={prevPage}
+    //                 />
+    //             </div>
+    //         )
+    //     case 2: 
+    //         console.log('step 2')
+    //         return (
+    //             <div className="container">
+    //                 <PageHeader info={pageInfo}/>
+    //                 <StoryPage2 pageContent={story}
+    //                 nextPage={nextPage}
+    //                 prevPage={prevPage}
+    //                 />
+    //             </div>
+    //         )
+    //     case 3: 
+    //         return (
+    //             <div className="container">
+    //             <PageHeader info={pageInfo}/>
+    //             <StoryPage3 pageContent={story}
+    //             nextPage={nextPage}
+    //             prevPage={prevPage}
+    //             />
+    //             </div>
+    //         )
+    //     case 4: 
+    //         return (
+    //             <div className="container">
+    //             <PageHeader info={pageInfo}/>
+    //             <StoryPageVideo pageContent={story}
+    //             nextPage={nextPage}
+    //             prevPage={prevPage}
+    //             />
+    //             </div>
+    //         )
+    // }
+    
 }
 
 export default Story
