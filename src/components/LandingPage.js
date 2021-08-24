@@ -11,7 +11,7 @@ const LandingPage = () => {
     })
 
 
-    const [pages, setPages] = useState([
+    const [pages] = useState([
        
        {id:1, name:'Story'},
       {id:2, name:'Map'},

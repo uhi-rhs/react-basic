@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import image1 from '../images/crusher-overview.png';
 import image2 from '../images/crusher-building-elevation.png';
 import StoryPage1 from './StoryPage1';
