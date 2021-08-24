@@ -48,7 +48,7 @@ const Story = () => {
 
 
     if (step === 1) {
-        return  <div className="container">
+        return  <div className="story">
         <PageHeader info={pageInfo}/>
         <StoryPage1 
             pageContent={story}
@@ -58,7 +58,7 @@ const Story = () => {
         </div>
     }
     if (step === 2) {
-        return    <div className="container">
+        return    <div className="story">
         <PageHeader info={pageInfo}/>
         <StoryPage2 pageContent={story}
         nextPage={nextPage}
@@ -67,7 +67,7 @@ const Story = () => {
     </div>
     }
     if (step === 3) {
-        return <div className="container">
+        return <div className="story">
         <PageHeader info={pageInfo}/>
         <StoryPage3 pageContent={story}
         nextPage={nextPage}
@@ -76,7 +76,7 @@ const Story = () => {
         </div>
     }
     if (step === 4) {
-        return <div className="container">
+        return <div className="story">
         <PageHeader info={pageInfo}/>
         <StoryPageVideo pageContent={story}
         nextPage={nextPage}

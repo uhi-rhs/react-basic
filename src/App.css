@@ -1,5 +1,6 @@
 .App {
 
+  color: #110805
 }
 
 
@@ -30,6 +31,7 @@
 #BIUndo {
   padding: 10px;
   margin: 10px;
+  color: #110805;
 }
 
 .link-container {
@@ -280,11 +282,18 @@
     box-shadow: 0 3px 10px rgba(0,0,0, 0.2);
   }
 
+  .story {
+    background: #736A72;
+    height: 100vh;
+  }
+
   .story-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 30px;
+    background: #736A72;
+    
   }
 
   .story-container .btn-back {
@@ -301,7 +310,7 @@
 
   .story-card {
     width: 500px;
-    background: #55709B;
+    background: #F8F9F2;
   }
 
   .story-card p, h1, h3 {
