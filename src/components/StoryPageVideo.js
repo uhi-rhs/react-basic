@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import { FaAngleLeft } from 'react-icons/fa'
 
 const StoryPageVideo = ({pageContent, prevPage}) => {
 
@@ -25,13 +25,13 @@ const StoryPageVideo = ({pageContent, prevPage}) => {
                 onClick={_back}
                 className="btn-back"
             >
-            <FaAngleLeft id="FaAngleRight" label="Next" style={{height: '5em', width: '3em', cursor: 'pointer'}}/>
+            <FaAngleLeft id="FaAngleRight" label="Next" style={{height: '5em', width: '2.5em', cursor: 'pointer'}}/>
 
             </button>
             <div className="story-card">
             <p>{text3}</p>
             
-            <iframe src={vimeolink} title='vimeo' width='640' height='360' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen></iframe>
+            <iframe src={vimeolink} id="vimeo" title='vimeo' width='640' height='360' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen></iframe>
             </div>
 
            

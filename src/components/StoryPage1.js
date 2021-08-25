@@ -1,7 +1,7 @@
 import React from 'react'
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import { FaAngleRight } from 'react-icons/fa'
 
-const StoryPage1 = ({pageContent, nextPage, prevPage}) => {
+const StoryPage1 = ({pageContent, nextPage}) => {
 
     const {name, client, intro} = pageContent;
 
@@ -26,7 +26,7 @@ const StoryPage1 = ({pageContent, nextPage, prevPage}) => {
                 onClick={_continue}
                 className="btn-next"
             >
-                <FaAngleRight id="FaAngleRight" label="Next" style={{height: '5em', width: '3em', cursor: 'pointer'}}/>
+                <FaAngleRight id="FaAngleRight" label="Next" style={{height: '5em', width: '2.5em', cursor: 'pointer'}}/>
             </button>
         </div>
     )

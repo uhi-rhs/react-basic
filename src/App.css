@@ -1,14 +1,14 @@
 .App {
-
   color: #110805
 }
 
 
 /* NAV */
 
+/* Page Header */
+
 .page-header {
   display: flex;
-  /* justify-items: center; */
   justify-content: space-around;
   margin: 0;
   padding: 0;
@@ -17,6 +17,7 @@
 
 .page-header-title {
   display: flex;
+  align-items: baseline;
 }
 
 .page-header-body {
@@ -30,7 +31,7 @@
   color: #110805;
 }
 
-
+/* Main Header */
 
 .link-container {
   justify-content: space-around;
@@ -52,6 +53,8 @@
   border-radius: 5px;
 }
 
+/* Intro */
+
 .intro {
   padding-bottom: 10px;
   display: flex;
@@ -68,9 +71,13 @@
   padding-top: 15px;
 }
 
+/* DBs - currently proto nav on home page */
+
 .dbs-container {
   padding: 50px;
 }
+
+/* Instructions Card */
 
 .instructions {
   background-color: white;
@@ -90,6 +97,8 @@
   text-align: center;
 }
 
+/* Marker Comment */
+
 .marker {
   cursor: pointer;
 }
@@ -99,7 +108,6 @@
   border: none;
   cursor: pointer;
 }
-
 
 #icon {
   height: 30px;
@@ -119,7 +127,6 @@
   font-size: 15px;
   font-family: inherit;
 }
-
 
 .comment {
   background: rgb(255, 255, 255);
@@ -151,6 +158,8 @@
     padding: 3px 7px;
     font-size: 17px;
   }
+
+  /* Post it Comments */
 
   .postit-page {
     background: url('images/houses/h-1-terrace.jpg');
@@ -208,6 +217,8 @@
     height: auto;
   }
 
+
+  /* Forms */
 
   .form-view {
     padding: 10px;
@@ -278,6 +289,8 @@
     box-shadow: 0 3px 10px rgba(0,0,0, 0.2);
   }
 
+  /* Story Feature */
+
   .story {
     background: #736A72;
     height: 100vh;
@@ -294,26 +307,25 @@
 
   .story-container .btn-back {
     position: fixed;
-    left: 24vw;
+    left: 16vw;
     top: 50vh;
     background: #736A72;
     border-width: 0px;
+    padding: 0;
   }
 
   .story-container .btn-next {
     position: fixed;
-    right: 24vw;
+    right: 16vw;
     top: 50vh;
     background: #736A72;
     border-width: 0px;
+    padding: 0;
   }
 
   #FaAngleRight {
     background: inherit;
     color: white;
-    /* height: '3em'; 
-    width: '3em';
-    cursor: 'pointer'; */
   }
 
   #FaAngleLeft {
@@ -364,6 +376,7 @@
     .img {
       width: 200px;
     }
+
   }
 
   @media(max-width: 930px) {
@@ -372,6 +385,15 @@
     }
     .img {
       width: 200px;
+    }
+
+    .story-card {
+      width: 400px;
+    }
+
+    #vimeo {
+      width: 400px;
+      height: auto;
     }
   }
 
@@ -387,6 +409,23 @@
       height: 200px;
       font-size: 1.5rem;
     }
+
+    .story-card {
+      width: 300px;
+    }
+
+    .story-container .btn-next {
+      right: 8vw;
+    }
+
+    .story-container .btn-back {
+      left: 8vw;
+    }
+
+    #vimeo {
+      width: 300px;
+      height: auto;
+    }
   }
 
   @media(max-width: 500px) {
@@ -395,5 +434,18 @@
     }
     .img {
       width: 300px;
+    }
+
+    .story-container .btn-next {
+      right: 0vw;
+    }
+
+    .story-container .btn-back {
+      left: 0vw;
+    }
+
+    #vimeo {
+      width: 300px;
+      height: auto;
     }
   }
