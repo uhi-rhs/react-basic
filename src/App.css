@@ -350,6 +350,25 @@
     width: inherit;
   }
 
+
+  /* Drawing */
+
+  .drawing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .plan-area {
+    width: 640px;
+    height: 416px;
+  }
+
+  .drawing-area {
+    background: url('images/fishermans-station.png')
+  }
+
+
   /* Media Queries */
 
 
