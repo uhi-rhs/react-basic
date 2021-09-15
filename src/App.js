@@ -16,6 +16,7 @@ import FormResponses from './components/FormResponses';
 import Story from './components/Story';
 import LandingPage from './components/LandingPage';
 import Drawing from './components/Drawing';
+import Location from './components/Location';
 import { useState, useEffect } from 'react'
 
 function App() {
@@ -67,6 +68,8 @@ function App() {
    <Route exact path="/story_example" component={Story} />
    <Route exact path="/landing_page" component={LandingPage} />
    <Route exact path="/drawing" component={Drawing} />
+
+   <Route exact path="/location/:id" component={Location} />
    
 
 
