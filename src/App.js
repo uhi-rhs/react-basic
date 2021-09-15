@@ -15,6 +15,7 @@ import FormView from './components/FormView'
 import FormResponses from './components/FormResponses';
 import Story from './components/Story';
 import LandingPage from './components/LandingPage';
+import Drawing from './components/Drawing';
 import { useState, useEffect } from 'react'
 
 function App() {
@@ -65,6 +66,8 @@ function App() {
    <Route exact path="/form_responses" component={FormResponses} />
    <Route exact path="/story_example" component={Story} />
    <Route exact path="/landing_page" component={LandingPage} />
+   <Route exact path="/drawing" component={Drawing} />
+   
 
 
    {/* <Route exact path="/site_layout"> 
