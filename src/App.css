@@ -83,18 +83,38 @@
   background-color: white;
   width: 300px;
   position: absolute;
-  top: 20px;
-  left: 20px;
-  padding: 20px;
+  top: 2px;
+  left: 2px;
+  padding: 0px;
   margin: 10px;
   border-radius: 5px;
+ 
   
 }
 
 .instructions-header {
-  justify-content: center;
+  display: flex;
+  justify-content: space-around;
   align-items: center;
   text-align: center;
+}
+
+.instructions p {
+  padding: 10px;
+}
+
+#InstructionsClose, #InstructionsOpen {
+  background: white;
+  border-width: 0px;
+  border: none;
+  padding: 0;
+  color: #110805;
+}
+
+.instructions button {
+  border-width: 0;
+  background: white;
+  padding: 5px;
 }
 
 /* Marker Comment */
@@ -131,7 +151,8 @@
 .comment {
   background: rgb(255, 255, 255);
   position: absolute;
-  top: 40px;
+  
+  top: 10px;
   right: 50px;
   padding: 10px 10px;
   margin: 0;
@@ -146,12 +167,30 @@
   .form-control {
     margin: 20px 0;
   }
-  
+
+  /* .form-control  input {
+    word-wrap: break-word;
+    word-break: break-all;
+    height: 80px;
+}
+   */
   .form-control label {
     display: block;
   }
   
   .form-control input {
+    width: 80%;
+    height: 40px;
+    margin: 5px;
+    padding: 3px 7px;
+    font-size: 17px;
+  }
+
+  .form-control h2 {
+    padding-left: 5px;
+  }
+
+  .form-control textarea {
     width: 80%;
     height: 40px;
     margin: 5px;

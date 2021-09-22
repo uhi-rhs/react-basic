@@ -19,7 +19,12 @@ export default function MarkerComment() {
         longitude: -3.4021350554388357,
         width: '100vw',
         height: '100vh',
-        zoom: 17
+        zoom: 17,
+        scrollZoom: false,
+        doubleClickZoom: false,
+        touchZoom: false,
+        maxZoom: 17,
+        minZoom: 17
       });
 
     const [marker, setMarker] = useState({
@@ -37,14 +42,14 @@ export default function MarkerComment() {
     })
 
     const [pageInfo] = useState({
-        title: "Drop Marker",
-        body: "Gathering data on proposed sites - saves to CMS"
+        title: "Comment on a Site",
+        body: "This feature allows you to comment on a site that has already been agreed for RHS development"
     })
 
     const [ instructions ] = useState({
         header: "How to Play",
         item1: "Click to drop a pin where you think the site should be",
-        item2: "Add a comment to say why you think this is a good site",
+        item2: "Add a comment to say why you think about this site",
         body: "Remember: where are the views? How can you use the sun to help energy savings? How can you create shelter from things like wind and rain?"
     })
 

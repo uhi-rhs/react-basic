@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import {FaAngleDown} from 'react-icons/fa'
+import {FaAngleUp} from 'react-icons/fa'
 
 const Instructions = ({instructions}) => {
     const {header, item1, item2, body} = instructions
@@ -14,16 +16,16 @@ const Instructions = ({instructions}) => {
         <div className="instructions">
             <div className="instructions-header">
             <h2>{header}</h2>
+            <button onClick={handleClick}><FaAngleDown id="InstructionsOpen" label="Back" style={{height: '1em', width: '1em', cursor: 'pointer'}}/></button>
             </div>
-            <button onClick={handleClick}>^</button>
         </div>
     )}else{
         return (
             <div className="instructions">
                 <div className="instructions-header">
             <h2>{header}</h2>
+            <button onClick={handleClick}><FaAngleUp id="InstructionsClose" label="Back" style={{height: '1em', width: '1em', cursor: 'pointer'}}/></button>
             </div>
-            <button onClick={handleClick}>^</button>
             <ul>
                 <li>
                     {item1}
