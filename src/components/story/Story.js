@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
-import image1 from '../images/crusher-overview.png';
-import image2 from '../images/crusher-building-elevation.png';
+import image1 from '../../images/crusher-overview.png';
+import image2 from '../../images/crusher-building-elevation.png';
 import StoryPage1 from './StoryPage1';
 import StoryPage2 from './StoryPage2';
 import StoryPage3 from './StoryPage3';
 import StoryPageVideo from './StoryPageVideo';
-import PageHeader from './PageHeader';
+import PageHeader from '../PageHeader';
 
 const Story = () => {
 

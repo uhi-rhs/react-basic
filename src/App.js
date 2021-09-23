@@ -13,7 +13,7 @@ import axios from 'axios';
 import Projects from './components/Projects';
 import FormView from './components/FormView'
 import FormResponses from './components/FormResponses';
-import Story from './components/Story';
+import Story from './components/story/Story';
 import LandingPage from './components/LandingPage';
 import Drawing from './components/Drawing';
 import Location from './components/Location';
@@ -69,8 +69,10 @@ function App() {
    <Route exact path="/landing_page" component={LandingPage} />
    <Route exact path="/drawing" component={Drawing} />
 
-   <Route exact path="/location/:id" component={Location} />
-   
+   {/* <Route exact path="/location/:id" component={Location} /> */}
+   <Route exact path="/location/:id" >
+    <Location  />
+   </Route>
 
 
    {/* <Route exact path="/site_layout"> 
@@ -78,7 +80,7 @@ function App() {
    </Route> */}
   
     <Route exact path="/">
-      <Projects dbs={databases} isLoading={isLoading}/>
+      <Projects dbs={databases} isLoading={isLoading} setIsLoading={setIsLoading}/>
    </Route>
     </div>
   
