@@ -39,8 +39,6 @@ const ViewLocations = () => {
         console.log('fetch')
     }, [])
 
-    // console.log(locations)
-    // console.log(viewPort)
 
     return (
         <>

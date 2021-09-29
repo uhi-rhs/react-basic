@@ -1,8 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import ReactMapGL, {Marker} from 'react-map-gl'
-
 import Pin from './Pin'
-
 
 export default function DraggableMarker() {
 
@@ -25,19 +23,7 @@ export default function DraggableMarker() {
       fill: 'yellow'
     })
 
-    // const [ events, logEvents] = useState({});
-
-    // const onMarkerDragStart = useCallback(event => {
-    //     console.log('drag start')
-    //     logEvents(_events => ({ ..._events, onDragStart: event.lngLat}));
-    // },[]);
-
-    // const onMarkerDrag = useCallback(event => {
-    //     logEvents(_events => ({..._events, onDrag: event.lngLat}));
-    // },[]);
-
     const onMarkerDragEnd = useCallback(event => {
-        // logEvents(_events => ({..._events, onDragEnd: event.lngLat}));
         setMarker({
             longitude: event.lngLat[0],
             latitude: event.lngLat[1]

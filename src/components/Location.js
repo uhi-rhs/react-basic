@@ -8,46 +8,46 @@ import { Link } from 'react-router-dom';
 
 const Location = () => {
 
+    // get location name from URL
     const id = useLocation()
+    // Format
     const formattedUrl = id.pathname.slice(10)
+    // Spinner 
     const [ isLoading, setIsLoading ] = useState(true)
-
+    // Data
     const [ dbs, setDatabases ] = useState([])
-    // const [ location, setLocation ] = useState([])
-
+    // data for page header
     const [pageInfo] = useState({
         title: "Current Project",
         body: "From here you can interact with this particular project"
     })
 
-        useEffect(() => {
-            
-            const fetchItems = async () => {
-                const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/project_properties`)
-                console.log('result.data', result.data)
-                const resultArr = result.data
-                console.log(resultArr)
-                setDatabases(result.data)
-                setIsLoading(false)
+    useEffect(() => {     
+        const fetchItems = async () => {
+            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/project_properties`)
+            console.log('result.data', result.data)
+            setDatabases(result.data)
+            setIsLoading(false)
             }          
-            fetchItems()
-           
-            console.log('fetched')
-        
+            fetchItems() 
         }, [])
-        console.log('26', dbs)
-        
+
+    // const imageError = (e) => {
+    //     e.target.backgroundImage = `url('default_background.jpeg')`}
+    //     console.log('image error function triggered')
+    // }
         
     return isLoading? ( <Spinner />
     ) : (
         
         <div>
-             {/* <h1>Hi it's a location</h1>
-            <p>URL: {formattedUrl}</p> */}
              <PageHeader info={pageInfo}/>
+             <img src="default_background.jpeg" alt="" />
              <div className="location-container" >
             {dbs.filter(db => db.properties.Name.title[0].plain_text === formattedUrl).map(location => (
-                <div key={location.id} className="location" style={{backgroundImage: `url(${location.properties.mainImage.files[0].file.url})`}}>
+                <div key={location.id} className="location" style={{backgroundImage: `url(${location.properties.mainImage.files[0].file.url})`}} >
+
+                    {/* EXAMPLE CODE FOR ERROR ON IMAGE onError={(e)=>{e.target.onerror = null; e.target.style={}  */}
                     
                     <div className="location-info">
                     <h3>{location.properties.Name.title[0].plain_text}</h3>
@@ -59,24 +59,25 @@ const Location = () => {
                     <p>Lng: {location.properties.lng.number}</p> */}
                     </div>
 
+                    {/* Grid of active or inactive links to features */}
                     <div className="location-grid">
                     <div className="location-feature">
-                    {location.properties.phase1.checkbox ? <Link to="#"><p>Site Proposal</p></Link> : <p>false</p>}
+                    {location.properties.phase1.checkbox ? <Link to="#"><div><h3>Site Proposal</h3><p>Details of the project</p></div></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase1.checkbox ? <Link to="#"><p>Comment on Site</p></Link> : <p>false</p>}
+                    {location.properties.phase1.checkbox ? <Link to={`/location/${formattedUrl}/comment`} ><h3>Comment on Site</h3></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? <Link to="#"><p>View Comments</p></Link> : <p>false</p>}
+                    {location.properties.phase2.checkbox ? <Link to="#"><h3>View Comments</h3></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? <Link to="#"><p>Comment on Plans</p></Link> : <p>false</p>}
+                    {location.properties.phase2.checkbox ? <Link to="#"><h3>Comment on Plans</h3></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? <Link to="#"><p>Propose Layout</p></Link> : <p>false</p>}
+                    {location.properties.phase2.checkbox ? <Link to="#"><h3>Propose Layout</h3></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase3.checkbox ? <Link to="#"><p>true</p></Link> : <p>false</p>}
+                    {location.properties.phase3.checkbox ? <Link to="#"><h3>true</h3></Link> : <h3>false</h3>}
                     </div>
                     </div>
                 </div>

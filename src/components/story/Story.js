@@ -30,8 +30,6 @@ const Story = () => {
 
     const [step, setStep] = useState(1)
 
-    
-
     console.log(step)
 
     // Move to next page
@@ -85,53 +83,6 @@ const Story = () => {
         </div>
     }
     return <div><h1>No Data</h1></div>
-
-    
-    // switch(step) {
-    //     case 1: 
-    //         console.log('step 1')
-    //         return (
-    //             <div className="container">
-    //             <PageHeader info={pageInfo}/>
-    //             <StoryPage1 
-    //                 pageContent={story}
-    //                 nextPage={nextPage}
-    //                 prevPage={prevPage}
-    //                 />
-    //             </div>
-    //         )
-    //     case 2: 
-    //         console.log('step 2')
-    //         return (
-    //             <div className="container">
-    //                 <PageHeader info={pageInfo}/>
-    //                 <StoryPage2 pageContent={story}
-    //                 nextPage={nextPage}
-    //                 prevPage={prevPage}
-    //                 />
-    //             </div>
-    //         )
-    //     case 3: 
-    //         return (
-    //             <div className="container">
-    //             <PageHeader info={pageInfo}/>
-    //             <StoryPage3 pageContent={story}
-    //             nextPage={nextPage}
-    //             prevPage={prevPage}
-    //             />
-    //             </div>
-    //         )
-    //     case 4: 
-    //         return (
-    //             <div className="container">
-    //             <PageHeader info={pageInfo}/>
-    //             <StoryPageVideo pageContent={story}
-    //             nextPage={nextPage}
-    //             prevPage={prevPage}
-    //             />
-    //             </div>
-    //         )
-    // }
     
 }
 

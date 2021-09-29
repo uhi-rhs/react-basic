@@ -13,18 +13,12 @@ const Drawing = () => {
     return (
         <div className="container">
             <PageHeader info={pageInfo}/>
-
-            <div className="drawing-container">
-            
-            <div className="plan-area">
-            {/* <img src={fishermans} alt="" /> */}
-            <DrawingArea />
-            </div>
-
-          
-            </div>
-
-           
+            <div className="drawing-container">       
+                <div className="plan-area">
+                {/* <img src={fishermans} alt="" /> */}
+                <DrawingArea />
+                </div>      
+            </div>      
         </div>
     )
 }

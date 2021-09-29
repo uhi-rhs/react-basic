@@ -10,10 +10,6 @@ const StoryPage1 = ({pageContent, nextPage}) => {
         nextPage();
     }
 
-    // Icon from react icons:
-    // FaAngleLeft
-    // FaAngleRight
-
     return (
         <div className="story-container">
             <div className="story-card">

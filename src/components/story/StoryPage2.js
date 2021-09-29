@@ -23,7 +23,6 @@ const StoryPage2 = ({pageContent, nextPage, prevPage}) => {
                 className="btn-back"
             >
             <FaAngleLeft id="FaAngleRight" label="Next" style={{height: '5em', width: '2.5em', cursor: 'pointer'}}/>
-
             </button>
             <div className="story-card">
             <img src={image1} alt="" />
@@ -36,7 +35,6 @@ const StoryPage2 = ({pageContent, nextPage, prevPage}) => {
                 className="btn-next"
             >
             <FaAngleRight id="FaAngleRight" label="Next" style={{height: '5em', width: '2.5em', cursor: 'pointer'}}/>
-
             </button>
              
         </div>

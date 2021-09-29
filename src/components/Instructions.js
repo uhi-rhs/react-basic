@@ -3,6 +3,7 @@ import {FaAngleDown} from 'react-icons/fa'
 import {FaAngleUp} from 'react-icons/fa'
 
 const Instructions = ({instructions}) => {
+    
     const {header, item1, item2, body} = instructions
 
     const [display, setDisplay] = useState(true)
@@ -10,6 +11,8 @@ const Instructions = ({instructions}) => {
     const handleClick = () => {
         setDisplay(!display)
     }
+
+    // Add some error handling for when one of the props isn't supplied
 
     if (!display) {
     return (

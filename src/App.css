@@ -71,11 +71,21 @@
   padding-top: 15px;
 }
 
+
 /* DBs - currently proto nav on home page */
 
 .dbs-container {
   padding: 50px;
 }
+
+/* Spinner */
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+}
+
 
 /* Instructions Card */
 
@@ -88,8 +98,6 @@
   padding: 0px;
   margin: 10px;
   border-radius: 5px;
- 
-  
 }
 
 .instructions-header {
@@ -168,12 +176,6 @@
     margin: 20px 0;
   }
 
-  /* .form-control  input {
-    word-wrap: break-word;
-    word-break: break-all;
-    height: 80px;
-}
-   */
   .form-control label {
     display: block;
   }
@@ -340,8 +342,10 @@
   background-size: cover;
   background-attachment: fixed;
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
+  /* background: url('images/default_background.jpeg') */
  }
+
  .location-grid {
    display: grid;
    grid-template-columns: repeat(4, 1fr);
@@ -363,11 +367,14 @@
   .location-info {
     background-color: white;
     width: 300px;
-    
-   
     padding: 0px;
     margin: 10px;
     border-radius: 5px;
+    padding-bottom: 5px;
+  }
+
+  .location-info p {
+    padding: 0 10px;
   }
 
   /* Story Feature */
@@ -451,7 +458,6 @@
 
 
   /* Media Queries */
-
 
   @media(max-width: 1580px) {
     .image-grid {
