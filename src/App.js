@@ -17,6 +17,8 @@ import Story from './components/story/Story';
 import LandingPage from './components/LandingPage';
 import Drawing from './components/Drawing';
 import Location from './components/Location';
+import SiteComment from './components/SiteComment'
+import ViewComments from './components/ViewComments'
 import { useState, useEffect } from 'react'
 
 function App() {
@@ -46,7 +48,7 @@ function App() {
     fetchItems()
     console.log('fetch')
 }, [])
-
+  const [location, setLocation] = useState()
 
   return (
     <Router>
@@ -68,10 +70,20 @@ function App() {
    <Route exact path="/story_example" component={Story} />
    <Route exact path="/landing_page" component={LandingPage} />
    <Route exact path="/drawing" component={Drawing} />
+   
 
    {/* <Route exact path="/location/:id" component={Location} /> */}
    <Route exact path="/location/:id" >
-    <Location  />
+    <Location  location={location}/>
+   </Route>
+   <Route exact path="/location/:id/site_comment" >
+    <SiteComment location={location} />
+   </Route>
+   <Route exact path="/location/:id/story" >
+    <Story location={location} />
+   </Route>
+   <Route exact path="/location/:id/view_comments" >
+    <ViewComments  location={location}/>
    </Route>
 
 
@@ -80,7 +92,7 @@ function App() {
    </Route> */}
   
     <Route exact path="/">
-      <Projects dbs={databases} isLoading={isLoading} setIsLoading={setIsLoading}/>
+      <Projects dbs={databases} isLoading={isLoading} setIsLoading={setIsLoading} setLocation={setLocation}/>
    </Route>
     </div>
   

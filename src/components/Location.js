@@ -55,8 +55,8 @@ const Location = () => {
                     <p>{location.properties.description.rich_text[0].plain_text}</p>
                     <p>Proposed Number of Houses:{location.properties.numberOfHouses.number}</p>
                     <p>Proposed Number of Houses:{location.properties.numberOfAmenities.number}</p> 
-                    {/* <p>Lat: {location.properties.lat.number}</p> 
-                    <p>Lng: {location.properties.lng.number}</p> */}
+                    <p>Lat: {location.properties.lat.number}</p> 
+                    <p>Lng: {location.properties.lng.number}</p>
                     </div>
 
                     {/* Grid of active or inactive links to features */}
@@ -65,7 +65,7 @@ const Location = () => {
                     {location.properties.phase1.checkbox ? <Link to={`/location/${formattedUrl}/story`}><div><h3>Site Proposal</h3><p>Details of the project</p></div></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase1.checkbox ? <Link to={`/location/${formattedUrl}/comment`} ><h3>Comment on Site</h3></Link> : <h3>false</h3>}
+                    {location.properties.phase1.checkbox ? <Link to={`/location/${formattedUrl}/site_comment`} ><h3>Comment on Site</h3></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
                     {location.properties.phase2.checkbox ? <Link to={`/location/${formattedUrl}/view_comments`}><h3>View Comments</h3></Link> : <h3>false</h3>}
