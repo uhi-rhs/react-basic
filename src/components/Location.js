@@ -18,7 +18,7 @@ const Location = () => {
     const [ dbs, setDatabases ] = useState([])
     // data for page header
     const [pageInfo] = useState({
-        title: "Current Project",
+        title: `${formattedUrl}`,
         body: "From here you can interact with this particular project"
     })
 
@@ -62,13 +62,13 @@ const Location = () => {
                     {/* Grid of active or inactive links to features */}
                     <div className="location-grid">
                     <div className="location-feature">
-                    {location.properties.phase1.checkbox ? <Link to="#"><div><h3>Site Proposal</h3><p>Details of the project</p></div></Link> : <h3>false</h3>}
+                    {location.properties.phase1.checkbox ? <Link to={`/location/${formattedUrl}/story`}><div><h3>Site Proposal</h3><p>Details of the project</p></div></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
                     {location.properties.phase1.checkbox ? <Link to={`/location/${formattedUrl}/comment`} ><h3>Comment on Site</h3></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? <Link to="#"><h3>View Comments</h3></Link> : <h3>false</h3>}
+                    {location.properties.phase2.checkbox ? <Link to={`/location/${formattedUrl}/view_comments`}><h3>View Comments</h3></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
                     {location.properties.phase2.checkbox ? <Link to="#"><h3>Comment on Plans</h3></Link> : <h3>false</h3>}
