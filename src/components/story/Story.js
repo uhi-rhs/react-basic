@@ -7,12 +7,13 @@ import StoryPage3 from './StoryPage3';
 import StoryPageVideo from './StoryPageVideo';
 import PageHeader from '../PageHeader';
 
-const Story = () => {
+const Story = (props) => {
 
     const [pageInfo] = useState({
         title: "Example of a project outline",
         body: "Pre feedback information"
     })
+    console.log("Story", props)
 
     // hard coded data for testing
     const [story] = useState({
