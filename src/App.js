@@ -19,23 +19,13 @@ import Drawing from './components/Drawing';
 import Location from './components/Location';
 import SiteComment from './components/SiteComment'
 import ViewComments from './components/ViewComments'
+import ViewSiteComments from './components/ViewSiteComments'
 import { useState, useEffect } from 'react'
 
 function App() {
 
   const [ isLoading, setIsLoading ] = useState(true)
   const [ databases, setDatabases ] = useState([])
-  // const [dbTitles, setDBTitles] = useState([])
-
-  // const getTitles = (dblist) => {
-  //   const titles = []
-  //   dblist.results.map((db) => {
-  //     titles.push(db.title[0].text.content)
-  //   })
-  //   return titles
-  // }
-  // const key = process.env.REACT_APP_API_URL
-  // console.log(key)
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -43,12 +33,14 @@ function App() {
         console.log(result.data)
         setDatabases(result.data)   
         setIsLoading(false)     
-        // setDBTitles(getTitles(result.data))    
     }
     fetchItems()
     console.log('fetch')
 }, [])
-  const [location, setLocation] = useState()
+
+// Location data (chosen project) to propogage through application
+  const [location, setLocation] = useState({})
+  // console.log('app.js', location)
 
   return (
     <Router>
@@ -82,8 +74,11 @@ function App() {
    <Route exact path="/location/:id/story" >
     <Story location={location} />
    </Route>
-   <Route exact path="/location/:id/view_comments" >
+   <Route exact path="/location/:id/view_basic_comments" >
     <ViewComments  location={location}/>
+   </Route>
+   <Route exact path="/location/:id/view_site_comments" >
+    <ViewSiteComments  location={location}/>
    </Route>
 
 
@@ -91,8 +86,10 @@ function App() {
     <SiteLayout isLoading={isLoading} setIsLoading={setIsLoading}/>
    </Route> */}
   
+  {/* setLocation allows project data to be accessible from the parent component once a project has been selected by a user (that route hit from 'projects') But
+  this won't currently work if a URL is sent to a user for a particular project */}
     <Route exact path="/">
-      <Projects dbs={databases} isLoading={isLoading} setIsLoading={setIsLoading} setLocation={setLocation}/>
+      <Projects dbs={databases} isLoading={isLoading} setIsLoading={setIsLoading} setLocation={location => setLocation(location)}/>
    </Route>
     </div>
   

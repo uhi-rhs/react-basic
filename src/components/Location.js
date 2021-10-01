@@ -65,19 +65,22 @@ const Location = () => {
                     {location.properties.phase1.checkbox ? <Link to={`/location/${formattedUrl}/story`}><div><h3>Site Proposal</h3><p>Details of the project</p></div></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase1.checkbox ? <Link to={`/location/${formattedUrl}/site_comment`} ><h3>Comment on Site</h3></Link> : <h3>false</h3>}
+                    {location.properties.phase1.checkbox ? <Link to={`/location/${formattedUrl}/site_comment`} ><h3>Comment on the Site</h3><p>A Map Based Activity where you can be specific about the location of something</p></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? <Link to={`/location/${formattedUrl}/view_comments`}><h3>View Comments</h3></Link> : <h3>false</h3>}
+                    {location.properties.phase2.checkbox ? <Link to={`/location/${formattedUrl}/view_site_comments`}><h3>View Site Comments</h3><p>See what other people are saying, on a map</p></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? <Link to="#"><h3>Comment on Plans</h3></Link> : <h3>false</h3>}
+                    {location.properties.phase2.checkbox ? <Link to={`/location/${formattedUrl}/basic_comment`}><h3>Basic Comment</h3><p>Nothing Fancy, just a comment re this project</p></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? <Link to="#"><h3>Propose Layout</h3></Link> : <h3>false</h3>}
+                    {location.properties.phase2.checkbox ? <Link to={`/location/${formattedUrl}/view_basic_comments`}><h3>View Basic Comments</h3><p>See what other people are saying</p></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase3.checkbox ? <Link to="#"><h3>true</h3></Link> : <h3>false</h3>}
+                    {location.properties.phase2.checkbox ? <Link to="#"><h3>Propose Layout</h3><p>We'd like to get your ideas for house positions etc</p></Link> : <h3>false</h3>}
+                    </div>
+                    <div className="location-feature">
+                    {location.properties.phase3.checkbox ? <Link to="#"><h3>Other Feature</h3><p>TBC</p></Link> : <h3>false</h3>}
                     </div>
                     </div>
                 </div>

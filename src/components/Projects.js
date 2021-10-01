@@ -2,7 +2,7 @@ import React from 'react'
 import Spinner from './Spinner'
 import Project from './Project';
 
-const Projects = ({dbs, isLoading}) => {
+const Projects = ({dbs, isLoading, setLocation}) => {
 
    return isLoading? (
        <Spinner />
@@ -12,7 +12,7 @@ const Projects = ({dbs, isLoading}) => {
             {console.log(dbs)}
             {dbs.map((db) => (
                 <div key={db.id}>
-                    <Project db={db}/>
+                    <Project db={db} setLocation={setLocation}/>
                 </div>
             ))}
         </div>

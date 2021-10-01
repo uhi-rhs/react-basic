@@ -65,6 +65,7 @@ export default function MarkerComment() {
             lat: marker.latitude,
             lng: marker.longitude,
             comment: marker.comment,
+            dateTime: "2021-10-01",
             publish: false,
             user_id: user_id
         }
