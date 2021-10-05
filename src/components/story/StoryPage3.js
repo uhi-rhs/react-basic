@@ -3,7 +3,9 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 
 const StoryPage3 = ({pageContent, nextPage, prevPage}) => {
 
-    const {image2, text2} = pageContent;
+    // const {plan1, text2} = pageContent;
+    const plan1 = pageContent.location.properties.plan_1.files[0].file.url
+    const text2 = pageContent.location.properties.text_2.rich_text[0].plain_text
 
     const _continue = (e) => {
         e.preventDefault();
@@ -26,7 +28,7 @@ const StoryPage3 = ({pageContent, nextPage, prevPage}) => {
 
             </button>
             <div className="story-card">
-            <img src={image2} alt="" />
+            <img src={plan1} alt="" />
             <p>{text2}</p>
             </div>
            

@@ -3,7 +3,9 @@ import { FaAngleLeft } from 'react-icons/fa'
 
 const StoryPageVideo = ({pageContent, prevPage}) => {
 
-    const {text3, vimeolink} = pageContent
+
+    const text3 = pageContent.location.properties.text_3.rich_text[0].plain_text
+    const vimeolink = pageContent.location.properties.vimeo_embed.rich_text[0].href
 
     const _back = e => {
         e.preventDefault();

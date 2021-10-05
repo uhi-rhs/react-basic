@@ -20,6 +20,7 @@ import Location from './components/Location';
 import SiteComment from './components/SiteComment'
 import ViewComments from './components/ViewComments'
 import ViewSiteComments from './components/ViewSiteComments'
+import BasicComment from './components/BasicComment'
 import { useState, useEffect } from 'react'
 
 function App() {
@@ -57,7 +58,7 @@ function App() {
    <Route exact path="/marker_comment" component={MarkerComment} />
    <Route exact path="/view_locations" component={ViewLocations} />
    <Route exact path="/houses" component={HouseStyles} />
-   <Route exact path="/form_view" component={FormView} />
+   {/* <Route exact path="/form_view" component={FormView} /> */}
    <Route exact path="/form_responses" component={FormResponses} />
    <Route exact path="/story_example" component={Story} />
    <Route exact path="/landing_page" component={LandingPage} />
@@ -71,6 +72,9 @@ function App() {
    <Route exact path="/location/:id/site_comment" >
     <SiteComment location={location} />
    </Route>
+   <Route exact path="/location/:id/basic_comment" >
+    <BasicComment location={location} />
+   </Route>
    <Route exact path="/location/:id/story" >
     <Story location={location} />
    </Route>
@@ -80,6 +84,10 @@ function App() {
    <Route exact path="/location/:id/view_site_comments" >
     <ViewSiteComments  location={location}/>
    </Route>
+   <Route exact path="/form_view" >
+    <FormView  location={location}/>
+   </Route>
+
 
 
    {/* <Route exact path="/site_layout"> 

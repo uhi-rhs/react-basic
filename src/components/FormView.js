@@ -1,12 +1,15 @@
 import React, {useState} from 'react'
 import PageHeader from './PageHeader'
 
-const FormView = () => {
+const FormView = (props) => {
 
     const [pageInfo] = useState({
         title: "Survey",
-        body: "Kindrochit Court - Braemar"
+        body: props.location.properties.Name.title[0].plain_text
     })
+    console.log(props)
+
+    // Add useEffect hook to load data from Notion w filter / single query for correct form URL
 
     return (
         <div className="container">
