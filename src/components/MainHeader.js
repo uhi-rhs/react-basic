@@ -44,6 +44,9 @@ const MainHeader = () => {
             <Link to={"/drawing"} >
                 <h2>Drawing</h2>
             </Link>
+            <Link to={"/site_proposal_national"} >
+                <h2>Propose Site</h2>
+            </Link>
         </div>
     )
 }

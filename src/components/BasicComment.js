@@ -20,36 +20,34 @@ const BasicComment = (props) => {
     //         alert('Please add a comment')
     //         return
     //     }
-    //     addComment({ ...marker, comment:comment })
+    //     addComment({comment:comment })
     //     setComment('')
     // }
 
-    // const addComment = (marker) => {
-    //     setMarker({...marker, marker})
+    // const addComment = (comment) => {
+    //     
     //     saveSubmission(marker)
-    //     setPopup(true)
     // }
 
-    // const saveSubmission = async (marker) => {
+    // const saveSubmission = async (comment) => {
     //     const user_id = uuid()
     //     const submission = {
-    //         lat: marker.latitude,
-    //         lng: marker.longitude,
-    //         comment: marker.comment,
+    //         comment: comment,
     //         dateTime: "2021-10-01",
     //         publish: false,
-    //         user_id: user_id
+    //         user_id: user_id,
+    //         projectName: props.location.properties.Name.title[0].plain_text
     //     }
-    //     axios.post(`${process.env.REACT_APP_API_URL}/api/rhs/add`, submission)
+    //     axios.post(`${process.env.REACT_APP_API_URL}/api/rhs/basic_comment/add`, submission)
     // }
     
     return (
         <div >
             <PageHeader info={pageInfo}/>
-            <div className='comment'>
+            <div className='basic-comment'>
             <form className='add-form' onSubmit={onSubmit}>
             <div className='form-control'>
-                <h2>Add Comment</h2>
+                <h2>Write Comment:</h2>
                 <label htmlFor="Comment"></label>
                 {/* <input type="text" placeholder='Type here...' value={comment} onChange={(e) => setComment(e.target.value)}/> */}
 

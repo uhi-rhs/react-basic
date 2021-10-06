@@ -200,6 +200,14 @@
     font-size: 17px;
   }
 
+  /* Basic Comment */
+
+  .basic-comment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   /* Post it Comments */
 
   .postit-page {
@@ -261,6 +269,10 @@
 
   /* Forms */
 
+  .form-view-container {
+    /* overflow: hidden; */
+  }
+
   .form-view {
     padding: 10px;
     margin: 10px;
@@ -269,6 +281,7 @@
     background: url('images/houses/h-4-l-shape.jpg');
     background-size: cover;
     background-attachment: fixed;
+    
   }
 
 

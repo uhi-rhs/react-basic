@@ -83,7 +83,7 @@ const Location = () => {
                     {location.properties.phase3.checkbox ? <Link to="#"><h3>Other Feature</h3><p>TBC</p></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase3.checkbox ? <Link to="/form_view"><h3>Survey</h3><p>...</p></Link> : <h3>false</h3>}
+                    {location.properties.phase3.checkbox ? <Link to={`/location/${formattedUrl}/form_view`}><h3>Survey</h3><p>...</p></Link> : <h3>false</h3>}
                     </div>
                     </div>
                 </div>

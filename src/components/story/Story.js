@@ -7,6 +7,7 @@ import StoryPage3 from './StoryPage3';
 import StoryPageVideo from './StoryPageVideo';
 import PageHeader from '../PageHeader';
 import axios from 'axios';
+import Spinner from '../Spinner'
 
 const Story = (props) => {
 
@@ -91,7 +92,7 @@ const Story = (props) => {
         />
         </div>
     }
-    return <div><h1>No Data</h1></div>
+    return <Spinner />
     
 }
 

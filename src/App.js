@@ -21,6 +21,7 @@ import SiteComment from './components/SiteComment'
 import ViewComments from './components/ViewComments'
 import ViewSiteComments from './components/ViewSiteComments'
 import BasicComment from './components/BasicComment'
+import ProposeSite from './components/ProposeSite'
 import { useState, useEffect } from 'react'
 
 function App() {
@@ -63,29 +64,30 @@ function App() {
    <Route exact path="/story_example" component={Story} />
    <Route exact path="/landing_page" component={LandingPage} />
    <Route exact path="/drawing" component={Drawing} />
+   <Route exact path="/site_proposal_national" component={ProposeSite} />
    
 
    {/* <Route exact path="/location/:id" component={Location} /> */}
    <Route exact path="/location/:id" >
-    <Location  location={location}/>
+    <Location  location={location} isLoading={isLoading}/>
    </Route>
    <Route exact path="/location/:id/site_comment" >
-    <SiteComment location={location} />
+    <SiteComment location={location} isLoading={isLoading}/>
    </Route>
    <Route exact path="/location/:id/basic_comment" >
-    <BasicComment location={location} />
+    <BasicComment location={location} isLoading={isLoading}/>
    </Route>
    <Route exact path="/location/:id/story" >
-    <Story location={location} />
+    <Story location={location} isLoading={isLoading}/>
    </Route>
    <Route exact path="/location/:id/view_basic_comments" >
-    <ViewComments  location={location}/>
+    <ViewComments  location={location} isLoading={isLoading}/>
    </Route>
    <Route exact path="/location/:id/view_site_comments" >
-    <ViewSiteComments  location={location}/>
+    <ViewSiteComments  location={location} isLoading={isLoading}/>
    </Route>
-   <Route exact path="/form_view" >
-    <FormView  location={location}/>
+   <Route exact path="/location/:id/form_view" >
+    <FormView  location={location} isLoading={isLoading} />
    </Route>
 
 
