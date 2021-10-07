@@ -13,6 +13,8 @@ const BasicComment = (props) => {
 
     const [comment, setComment] = useState('')
 
+    const [ errors, setErrors ] = useState([])
+
     // const onSubmit = (e) => {
     //     console.log(e)
     // }
@@ -40,10 +42,14 @@ const BasicComment = (props) => {
             user_id: user_id,
             projectName: props.location.properties.Name.title[0].plain_text
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/api/rhs/basic_comment/add`, submission)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/rhs/basic_comments/add`, submission)
+        .catch((err) => {
+            console.log(err)
+        })
         console.log(submission)
     }
     
+    console.log(errors)
     return (
         <div >
             <PageHeader info={pageInfo}/>
@@ -59,6 +65,7 @@ const BasicComment = (props) => {
             </div>
             <input type="submit" value='Submit' className='btn btn-block'/>
         </form>
+        
             </div>
         </div>
     )
