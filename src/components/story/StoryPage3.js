@@ -4,8 +4,8 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 const StoryPage3 = ({pageContent, nextPage, prevPage}) => {
 
     // const {plan1, text2} = pageContent;
-    const plan1 = pageContent.location.properties.plan_1.files[0].file.url
-    const text2 = pageContent.location.properties.text_2.rich_text[0].plain_text
+    const plan1 = pageContent.properties.plan_1.files[0].file.url
+    const text2 = pageContent.properties.text_2.rich_text[0].plain_text
 
     const _continue = (e) => {
         e.preventDefault();

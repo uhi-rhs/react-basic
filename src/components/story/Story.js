@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react'
-// import image1 from '../../images/crusher-overview.png';
-// import image2 from '../../images/crusher-building-elevation.png';
+import React, {useState, useEffect, useContext} from 'react'
+
 import StoryPage1 from './StoryPage1';
 import StoryPage2 from './StoryPage2';
 import StoryPage3 from './StoryPage3';
@@ -8,6 +7,7 @@ import StoryPageVideo from './StoryPageVideo';
 import PageHeader from '../PageHeader';
 import axios from 'axios';
 import Spinner from '../Spinner'
+import { LocationContext } from '../../App'
 
 const Story = (props) => {
 
@@ -15,30 +15,45 @@ const Story = (props) => {
         title: "Example of a project outline",
         body: "Pre feedback information"
     })
-    // console.log("Story", props)
-    console.log("Props:", props)
+   
+    const location = useContext(LocationContext)
+    // console.log("Location:",location)
+
+    // console.log("Props:", props)
     const url = props.location.properties.Name.title[0].plain_text
+    const id = props.location.properties.Story.relation[0].id
     const [step, setStep] = useState(null)
 
     const [story, setStory] = useState(null)
 
-    console.log("Story:", story)
+    // console.log("Story:", story)
 
     // State (story) is not persisting when setStep is called, I think. Look into React Redux + local storage
 
+    // useEffect(() => {     
+    //     const fetchItems = async () => {
+    //         const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/stories`)
+    //         console.log('result.data', result.data)
+    //         const filteredData = result.data.filter(story => story.properties.Name.title[0].plain_text === url)
+    //         setStory(filteredData)
+    //         // setIsLoading(false)
+    //         setStep(1)
+    //         }          
+    //         fetchItems() 
+    //     }, [])
+
     useEffect(() => {     
         const fetchItems = async () => {
-            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/stories`)
-            console.log('result.data', result.data)
-            const filteredData = result.data.filter(story => story.properties.Name.title[0].plain_text === url)
-            setStory(filteredData)
+            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/stories/${url}`)
+            // console.log('result.data', result.data)
+            setStory(result.data)
             // setIsLoading(false)
             setStep(1)
             }          
             fetchItems() 
         }, [])
 
-
+    // console.log(`${process.env.REACT_APP_API_URL}/api/rhs/stories/${id}`)
 
     // console.log(step)
 
@@ -67,6 +82,7 @@ const Story = (props) => {
     }
     if (step === 2) {
         return    <div className="story">
+            {console.log("Step 2", story)}
         <PageHeader info={pageInfo}/>
         <StoryPage2 pageContent={story}
         nextPage={nextPage}

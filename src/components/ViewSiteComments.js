@@ -16,7 +16,6 @@ const ViewSiteComments = (props) => {
 
 const [ selectedSite, setSelectedSite ] = useState(null)
     const [comments, setComments] = useState([])
-    // const [ pin ] = useState(null)
 
     const colour = (id) => {
         const col = '#'
@@ -24,8 +23,6 @@ const [ selectedSite, setSelectedSite ] = useState(null)
         const hexcol = col.concat(hex);
         return hexcol
     }
-
-    
 
     const [pageInfo] = useState({
         title: `View Site Comments for ${props.location.properties.Name.title[0].plain_text}`,
@@ -39,8 +36,7 @@ const [ selectedSite, setSelectedSite ] = useState(null)
             setComments(result.data)            
         }
         fetchItems()
-        console.log('fetch')
-    }, [])
+    }, [props.location.properties.Name.title])
 
     return (
         <>
@@ -65,7 +61,6 @@ const [ selectedSite, setSelectedSite ] = useState(null)
                        onClick={(e) => {
                            e.preventDefault();
                            setSelectedSite(comment)
-                           console.log(selectedSite)
                        }}
                        >
                        <Pin pin={{size: 60, stroke: 'none', fill: colour(comment.id)}}/>

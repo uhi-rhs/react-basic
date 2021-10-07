@@ -5,15 +5,11 @@ import Spinner from '../Spinner'
 const StoryPage1 = ({pageContent, nextPage}) => {
 
     // const {name, client, intro} = pageContent;
-    const name = pageContent[0].properties.Name.title[0].plain_text
-    const client = pageContent[0].properties.client.rich_text[0].plain_text
-    const intro = pageContent[0].properties.intro.rich_text[0].plain_text
+    const name = pageContent.properties.Name.title[0].plain_text
+    const client = pageContent.properties.client.rich_text[0].plain_text
+    const intro = pageContent.properties.intro.rich_text[0].plain_text
 
-    // const name = ""
-    // const client = ""
-    // const intro = "intro"
-
-    console.log(pageContent)
+    // console.log("page content:",pageContent)
 
     const _continue = (e) => {
         e.preventDefault();

@@ -4,8 +4,8 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 const StoryPage2 = ({pageContent, nextPage, prevPage}) => {
 
     // const {image1, text1} = pageContent;
-    const image1 = pageContent.location.properties.mainImage.files[0].file.url
-    const text1 = pageContent.location.properties.text_1.rich_text[0].plain_text
+    const image1 = pageContent.properties.mainImage.files[0].file.url
+    const text1 = pageContent.properties.text_1.rich_text[0].plain_text
 
     const _continue = (e) => {
         e.preventDefault();
@@ -16,7 +16,7 @@ const StoryPage2 = ({pageContent, nextPage, prevPage}) => {
         e.preventDefault();
         prevPage();
     };
-
+    console.log("Step 2 page content",pageContent)
     return (
         <div className="story-container">
              <button

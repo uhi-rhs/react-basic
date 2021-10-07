@@ -9,7 +9,6 @@ const Projects = ({dbs, isLoading, setLocation}) => {
    ) :  (
         <div className="dbs-container">
             <h4>Projects</h4>
-            {console.log(dbs)}
             {dbs.map((db) => (
                 <div key={db.id}>
                     <Project db={db} setLocation={setLocation}/>

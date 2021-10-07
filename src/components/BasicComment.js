@@ -1,5 +1,8 @@
 import React, {useState} from 'react'
 import PageHeader from './PageHeader'
+import uuid from 'react-uuid'
+import axios from 'axios'
+
 
 const BasicComment = (props) => {
 
@@ -10,36 +13,36 @@ const BasicComment = (props) => {
 
     const [comment, setComment] = useState('')
 
+    // const onSubmit = (e) => {
+    //     console.log(e)
+    // }
+
     const onSubmit = (e) => {
-        console.log(e)
+        e.preventDefault()
+        if(!comment){
+            alert('Please add a comment')
+            return
+        }
+        addComment({comment:comment })
+        setComment('')
     }
 
-    // const onSubmit = (e) => {
-    //     e.preventDefault()
-    //     if(!comment){
-    //         alert('Please add a comment')
-    //         return
-    //     }
-    //     addComment({comment:comment })
-    //     setComment('')
-    // }
+    const addComment = (comment) => {
+        saveSubmission(comment)
+    }
 
-    // const addComment = (comment) => {
-    //     
-    //     saveSubmission(marker)
-    // }
-
-    // const saveSubmission = async (comment) => {
-    //     const user_id = uuid()
-    //     const submission = {
-    //         comment: comment,
-    //         dateTime: "2021-10-01",
-    //         publish: false,
-    //         user_id: user_id,
-    //         projectName: props.location.properties.Name.title[0].plain_text
-    //     }
-    //     axios.post(`${process.env.REACT_APP_API_URL}/api/rhs/basic_comment/add`, submission)
-    // }
+    const saveSubmission = async (comment) => {
+        const user_id = uuid()
+        const submission = {
+            comment: comment,
+            dateTime: "2021-10-01",
+            publish: false,
+            user_id: user_id,
+            projectName: props.location.properties.Name.title[0].plain_text
+        }
+        axios.post(`${process.env.REACT_APP_API_URL}/api/rhs/basic_comment/add`, submission)
+        console.log(submission)
+    }
     
     return (
         <div >
