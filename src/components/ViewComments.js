@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import PageHeader from './PageHeader';
 
-const ViewComments = () => {
+const ViewComments = (props) => {
     
     const [ comments, setComments ] = useState([])
 
@@ -11,6 +11,7 @@ const ViewComments = () => {
         body: "Showing feedback on consultation"
     })
 
+    console.log(props)
     useEffect(() => {
         const fetchItems = async () => {
             const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/basic_comments`)
@@ -23,9 +24,9 @@ const ViewComments = () => {
     // To do: filter data to return only comments for a specific location / project (from props)
 
     return (
-        <div className="postit-page">
+        <div className="postit-page" style={{backgroundImage: `url(${props.location.properties.mainImage.files[0].file.url})`}}>
              <PageHeader info={pageInfo}/>
-             <div className="postit-container">
+             <div className="postit-container" >
                 
                 {console.log(comments)}
                 {comments.map((comment) => (

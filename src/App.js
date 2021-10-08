@@ -82,7 +82,7 @@ function App() {
       <Route exact path="/location/:id/site_comment" >
         <SiteComment location={location} isLoading={isLoading}/>
       </Route>
-      <Route exact path="/location/:id/basic_comment" >
+      <Route exact path="/location/:id/basic_comments" >
         <BasicComment location={location} isLoading={isLoading}/>
       </Route>
       <Route exact path="/location/:id/story" >

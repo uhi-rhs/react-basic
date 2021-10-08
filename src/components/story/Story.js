@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import StoryPage1 from './StoryPage1';
 import StoryPage2 from './StoryPage2';
@@ -7,7 +7,7 @@ import StoryPageVideo from './StoryPageVideo';
 import PageHeader from '../PageHeader';
 import axios from 'axios';
 import Spinner from '../Spinner'
-import { LocationContext } from '../../App'
+// import { LocationContext } from '../../App'
 
 const Story = (props) => {
 
@@ -16,12 +16,12 @@ const Story = (props) => {
         body: "Pre feedback information"
     })
    
-    const location = useContext(LocationContext)
+    // const location = useContext(LocationContext)
     // console.log("Location:",location)
 
     // console.log("Props:", props)
     const url = props.location.properties.Name.title[0].plain_text
-    const id = props.location.properties.Story.relation[0].id
+    // const id = props.location.properties.Story.relation[0].id
     const [step, setStep] = useState(null)
 
     const [story, setStory] = useState(null)
@@ -51,7 +51,7 @@ const Story = (props) => {
             setStep(1)
             }          
             fetchItems() 
-        }, [])
+        }, [url])
 
     // console.log(`${process.env.REACT_APP_API_URL}/api/rhs/stories/${id}`)
 

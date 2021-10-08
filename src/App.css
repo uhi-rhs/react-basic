@@ -211,9 +211,12 @@
   /* Post it Comments */
 
   .postit-page {
-    background: url('images/houses/h-1-terrace.jpg');
+    /* background: url('images/houses/h-1-terrace.jpg'); */
     background-size: cover;
     background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+   
   }
 
   .postit-container {
@@ -225,6 +228,10 @@
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 40px;
     text-align: center;
+    
+    /* width: 100vw;
+    height: 100vh; */
+    
   }
 
   .postit {

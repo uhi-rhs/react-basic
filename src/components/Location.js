@@ -71,7 +71,7 @@ const Location = () => {
                     {location.properties.phase2.checkbox ? <Link to={`/location/${formattedUrl}/view_site_comments`}><h3>View Site Comments</h3><p>See what other people are saying, on a map</p></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? <Link to={`/location/${formattedUrl}/basic_comment`}><h3>Basic Comment</h3><p>Nothing Fancy, just a comment re this project</p></Link> : <h3>false</h3>}
+                    {location.properties.phase2.checkbox ? <Link to={`/location/${formattedUrl}/basic_comments`}><h3>Basic Comment</h3><p>Nothing Fancy, just a comment re this project</p></Link> : <h3>false</h3>}
                     </div>
                     <div className="location-feature">
                     {location.properties.phase2.checkbox ? <Link to={`/location/${formattedUrl}/view_basic_comments`}><h3>View Basic Comments</h3><p>See what other people are saying</p></Link> : <h3>false</h3>}

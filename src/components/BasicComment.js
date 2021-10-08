@@ -13,7 +13,7 @@ const BasicComment = (props) => {
 
     const [comment, setComment] = useState('')
 
-    const [ errors, setErrors ] = useState([])
+    // const [ errors, setErrors ] = useState([])
 
     // const onSubmit = (e) => {
     //     console.log(e)
@@ -49,7 +49,7 @@ const BasicComment = (props) => {
         console.log(submission)
     }
     
-    console.log(errors)
+    // console.log(errors)
     return (
         <div >
             <PageHeader info={pageInfo}/>
