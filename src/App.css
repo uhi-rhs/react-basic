@@ -2,6 +2,9 @@
   color: #110805
 }
 
+h1 {
+  padding: 0;
+}
 
 /* NAV */
 
@@ -53,6 +56,17 @@
   border-radius: 5px;
 }
 
+/* Projects */
+
+.icon-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-container > svg {
+  padding: 5px;
+}
+
 /* Intro */
 
 .intro {
@@ -76,6 +90,10 @@
 
 .dbs-container {
   padding: 50px;
+}
+
+.dbs-container h1 {
+  padding: 0px;
 }
 
 /* Spinner */
@@ -170,10 +188,20 @@
 
   .add-form {
     margin-bottom: 40px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
   }
   
   .form-control {
     margin: 20px 0;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .form-control textarea {
+    align-items: center;
+    justify-content: center;
   }
 
   .form-control label {
@@ -206,6 +234,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
   }
 
   /* Post it Comments */
@@ -226,24 +258,24 @@
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: 40px;
+    grid-gap: 20px;
     text-align: center;
+    height: calc(50vw - 5px);
     
     /* width: 100vw;
     height: 100vh; */
-    
   }
+ 
 
   .postit {
     padding: 5px;
-    background: pink;
+    background: #ff61b8;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 250px;
-    height: 250px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
   .popup {
@@ -374,14 +406,22 @@
  }
 
   .location-feature {
-    background: white;
+    background: #8b8785;
     border-radius: 5px;
-    padding: 20px;
+    padding: 10px;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0,0,0, 0.2);
+  }
+
+  .location-feature a:visited {
+    color: white;
   }
 
   .location-info {

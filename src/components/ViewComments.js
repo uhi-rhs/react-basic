@@ -7,8 +7,8 @@ const ViewComments = (props) => {
     const [ comments, setComments ] = useState([])
 
     const [pageInfo] = useState({
-        title: "Comments",
-        body: "Showing feedback on consultation"
+        title: "Comments on the site",
+        body: "Showing ongoing feedback from the consultation"
     })
 
     console.log(props)
@@ -26,8 +26,9 @@ const ViewComments = (props) => {
     return (
         <div className="postit-page" style={{backgroundImage: `url(${props.location.properties.mainImage.files[0].file.url})`}}>
              <PageHeader info={pageInfo}/>
-             <div className="postit-container" >
-                
+            
+             <div className="postit-container" >     
+           
                 {console.log(comments)}
                 {comments.map((comment) => (
                     <div 

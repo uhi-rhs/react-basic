@@ -22,9 +22,12 @@ import ViewComments from './components/ViewComments'
 import ViewSiteComments from './components/ViewSiteComments'
 import BasicComment from './components/BasicComment'
 import ProposeSite from './components/ProposeSite'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 export const LocationContext = React.createContext()
+// export const serverContext = React.createContext("http://localhost:5000")
+export const serverContext = React.createContext(process.env.REACT_APP_API_URL)
+
 
 function App() {
 
@@ -36,15 +39,16 @@ function App() {
   // Location data (chosen project) to propogate through application
   const [location, setLocation] = useState({})
 
+  const server = useContext(serverContext)
 
   useEffect(() => {
     const fetchItems = async () => {
-        const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/project_properties`)
+        const result = await axios(`${server}/api/rhs/project_properties`)
         setDatabases(result.data)   
         setIsLoading(false)     
     }
     fetchItems()
-}, [])
+}, [server])
 
 
 
@@ -96,6 +100,9 @@ function App() {
       </Route>
       <Route exact path="/location/:id/form_view" >
         <FormView  location={location} isLoading={isLoading} />
+      </Route>
+      <Route exact path="/location/:id/form_responses" >
+        <FormResponses location={location} isLoading={isLoading} />
       </Route>
     </LocationContext.Provider>
 

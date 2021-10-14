@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react'
+import React, {useState, useCallback, useContext} from 'react'
 import InteractiveMap, {Marker, Popup} from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import mapboxgl from 'mapbox-gl'
@@ -8,6 +8,7 @@ import Instructions from './Instructions'
 import axios from 'axios'
 import uuid from 'react-uuid'
 import PageHeader from './PageHeader'
+import {serverContext} from '../App'
 
 //eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
@@ -35,6 +36,8 @@ const SiteComment = (props) => {
         comment: '',
         visible: false
     })
+
+    const server = useContext(serverContext)
 
     const [ popup, setPopup] = useState(null)
 
@@ -73,7 +76,8 @@ const SiteComment = (props) => {
             publish: false,
             user_id: user_id
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/api/rhs/${props.location.properties.Name.title[0].plain_text}/site_comment/add`, submission)
+        axios.post(`${server}/api/rhs/${props.location.properties.Name.title[0].plain_text}/site_comment/add`, submission)
+        console.log(submission)
     }
 
     const addComment = (marker) => {
