@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import PageHeader from './PageHeader'
-import image1 from "../images/crusher-overview.png"
+import PageHeader from '../PageHeader'
+import image1 from "../../images/crusher-overview.png"
 
 
 const LandingPage = () => {

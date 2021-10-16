@@ -1,20 +1,24 @@
 import './App.css';
+import React, { useState, useEffect, useContext } from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import DraggableMarker from './components/DraggableMarker';
+import axios from 'axios';
+// DEMO
+import DraggableMarker from './components/demo/DraggableMarker';
 import DropMarker from './components/DropMarker';
+import Gallery from './components/demo/Gallery';
+
 import Intro from './components/Intro';
 import MarkerComment from './components/MarkerComment';
 import ViewLocations from'./components/ViewLocations';
 import ViewPIComments from './components/ViewPIComments';
-import Gallery from './components/Gallery';
 import HouseStyles from './components/HouseStyles';
 import MainHeader from './components/MainHeader';
-import axios from 'axios';
+
 import Projects from './components/Projects';
 import FormView from './components/FormView'
 import FormResponses from './components/FormResponses';
 import Story from './components/story/Story';
-import LandingPage from './components/LandingPage';
+import LandingPage from './components/demo/LandingPage';
 import Drawing from './components/Drawing';
 import Location from './components/Location';
 import SiteComment from './components/SiteComment'
@@ -22,7 +26,7 @@ import ViewComments from './components/ViewComments'
 import ViewSiteComments from './components/ViewSiteComments'
 import BasicComment from './components/BasicComment'
 import ProposeSite from './components/ProposeSite'
-import React, { useState, useEffect, useContext } from 'react'
+
 
 export const LocationContext = React.createContext()
 // export const serverContext = React.createContext("http://localhost:5000")

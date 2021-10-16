@@ -1,5 +1,27 @@
+:root {
+  --rhs-color: #1D81EA;
+  --dark-color: #110805;
+  --light-color: #ffffff;
+  --mid: #8b8785;
+  --postit: #ff61b8;
+  --story: #736A72;
+  --story-light: #F8F9F2;
+  --success-color: #5cb85c;
+  --error-color: #d9534f;
+}
+
+/* var(--rhs-color) */
+/* var(--dark-color) */
+/* var(--light-color) */
+/* var(--mid) */
+/* var(--story) */
+/* var(--story-light) */
+/* var(--postit) */
+/* var(--success-color) */
+/* var(--error-color) */
+
 .App {
-  color: #110805
+  color: var(--dark-color);
 }
 
 h1 {
@@ -15,7 +37,7 @@ h1 {
   justify-content: space-around;
   margin: 0;
   padding: 0;
-  background: white;
+  background: var(--light-color);
 }
 
 .page-header-title {
@@ -31,7 +53,7 @@ h1 {
 #BIUndo {
   padding: 10px;
   margin: 10px;
-  color: #110805;
+  color: var(--dark-color);
 }
 
 /* Main Header */
@@ -47,13 +69,32 @@ h1 {
 }
 
 .link-container h2 {
-  color: #1D81EA;
+  color: var(--rhs-color);
   font-size: 1rem;
   border-style: solid;
   padding: 10px;
   border-width: 1px;
-  border-color: black;
+  border-color: var(--dark-color);
   border-radius: 5px;
+}
+
+
+/* Intro */
+
+.intro {
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+  background: var(--rhs-color);
+}
+.intro h1 {
+  color: var(--light-color);
+}
+
+.intro-image {
+  height: 60px;
+  width: auto;
+  padding-top: 15px;
 }
 
 /* Projects */
@@ -66,27 +107,6 @@ h1 {
 .icon-container > svg {
   padding: 5px;
 }
-
-/* Intro */
-
-.intro {
-  padding-bottom: 10px;
-  display: flex;
-  justify-content: space-around;
-  background: #1D81EA;
-}
-.intro h1 {
-  color: white;
-}
-
-.intro-image {
-  height: 60px;
-  width: auto;
-  padding-top: 15px;
-}
-
-
-/* DBs - currently proto nav on home page */
 
 .dbs-container {
   padding: 50px;
@@ -108,7 +128,7 @@ h1 {
 /* Instructions Card */
 
 .instructions {
-  background-color: white;
+  background-color: var(--light-color);
   width: 300px;
   position: absolute;
   top: 2px;
@@ -130,20 +150,20 @@ h1 {
 }
 
 #InstructionsClose, #InstructionsOpen {
-  background: white;
+  background: var(--light-color);
   border-width: 0px;
   border: none;
   padding: 0;
-  color: #110805;
+  color: var(--dark-color);
 }
 
 .instructions button {
   border-width: 0;
-  background: white;
+  background: var(--light-color);
   padding: 5px;
 }
 
-/* Marker Comment */
+/* Marker / Site Comment */
 
 .marker {
   cursor: pointer;
@@ -162,8 +182,8 @@ h1 {
 
 .btn {
   display: inline-block;
-  background: #000;
-  color: #fff;
+  background: var(--dark-color);
+  color: var(--light-color);
   border: none;
   padding: 10px 20px;
   margin: 5px;
@@ -175,7 +195,7 @@ h1 {
 }
 
 .comment {
-  background: rgb(255, 255, 255);
+  background: var(--light-color);
   position: absolute;
   
   top: 10px;
@@ -188,7 +208,7 @@ h1 {
 
   .add-form {
     margin-bottom: 40px;
-    background-color: white;
+    background-color: var(--light-color);
     border-radius: 5px;
     padding: 10px;
   }
@@ -227,6 +247,12 @@ h1 {
     padding: 3px 7px;
     font-size: 17px;
   }
+
+  .popup {
+    margin: 0;
+    padding: 0;
+  }
+
 
   /* Basic Comment */
 
@@ -269,7 +295,7 @@ h1 {
 
   .postit {
     padding: 5px;
-    background: #ff61b8;
+    background: var(--postit);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -278,10 +304,6 @@ h1 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
-  .popup {
-    margin: 0;
-    padding: 0;
-  }
 
   /* House Styles Component - Display House Images */
 
@@ -344,8 +366,8 @@ h1 {
   .landing-page-header {
     display: flex;
     height: 300px;
-    background-color: #1D81EA;
-    color: #fff;
+    background-color: var(--rhs-color);
+    color: var(--light-color);
     position: relative;
     padding: 20px;
     margin: 20px;
@@ -370,8 +392,8 @@ h1 {
   .page {
     padding: 5px;
     border-radius: 5px;
-    background: #8b8785;
-    color: white;
+    background: var(--mid);
+    color: var(--light-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -406,10 +428,10 @@ h1 {
  }
 
   .location-feature {
-    background: #8b8785;
+    background: var(--mid);
     border-radius: 5px;
     padding: 10px;
-    color: white;
+    color: var(--light-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -421,11 +443,11 @@ h1 {
   }
 
   .location-feature a:visited {
-    color: white;
+    color: var(--light-color);
   }
 
   .location-info {
-    background-color: white;
+    background-color: var(--light-color);
     width: 300px;
     padding: 0px;
     margin: 10px;
@@ -440,7 +462,7 @@ h1 {
   /* Story Feature */
 
   .story {
-    background: #736A72;
+    background: var(--story);
     height: 100vh;
   }
 
@@ -449,7 +471,7 @@ h1 {
     justify-content: center;
     align-items: center;
     padding: 30px;
-    background: #736A72;
+    background: var(--story);
     
   }
 
@@ -457,7 +479,7 @@ h1 {
     position: fixed;
     left: 16vw;
     top: 50vh;
-    background: #736A72;
+    background: var(--story);
     border-width: 0px;
     padding: 0;
   }
@@ -466,14 +488,14 @@ h1 {
     position: fixed;
     right: 16vw;
     top: 50vh;
-    background: #736A72;
+    background: var(--story);
     border-width: 0px;
     padding: 0;
   }
 
   #FaAngleRight {
     background: inherit;
-    color: white;
+    color: var(--light-color);
   }
 
   #FaAngleLeft {
@@ -483,7 +505,7 @@ h1 {
 
   .story-card {
     width: 500px;
-    background: #F8F9F2;
+    background: var(--story-light);
   }
 
   .story-card p, h1, h3 {

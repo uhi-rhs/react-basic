@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import ReactMapGL, {Marker} from 'react-map-gl'
-import Pin from './Pin'
+import Pin from '../Pin'
 
 export default function DraggableMarker() {
 
