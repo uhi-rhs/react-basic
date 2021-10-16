@@ -31,7 +31,9 @@ import HouseTypes from './components/HouseTypes';
 
 
 export const LocationContext = React.createContext()
+// Dev Server:
 // export const serverContext = React.createContext("http://localhost:5000")
+// Production Server:
 export const serverContext = React.createContext(process.env.REACT_APP_API_URL)
 
 

@@ -53,6 +53,7 @@ const HouseTypes = (props) => {
             <PageHeader info={pageInfo}/>
             
             <div className="image-grid">
+                <div className="image" style={{background: "red"}}>Instruction</div>
                 {houses.map((house, index) => (
                     <div className="image" key={index} onClick={() => handleClick(house)}>
                         <img src={house.properties.Image.files[0].file.url} alt={house.properties.Alt.rich_text[0].plain_text} />
@@ -60,7 +61,7 @@ const HouseTypes = (props) => {
                         <p>{house.properties.Alt.rich_text[0].plain_text}</p>
                     </div>
                 ))}
-
+            
             </div>
         </div>
     )
