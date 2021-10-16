@@ -11,7 +11,7 @@ import Intro from './components/Intro';
 import MarkerComment from './components/MarkerComment';
 import ViewLocations from'./components/ViewLocations';
 import ViewPIComments from './components/ViewPIComments';
-import HouseStyles from './components/HouseStyles';
+import HouseStyles from './components/demo/HouseStyles';
 import MainHeader from './components/MainHeader';
 
 import Projects from './components/Projects';
@@ -26,6 +26,8 @@ import ViewComments from './components/ViewComments'
 import ViewSiteComments from './components/ViewSiteComments'
 import BasicComment from './components/BasicComment'
 import ProposeSite from './components/ProposeSite'
+import BuildingMaterials from './components/BuildingMaterials'
+import HouseTypes from './components/HouseTypes';
 
 
 export const LocationContext = React.createContext()
@@ -107,6 +109,12 @@ function App() {
       </Route>
       <Route exact path="/location/:id/form_responses" >
         <FormResponses location={location} isLoading={isLoading} />
+      </Route>
+      <Route exact path="/location/:id/building_materials" >
+        <BuildingMaterials location={location} isLoading={isLoading} />
+      </Route>
+      <Route exact path="/location/:id/house_types" >
+        <HouseTypes location={location} isLoading={isLoading} />
       </Route>
     </LocationContext.Provider>
 

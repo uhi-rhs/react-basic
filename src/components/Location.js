@@ -137,10 +137,19 @@ const Location = () => {
 
                     <div className="location-feature">
                     {location.properties.phase2.checkbox ? 
-                    <Link to="#">
+                    <Link to={`/location/${formattedUrl}/house_types`}>
                         <FaRegImage id="FaRegImage" label="picture" style={{height: '3em', width: '3em'}} />
                         <h3>Comment on House Type</h3>
                         <p>We'd like to get your ideas on the type of house(s) for this site</p>
+                        </Link> : <h3>false</h3>}
+                    </div>
+
+                    <div className="location-feature">
+                    {location.properties.phase2.checkbox ? 
+                    <Link to={`/location/${formattedUrl}/building_materials`}>
+                        <FaRegImage id="FaRegImage" label="picture" style={{height: '3em', width: '3em'}} />
+                        <h3>Building Materials</h3>
+                        <p>We'd like to get your ideas on building materials for this site</p>
                         </Link> : <h3>false</h3>}
                     </div>
 

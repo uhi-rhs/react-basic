@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom'
 const PageHeader = ({info}) => {
 
     const {title, body} = info
-    console.log(title)
     return (
         <div className="page-header">
             <div className="page-header-title">
