@@ -59,6 +59,7 @@ const SiteComment = (props) => {
         item2: "Add a comment to say why you think about this site",
         body: "Remember: where are the views? How can you use the sun to help energy savings? How can you create shelter from things like wind and rain?"
     })
+    
 
     const handleClick = ({ lngLat: [longitude, latitude] }) => {
         if(!marker.visible){

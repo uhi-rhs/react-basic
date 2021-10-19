@@ -13,7 +13,28 @@ const Comment = ({onAdd, marker}) => {
         }
         onAdd({ ...marker, comment:comment })
         setComment('')
+        setSubmitted(true)
     }
+
+    const [ submitted, setSubmitted] = useState(false)
+
+
+    const Form = (props) => {
+        return <input type="submit" value='Submit' className='btn btn-block'/>
+    }
+
+    const Feedback = (props) => {    
+        return <p>Thank you. Your submission has been received.</p>
+    }
+
+    const Display = (props) => {
+        const submitted = props.submitted        
+        if(submitted){
+            return <Feedback />
+        }
+        return <Form />
+    }
+
     return (
         <div className='comment'>
             <form className='add-form' onSubmit={onSubmit}>
@@ -25,7 +46,9 @@ const Comment = ({onAdd, marker}) => {
                 <textarea name="text" rows="8" cols="40" wrap="soft" placeholder='Type here...' value={comment} onChange={(e) => setComment(e.target.value)}> </textarea>
 
             </div>
-            <input type="submit" value='Submit' className='btn btn-block'/>
+            {/* <input type="submit" value='Submit' className='btn btn-block'/> */}
+            <Display submitted={submitted} />
+
         </form>
         </div>
     )

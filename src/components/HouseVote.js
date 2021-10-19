@@ -17,10 +17,29 @@ const HouseVote = ({handleClose, show, house, vote, setVote, onAdd}) => {
         onAdd({...vote, comment:comment })
         console.log("OnSubmit fired", comment)
         setComment('')
+        setSubmitted(true)
     }
     
     const showHideClassName = show ? "modal display-block" : "modal display-none";
     
+    const [ submitted, setSubmitted] = useState(false)
+
+
+    const Form = (props) => {
+        return <input type="submit" value='Submit' className='btn btn-block'/>
+    }
+
+    const Feedback = (props) => {    
+        return <p>Thank you. Your submission has been received.</p>
+    }
+
+    const Display = (props) => {
+        const submitted = props.submitted        
+        if(submitted){
+            return <Feedback />
+        }
+        return <Form />
+    }
     
     return (
      <div className={showHideClassName}>
@@ -36,7 +55,8 @@ const HouseVote = ({handleClose, show, house, vote, setVote, onAdd}) => {
                  <div>
                      <textarea name="text" cols="40" rows="8" wrap="soft" placeholder="Type here..." value={comment} onChange={(e) => setComment(e.target.value)} className="modal-textarea"></textarea>
                  </div>
-                 <input type="submit" value='Submit' className='btn btn-block'/>
+                 {/* <input type="submit" value='Submit' className='btn btn-block'/> */}
+                 <Display submitted={submitted} />
              </form>
             
 

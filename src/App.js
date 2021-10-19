@@ -29,6 +29,7 @@ import ProposeSite from './components/ProposeSite'
 import BuildingMaterials from './components/BuildingMaterials'
 import HouseTypes from './components/HouseTypes';
 import ViewHouseTypeFeedback from './components/ViewHouseTypeFeedback';
+import SurveyResponses from './components/SurveyResponses';
 
 
 export const LocationContext = React.createContext()
@@ -110,8 +111,8 @@ function App() {
       <Route exact path="/location/:id/form_view" >
         <FormView  location={location} isLoading={isLoading} />
       </Route>
-      <Route exact path="/location/:id/form_responses" >
-        <FormResponses location={location} isLoading={isLoading} />
+      <Route exact path="/location/:id/survey_responses" >
+        <SurveyResponses location={location} isLoading={isLoading} />
       </Route>
       <Route exact path="/location/:id/building_materials" >
         <BuildingMaterials location={location} isLoading={isLoading} />

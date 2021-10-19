@@ -57,8 +57,8 @@ const Location = () => {
                     <div  className="landing-page-header-text">
                     <h3>{location.properties.Name.title[0].plain_text}</h3>
                     <p>{location.properties.description.rich_text[0].plain_text}</p>
-                    <p>Proposed Number of Houses:{location.properties.numberOfHouses.number}</p>
-                    <p>Proposed Number of Houses:{location.properties.numberOfAmenities.number}</p> 
+                    <p>Proposed Number of Houses: {location.properties.numberOfHouses.number}</p>
+                    <p>Proposed Number of Ameneties: {location.properties.numberOfAmenities.number}</p> 
                     <p>Lat: {location.properties.lat.number}</p> 
                     <p>Lng: {location.properties.lng.number}</p>
                     </div>
@@ -73,7 +73,7 @@ const Location = () => {
                             <div>
                             <FaInfo id="FaInfo" label="Info" style={{height: '3em', width: '3em'}}/>
 
-                            <h3>Site Proposal</h3>
+                            <h3>Site Project</h3>
                             <p>Details of the project</p>
                             </div>
                         </Link> : <h3>false</h3>
@@ -87,7 +87,7 @@ const Location = () => {
                         <div>
                         <FaThumbtack id="FaThumbtack" label="Pin" style={{height: '3em', width: '3em'}}/>
                         <h3>Comment on the Site</h3>
-                        <p>A Map Based Activity where you can be specific about the location of something</p>
+                        <p>A Map Based Activity where you can comment on the location</p>
                         </div>
                     </Link> : <h3>false</h3>
                     }
@@ -110,7 +110,7 @@ const Location = () => {
                     <Link to={`/location/${formattedUrl}/basic_comments`}>
                         <FaRegCommentDots id="FaRegCommentDots" label="Comment" style={{height: '3em', width: '3em'}}/>
 
-                        <h3>Basic Comment</h3>
+                        <h3>Make a Comment</h3>
                         <p>Nothing Fancy, just a comment re this project</p>
                     </Link> : <h3>false</h3>}
                     <TiTickOutline style={{height: '1em', width: '1em'}}/>
@@ -121,7 +121,7 @@ const Location = () => {
                     <Link to={`/location/${formattedUrl}/view_basic_comments`}>
                         <FaRegComments id="FaRegComments" label="Comments" style={{height: '3em', width: '3em'}}/>
 
-                        <h3>View Basic Comments</h3>
+                        <h3>View Comments</h3>
                         <p>See what other people are saying</p>
                     </Link> : <h3>false</h3>}
                     <TiTickOutline style={{height: '1em', width: '1em'}}/>
@@ -185,7 +185,7 @@ const Location = () => {
                     </div>
 
                     <div className="location-feature">
-                    {location.properties.phase3.checkbox ? <Link to={`/location/${formattedUrl}/form_responses`}>
+                    {location.properties.phase3.checkbox ? <Link to={`/location/${formattedUrl}/survey_responses`}>
                     <FaRegChartBar id="FaRegChartBar" label="Survey Responses" style={{height: '3em', width: '3em'}}/>
                         <h3>Survey Responses</h3>
                         <p>...</p>
