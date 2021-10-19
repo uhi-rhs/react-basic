@@ -28,13 +28,14 @@ import BasicComment from './components/BasicComment'
 import ProposeSite from './components/ProposeSite'
 import BuildingMaterials from './components/BuildingMaterials'
 import HouseTypes from './components/HouseTypes';
+import ViewHouseTypeFeedback from './components/ViewHouseTypeFeedback';
 
 
 export const LocationContext = React.createContext()
 // Dev Server:
-// export const serverContext = React.createContext("http://localhost:5000")
+export const serverContext = React.createContext("http://localhost:5000")
 // Production Server:
-export const serverContext = React.createContext(process.env.REACT_APP_API_URL)
+// export const serverContext = React.createContext(process.env.REACT_APP_API_URL)
 
 
 function App() {
@@ -117,6 +118,9 @@ function App() {
       </Route>
       <Route exact path="/location/:id/house_types" >
         <HouseTypes location={location} isLoading={isLoading} />
+      </Route>
+      <Route exact path="/location/:id/house_votes" >
+        <ViewHouseTypeFeedback location={location} />
       </Route>
     </LocationContext.Provider>
 

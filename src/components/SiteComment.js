@@ -77,7 +77,7 @@ const SiteComment = (props) => {
             user_id: user_id
         }
         axios.post(`${server}/api/rhs/${props.location.properties.Name.title[0].plain_text}/site_comment/add`, submission)
-        console.log(submission)
+        console.log("Submission:", submission)
     }
 
     const addComment = (marker) => {
