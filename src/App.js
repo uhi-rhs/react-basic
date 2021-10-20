@@ -54,10 +54,16 @@ function App() {
   useEffect(() => {
     const fetchItems = async () => {
         const result = await axios(`${server}/api/rhs/project_properties`)
+        if (!result) {
+          throw new Error(`HTTP error! status: ${result.status}`);
+        }
         setDatabases(result.data)   
         setIsLoading(false)     
     }
     fetchItems()
+    .catch(e => {
+      console.log("There has been an error in the fetch within useEffect" + e.message)
+    })
 }, [server])
 
 
