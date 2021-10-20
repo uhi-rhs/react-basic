@@ -115,7 +115,8 @@ const HouseTypes = (props) => {
             comment: vote.comment
         }
         console.log("Submission:", submission)
-        // axios.post(`${server}/api/rhs/house_votes/add`, submission)
+        console.log("Submission", vote.comment)
+        axios.post(`${server}/api/rhs/house_votes/add`, submission)
         
     }
 
