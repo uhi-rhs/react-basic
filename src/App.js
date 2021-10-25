@@ -6,6 +6,7 @@ import axios from 'axios';
 import DraggableMarker from './components/demo/DraggableMarker';
 import DropMarker from './components/DropMarker';
 import Gallery from './components/demo/Gallery';
+import DrawPolygon from './components/draw/DrawPolygon'
 
 import Intro from './components/Intro';
 import MarkerComment from './components/MarkerComment';
@@ -13,6 +14,7 @@ import ViewLocations from'./components/ViewLocations';
 import ViewPIComments from './components/ViewPIComments';
 import HouseStyles from './components/demo/HouseStyles';
 import MainHeader from './components/MainHeader';
+
 
 import Projects from './components/Projects';
 import FormView from './components/FormView'
@@ -92,6 +94,7 @@ function App() {
         <Route exact path="/landing_page" component={LandingPage} />
         <Route exact path="/drawing" component={Drawing} />
         <Route exact path="/site_proposal_national" component={ProposeSite} />
+        <Route exact path="/draw_polygon" component={DrawPolygon} />
    
 
     {/* Routes for chosen project / location */}

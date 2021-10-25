@@ -101,7 +101,7 @@ const ProposeSite = () => {
         onViewportChange={viewport => {
             setViewport(viewport);
           }}
-          onClick={handleClick}
+        onClick={handleClick}
         >
             {/* <PageHeader info={pageInfo}/> */}
            <Instructions instructions={instructions}/>

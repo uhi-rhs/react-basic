@@ -47,6 +47,9 @@ const MainHeader = () => {
             <Link to={"/site_proposal_national"} >
                 <h2>Propose Site</h2>
             </Link>
+            <Link to={"/draw_polygon"} >
+                <h2>Draw Polygon</h2>
+            </Link>
         </div>
     )
 }
