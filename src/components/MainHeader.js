@@ -50,6 +50,9 @@ const MainHeader = () => {
             <Link to={"/draw_polygon"} >
                 <h2>Draw Polygon</h2>
             </Link>
+            <Link to={"/draw_polygon_basic"} >
+                <h2>Draw Polygon 2</h2>
+            </Link>
         </div>
     )
 }

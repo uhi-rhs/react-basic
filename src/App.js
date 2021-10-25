@@ -7,6 +7,7 @@ import DraggableMarker from './components/demo/DraggableMarker';
 import DropMarker from './components/DropMarker';
 import Gallery from './components/demo/Gallery';
 import DrawPolygon from './components/draw/DrawPolygon'
+import DrawPolygonBasic from './components/draw/DrawPolygonBasic'
 
 import Intro from './components/Intro';
 import MarkerComment from './components/MarkerComment';
@@ -95,6 +96,7 @@ function App() {
         <Route exact path="/drawing" component={Drawing} />
         <Route exact path="/site_proposal_national" component={ProposeSite} />
         <Route exact path="/draw_polygon" component={DrawPolygon} />
+        <Route exact path="/draw_polygon_basic" component={DrawPolygonBasic} />
    
 
     {/* Routes for chosen project / location */}
