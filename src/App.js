@@ -36,6 +36,8 @@ import SurveyResponses from './components/SurveyResponses';
 
 
 export const LocationContext = React.createContext()
+
+
 // Dev Server:
 // export const serverContext = React.createContext("http://localhost:5000")
 // Production Server:
@@ -51,6 +53,14 @@ function App() {
 
   // Location data (chosen project) to propogate through application
   const [location, setLocation] = useState({})
+
+//   const [localLocation, setLocalLocation] = useState(() => {
+//     const saved = localStorage.getItem('location');
+//     const initialValue = JSON.parse(saved);
+//     return initialValue || ""
+// })
+
+  console.log("APP.js", location)
 
   const server = useContext(serverContext)
 
@@ -78,7 +88,7 @@ function App() {
       <Route exact path="/" component={Intro} />
       <Route exact path="/" component={MainHeader} />
       <Route exact path="/">
-        <Projects dbs={databases} isLoading={isLoading} setIsLoading={setIsLoading} setLocation={location => setLocation(location)}/>
+        <Projects dbs={databases} isLoading={isLoading} setIsLoading={setIsLoading} setLocation={location => setLocation(location)} />
       </Route>
 
           {/* Demo Components */}
@@ -100,7 +110,9 @@ function App() {
    
 
     {/* Routes for chosen project / location */}
-    <LocationContext.Provider value={location}>
+    {/* TO DO  - remove props (usecontext is doing this work) */}
+    {/* <LocationContext.Provider value={location} > */}
+      {console.log(location)}
       <Route exact path="/location/:id" >
         <Location  location={location} isLoading={isLoading}/>
       </Route>
@@ -134,7 +146,7 @@ function App() {
       <Route exact path="/location/:id/house_votes" >
         <ViewHouseTypeFeedback location={location} />
       </Route>
-    </LocationContext.Provider>
+    {/* </LocationContext.Provider> */}
 
     </div>
   

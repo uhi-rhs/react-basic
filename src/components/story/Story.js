@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-
+import React, {useState, useEffect, useContext} from 'react'
+import { useLocation } from 'react-router-dom'
 import StoryPage1 from './StoryPage1';
 import StoryPage2 from './StoryPage2';
 import StoryPage3 from './StoryPage3';
@@ -7,7 +7,9 @@ import StoryPageVideo from './StoryPageVideo';
 import PageHeader from '../PageHeader';
 import axios from 'axios';
 import Spinner from '../Spinner'
-// import { LocationContext } from '../../App'
+import { LocationContext } from '../../App'
+// import useLocalStorage from "../../useLocalStorage";
+
 
 const Story = (props) => {
 
@@ -16,11 +18,31 @@ const Story = (props) => {
         body: "Pre feedback information"
     })
    
-    // const location = useContext(LocationContext)
-    // console.log("Location:",location)
+//     const {contextlocation} = useContext(LocationContext)
+// console.log("context location",contextlocation)
+    
 
+    // const [localLocation, setLocalLocation] = useState(() => {
+    //     const saved = localStorage.getItem('location');
+    //     const initialValue = JSON.parse(saved);
+    //     return initialValue || ""
+    // })
+
+    // const [location, setLocation] = useState(props.location)
+
+    // console.log(location)
+
+    const id = useLocation()
+    // Format
+    const formattedUrl = id.pathname.slice(10, -6)
+    console.log(formattedUrl)
     // console.log("Props:", props)
-    const url = props.location.properties.Name.title[0].plain_text
+    // if (location == undefined){
+    // const url = localLocation.properties.Name.title[0].plain_text
+    // }else{
+    //     const url = location.properties.Name.title[0].plain_text
+    // }
+    // const url = location? location.properties.Name.title[0].plain_text : localLocation.properties.Name.title[0].plain_text 
     // const id = props.location.properties.Story.relation[0].id
     const [step, setStep] = useState(null)
 
@@ -44,14 +66,14 @@ const Story = (props) => {
 
     useEffect(() => {     
         const fetchItems = async () => {
-            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/stories/${url}`)
+            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/stories/${formattedUrl}`)
             // console.log('result.data', result.data)
             setStory(result.data)
             // setIsLoading(false)
             setStep(1)
             }          
             fetchItems() 
-        }, [url])
+        }, [formattedUrl])
 
     // console.log(`${process.env.REACT_APP_API_URL}/api/rhs/stories/${id}`)
 
