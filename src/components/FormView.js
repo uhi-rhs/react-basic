@@ -2,12 +2,19 @@ import React, {useState, useEffect} from 'react'
 import PageHeader from './PageHeader'
 import axios from 'axios';
 import Spinner from './Spinner'
+import { useLocation } from 'react-router-dom'
+
 
 const FormView = (props) => {
 
+    const id = useLocation()
+    // Format
+    const formattedUrl = id.pathname.slice(10, -10)
+    console.log(formattedUrl)
+
     const [pageInfo] = useState({
         title: "Survey",
-        body: props.location.properties.Name.title[0].plain_text
+        body: formattedUrl
     })
 
     console.log("Props from form view",props)

@@ -3,21 +3,60 @@ import PageHeader from './PageHeader'
 import uuid from 'react-uuid'
 import axios from 'axios'
 import {serverContext} from '../App'
-
+import { useLocation } from 'react-router-dom'
+// import useLocalStorage from "../useLocalStorage";
 
 const BasicComment = (props) => {
 
+    const id = useLocation()
+    // Format
+    const formattedUrl = id.pathname.slice(10, -15)
+    console.log(formattedUrl)
+
     const [pageInfo] = useState({
-        title: `Comment on ${props.location.properties.Name.title[0].plain_text} project`,
+        title: `Comment on ${formattedUrl} project`,
         body: "This feature allows you to comment on a project"
     })
+
+        const [localLocation, setLocalLocation] = useState(() => {
+        const saved = localStorage.getItem('location');
+        const initialValue = JSON.parse(saved);
+        return initialValue || ""
+    })
+
+    console.log(props)
 
     const [comment, setComment] = useState('')
     const [ submitted, setSubmitted] = useState(false)
 
     const server = useContext(serverContext)
 
+    
+    // const imageUrl = props.location.properties.mainImage.files[0].file.url 
+    
+    // console.log(props.location.properties.mainImage.files[0].file.url)
+    console.log(localLocation.properties.mainImage.files[0].file.url)
     // const [ errors, setErrors ] = useState([])
+    // const getImage = () => {
+    //     let imageUrl = ""
+    //     if(props.location === {}){
+    //          imageUrl = localLocation.properties.mainImage.files[0].file.url
+    //     } else {
+    //          imageUrl = props.location.properties.mainImage.files[0].file.url
+    //     }
+    //     return imageUrl
+    // }
+
+    const getImage = () => {
+        let imageUrl = ""
+        try {
+            imageUrl = props.location.properties.mainImage.files[0].file.url
+        }
+        catch(err){
+            imageUrl = localLocation.properties.mainImage.files[0].file.url
+        }
+        return imageUrl
+    }
 
     // const onSubmit = (e) => {
     //     console.log(e)
@@ -44,7 +83,7 @@ const BasicComment = (props) => {
             dateTime: "2021-10-14",
             publish: false,
             user_id: user_id,
-            projectName: props.location.properties.Name.title[0].plain_text
+            projectName: formattedUrl
         }
         axios.post(`${server}/api/rhs/basic_comments/add`, submission)
         .catch((err) => {
@@ -70,11 +109,11 @@ const BasicComment = (props) => {
         return <Form />
     }
     
-    // console.log(errors)
+    console.log(getImage())
     return (
         <div >
             <PageHeader info={pageInfo}/>
-            <div className='basic-comment' style={{backgroundImage: `url(${props.location.properties.mainImage.files[0].file.url})`}}>
+            <div className='basic-comment' style={{backgroundImage: `url(${getImage()})`}}>
             <form className='add-form' onSubmit={onSubmit}>
             <div className='form-control'>
                 <h2>Write Comment:</h2>

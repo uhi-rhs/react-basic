@@ -11,6 +11,7 @@ const ViewComments = (props) => {
         body: "Showing ongoing feedback from the consultation"
     })
 
+
     console.log(props)
     useEffect(() => {
         const fetchItems = async () => {
@@ -24,7 +25,9 @@ const ViewComments = (props) => {
     // To do: filter data to return only comments for a specific location / project (from props)
 
     return (
-        <div className="postit-page" style={{backgroundImage: `url(${props.location.properties.mainImage.files[0].file.url})`}}>
+        <div className="postit-page" 
+        // style={{backgroundImage: `url(${props.location.properties.mainImage.files[0].file.url})`}}
+        >
              <PageHeader info={pageInfo}/>
             
              <div className="postit-container" >     

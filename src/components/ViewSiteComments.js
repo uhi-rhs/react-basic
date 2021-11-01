@@ -3,18 +3,63 @@ import ReactMapGL, {Marker, Popup} from 'react-map-gl'
 import axios from 'axios';
 import Pin from './Pin'
 import PageHeader from './PageHeader';
+import { useLocation } from 'react-router-dom'
+
 
 const ViewSiteComments = (props) => {
 
+    const [localLocation, setLocalLocation] = useState(() => {
+        const saved = localStorage.getItem('location');
+        const initialValue = JSON.parse(saved);
+        return initialValue || ""
+    })
+
+    const getLat= () => {
+        let lat
+        try{
+            lat = props.location.properties.lat.number
+        }
+        catch{
+            lat = localLocation.properties.lat.number
+        }
+        return lat
+    }
+    const getLng= () => {
+        let lng
+        try{
+            lng = props.location.properties.lng.number
+        }
+        catch{
+            lng = localLocation.properties.lng.number
+        }
+        return lng
+    }
+
     const [viewPort, setViewport] = useState({
-        latitude: props.location.properties.lat.number,
-        longitude: props.location.properties.lng.number,
+        latitude: getLat(),
+        longitude: getLng(),
         width: '100vw',
         height: '100vh',
         zoom: 17
-})
+    })
 
-const [ selectedSite, setSelectedSite ] = useState(null)
+    const id = useLocation()
+    // Format
+    const formattedUrl = id.pathname.slice(10, -19)
+    console.log(formattedUrl)
+
+    // useEffect(() => {
+    //     window.addEventListener("beforeunload", alertUser);
+    //     return () => {
+    //       window.removeEventListener("beforeunload", alertUser);
+    //     };
+    //   }, []);
+    //   const alertUser = (e) => {
+    //     e.preventDefault();
+    //     e.returnValue = "";
+    //   };
+
+    const [ selectedSite, setSelectedSite ] = useState(null)
     const [comments, setComments] = useState([])
 
     const colour = (id) => {
@@ -25,18 +70,18 @@ const [ selectedSite, setSelectedSite ] = useState(null)
     }
 
     const [pageInfo] = useState({
-        title: `View Site Comments for ${props.location.properties.Name.title[0].plain_text}`,
+        title: `View Site Comments for ${formattedUrl}`,
         body: "Showing comments and where they relate to"
     })
 
     useEffect(() => {
         const fetchItems = async () => {
-            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/${props.location.properties.Name.title[0].plain_text}`)
+            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/${formattedUrl}`)
             console.log(result.data)
             setComments(result.data)            
         }
         fetchItems()
-    }, [props.location.properties.Name.title])
+    }, [formattedUrl])
 
     return (
         <>

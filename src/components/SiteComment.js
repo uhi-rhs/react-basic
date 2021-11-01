@@ -9,6 +9,8 @@ import axios from 'axios'
 import uuid from 'react-uuid'
 import PageHeader from './PageHeader'
 import {serverContext} from '../App'
+import { useLocation } from 'react-router-dom'
+
 
 //eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
@@ -16,9 +18,38 @@ mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worke
 
 const SiteComment = (props) => {
     // set viewport with latlng from project properties
+
+
+    const [localLocation, setLocalLocation] = useState(() => {
+        const saved = localStorage.getItem('location');
+        const initialValue = JSON.parse(saved);
+        return initialValue || ""
+    })
+    const getLat= () => {
+        let lat
+        try{
+            lat = props.location.properties.lat.number
+        }
+        catch{
+            lat = localLocation.properties.lat.number
+        }
+        return lat
+    }
+    const getLng= () => {
+        let lng
+        try{
+            lng = props.location.properties.lng.number
+        }
+        catch{
+            lng = localLocation.properties.lng.number
+        }
+        return lng
+    }
+
+
     const [viewport, setViewport] = useState({
-        latitude: props.location.properties.lat.number,
-        longitude: props.location.properties.lng.number,
+        latitude: getLat(),
+        longitude: getLng(),
         width: '100vw',
         height: '100vh',
         zoom: 17,
@@ -31,11 +62,13 @@ const SiteComment = (props) => {
     
     // create marker with default properties
     const [marker, setMarker] = useState({
-        latitude: props.location.properties.lat.number,
-        longitude: props.location.properties.lng.number,
+        latitude: getLat(),
+        longitude: getLng(),
         comment: '',
         visible: false
     })
+
+ 
 
     const server = useContext(serverContext)
 
@@ -47,8 +80,16 @@ const SiteComment = (props) => {
         size: 40
     })
 
+    
+
+
+    const id = useLocation()
+    // Format
+    const formattedUrl = id.pathname.slice(10, -13)
+    console.log(formattedUrl)
+
     const [pageInfo] = useState({
-        title: `Comment on ${props.location.properties.Name.title[0].plain_text} proposal`,
+        title: `Comment on ${formattedUrl} proposal`,
         body: "This feature allows you to comment on a site that has already been agreed for RHS development"
     })
 
@@ -77,7 +118,7 @@ const SiteComment = (props) => {
             publish: false,
             user_id: user_id
         }
-        axios.post(`${server}/api/rhs/${props.location.properties.Name.title[0].plain_text}/site_comment/add`, submission)
+        axios.post(`${server}/api/rhs/${formattedUrl}/site_comment/add`, submission)
         console.log("Submission:", submission)
     }
 
