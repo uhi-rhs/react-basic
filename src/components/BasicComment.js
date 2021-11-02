@@ -4,12 +4,10 @@ import uuid from 'react-uuid'
 import axios from 'axios'
 import {serverContext} from '../App'
 import { useLocation } from 'react-router-dom'
-// import useLocalStorage from "../useLocalStorage";
 
 const BasicComment = (props) => {
 
     const id = useLocation()
-    // Format
     const formattedUrl = id.pathname.slice(10, -15)
     console.log(formattedUrl)
 
@@ -18,7 +16,7 @@ const BasicComment = (props) => {
         body: "This feature allows you to comment on a project"
     })
 
-        const [localLocation, setLocalLocation] = useState(() => {
+        const [localLocation] = useState(() => {
         const saved = localStorage.getItem('location');
         const initialValue = JSON.parse(saved);
         return initialValue || ""
@@ -35,7 +33,6 @@ const BasicComment = (props) => {
     // const imageUrl = props.location.properties.mainImage.files[0].file.url 
     
     // console.log(props.location.properties.mainImage.files[0].file.url)
-    console.log(localLocation.properties.mainImage.files[0].file.url)
     // const [ errors, setErrors ] = useState([])
     // const getImage = () => {
     //     let imageUrl = ""
@@ -58,9 +55,6 @@ const BasicComment = (props) => {
         return imageUrl
     }
 
-    // const onSubmit = (e) => {
-    //     console.log(e)
-    // }
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -69,7 +63,6 @@ const BasicComment = (props) => {
             return
         }
         addComment({comment:comment })
-        // setComment('')
     }
 
     const addComment = (comment) => {

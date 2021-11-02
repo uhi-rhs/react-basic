@@ -20,7 +20,7 @@ const SiteComment = (props) => {
     // set viewport with latlng from project properties
 
 
-    const [localLocation, setLocalLocation] = useState(() => {
+    const [localLocation] = useState(() => {
         const saved = localStorage.getItem('location');
         const initialValue = JSON.parse(saved);
         return initialValue || ""

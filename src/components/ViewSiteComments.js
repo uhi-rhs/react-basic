@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom'
 
 const ViewSiteComments = (props) => {
 
-    const [localLocation, setLocalLocation] = useState(() => {
+    const [localLocation] = useState(() => {
         const saved = localStorage.getItem('location');
         const initialValue = JSON.parse(saved);
         return initialValue || ""

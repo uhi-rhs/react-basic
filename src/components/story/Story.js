@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useLocation } from 'react-router-dom'
 import StoryPage1 from './StoryPage1';
 import StoryPage2 from './StoryPage2';
@@ -7,9 +7,6 @@ import StoryPageVideo from './StoryPageVideo';
 import PageHeader from '../PageHeader';
 import axios from 'axios';
 import Spinner from '../Spinner'
-// import { LocationContext } from '../../App'
-// import useLocalStorage from "../../useLocalStorage";
-
 
 const Story = (props) => {
 
@@ -17,67 +14,21 @@ const Story = (props) => {
         title: "Example of a project outline",
         body: "Pre feedback information"
     })
-   
-//     const {contextlocation} = useContext(LocationContext)
-// console.log("context location",contextlocation)
-    
-
-    // const [localLocation, setLocalLocation] = useState(() => {
-    //     const saved = localStorage.getItem('location');
-    //     const initialValue = JSON.parse(saved);
-    //     return initialValue || ""
-    // })
-
-    // const [location, setLocation] = useState(props.location)
-
-    // console.log(location)
 
     const id = useLocation()
-    // Format
     const formattedUrl = id.pathname.slice(10, -6)
-    console.log(formattedUrl)
-    // console.log("Props:", props)
-    // if (location == undefined){
-    // const url = localLocation.properties.Name.title[0].plain_text
-    // }else{
-    //     const url = location.properties.Name.title[0].plain_text
-    // }
-    // const url = location? location.properties.Name.title[0].plain_text : localLocation.properties.Name.title[0].plain_text 
-    // const id = props.location.properties.Story.relation[0].id
+
     const [step, setStep] = useState(null)
-
     const [story, setStory] = useState(null)
-
-    // console.log("Story:", story)
-
-    // State (story) is not persisting when setStep is called, I think. Look into React Redux + local storage
-
-    // useEffect(() => {     
-    //     const fetchItems = async () => {
-    //         const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/stories`)
-    //         console.log('result.data', result.data)
-    //         const filteredData = result.data.filter(story => story.properties.Name.title[0].plain_text === url)
-    //         setStory(filteredData)
-    //         // setIsLoading(false)
-    //         setStep(1)
-    //         }          
-    //         fetchItems() 
-    //     }, [])
 
     useEffect(() => {     
         const fetchItems = async () => {
             const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/stories/${formattedUrl}`)
-            // console.log('result.data', result.data)
             setStory(result.data)
-            // setIsLoading(false)
             setStep(1)
             }          
             fetchItems() 
         }, [formattedUrl])
-
-    // console.log(`${process.env.REACT_APP_API_URL}/api/rhs/stories/${id}`)
-
-    // console.log(step)
 
     // Move to next page
     const nextPage = () => {
@@ -135,19 +86,3 @@ const Story = (props) => {
 }
 
 export default Story
-
-
-
-
-// {
-//     name: "The Crusher Site Option 1 Terrace",
-//     client: "The Glenuig Community and PH38 Development Company",
-//     title: "Crusher Site",
-//     intro: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-//     image1: image1,
-//     text1: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-//     image2: image2,
-//     text2: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-//     text3: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-//     vimeolink: "https://player.vimeo.com/video/472571278?h=0585134895"
-// }

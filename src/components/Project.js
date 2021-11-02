@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import useLocalStorage from "../useLocalStorage";
+// import useLocalStorage from "../useLocalStorage";
 
 
 const Project = ({db, setLocation}) => {
     
     // Set location to local storage 
-    const {localLocation, setLocalLocation} = useLocalStorage("location", "")
+    // const {localLocation, setLocalLocation} = useLocalStorage("location", "")
 
     const id = db.properties.Name.title[0].plain_text
 
