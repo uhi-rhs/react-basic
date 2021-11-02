@@ -18,11 +18,10 @@ const Projects = ({dbs, isLoading, setLocation}) => {
                 <FaTractor id="FaTractor" label="Tractor" style={{height: '3em', width: '3em'}}/>
             </div>
 
-            <p>Some more information...</p>
-            <h2>Projects:</h2>
+            <p>Some contextual information</p>
+            <h2>Current Projects:</h2>
             </div>
             
-        
             {dbs.map((db) => (
                 <div key={db.id}>
                     <Project db={db} setLocation={setLocation}/>

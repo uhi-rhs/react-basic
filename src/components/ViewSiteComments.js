@@ -85,8 +85,10 @@ const ViewSiteComments = (props) => {
 
     return (
         <>
+        {/* <PageHeader info={pageInfo}/> */}
         <PageHeader info={pageInfo}/>
         <div className="location-container">
+      
            <ReactMapGL 
            {...viewPort} 
            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}

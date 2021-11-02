@@ -4,6 +4,8 @@ import uuid from 'react-uuid'
 import axios from 'axios'
 import {serverContext} from '../App'
 import { useLocation } from 'react-router-dom'
+import Instructions from './Instructions'
+
 
 const BasicComment = (props) => {
 
@@ -15,6 +17,14 @@ const BasicComment = (props) => {
         title: `Comment on ${formattedUrl} project`,
         body: "This feature allows you to comment on a project"
     })
+
+    const [ instructions ] = useState({
+        header: "How to Play",
+        item1: "Type a comment into the form and submit!",
+        item2: "Add a comment to say what you think about this site",
+        body:  "What do you think are the good and bad aspects of the site? Where do you think is the best place for housing on the site, and why? Would you want to live here? Why / why not?"
+    })
+
 
         const [localLocation] = useState(() => {
         const saved = localStorage.getItem('location');
@@ -106,8 +116,11 @@ const BasicComment = (props) => {
     return (
         <div >
             <PageHeader info={pageInfo}/>
+            <Instructions instructions={instructions}/>
             <div className='basic-comment' style={{backgroundImage: `url(${getImage()})`}}>
+           
             <form className='add-form' onSubmit={onSubmit}>
+            
             <div className='form-control'>
                 <h2>Write Comment:</h2>
                 <label htmlFor="Comment"></label>

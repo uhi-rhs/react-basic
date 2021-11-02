@@ -162,7 +162,7 @@ const SiteComment = (props) => {
           }}
           onClick={handleClick}
         >
-            {/* <PageHeader info={pageInfo}/> */}
+           
            <Instructions instructions={instructions}/>
       {marker.visible ? 
 

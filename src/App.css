@@ -131,8 +131,9 @@ h1 {
   background-color: var(--light-color);
   width: 300px;
   position: absolute;
-  top: 2px;
+  top: 100px;
   left: 2px;
+  
   padding: 0px;
   margin: 10px;
   border-radius: 5px;
