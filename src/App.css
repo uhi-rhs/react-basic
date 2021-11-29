@@ -360,6 +360,30 @@ h1 {
   }
 
 
+  /* Survey Responses */
+
+  .survey-responses-container{
+
+  }
+
+  .question-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .answer {
+    display: flex;
+    flex-direction: row;
+  }
+  .answer h2 {
+    padding-right: 5px;
+  }
+
+  .markers {
+    display: flex;
+    flex-direction: row;
+  }
+
   /* Landing Page */
 
   .landing-page {

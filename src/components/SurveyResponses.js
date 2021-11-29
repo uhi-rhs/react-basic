@@ -5,7 +5,6 @@ import PageHeader from './PageHeader'
 import {serverContext} from '../App'
 import { useLocation } from 'react-router-dom'
 
-
 const SurveyResponses = () => {
 
     const [pageInfo] = useState({
@@ -22,16 +21,11 @@ const SurveyResponses = () => {
     const id = useLocation()
     const formattedUrl = id.pathname.slice(10, -12)
 
-
     useEffect(() => {     
         const fetchItems = async () => {
             const result = await axios(`${server}/api/rhs/survey_responses`)
-            // const filteredData = result.data.filter(data => data.properties.Project.select.name === formattedUrl)
-            console.log('result.data', result.data)
-            // console.log(result.data[0].properties.Project.select.name)
-            // console.log(filteredData)  
+            console.log('result.data', result.data)  
             setResponses(result.data)
-            // dataParser(filteredData)
             setIsLoading(false)
             setQuestions(getObjectKeys(result.data))
             }          
@@ -51,22 +45,33 @@ const SurveyResponses = () => {
     const [ questions, setQuestions ] = useState(null)
     console.log(questions)
 
-    // const countResponses = (arr) => {
-    //     let count = {}
-    //     for(let i = 0; i < arr.length; i++){
-    //         if(count[arr[i]].properties.)
-    //     }
-    // }
 
+   const markers = (int) => {
+       var stars = []
+       for (var i = 0; i < int; i++) {
+           stars.push(<h1 key={i}>*</h1>);
+       }
+       return (
+           <div className="markers">
+               {stars}
+           </div>
+       )
+   }
  
     return isLoading ? <Spinner /> : 
     (
-        <div>
+        <div className="survey-responses-container">
             <PageHeader info={pageInfo}/>
+
         <div>
-            {questions.map((question, index) => (
-                <div>
-                    <h2>{question}</h2>
+            {responses && responses.map((response, index) => (
+                <div key={index} className="question-container">
+                    <div className="answer">
+                    <h2>{response.properties.Options.rich_text[0].plain_text}</h2>
+                    <h2>{response.properties.Count.number}</h2>
+                    {markers(response.properties.Count.number)}
+                    
+                    </div>
                 </div>
             ))}
         </div>

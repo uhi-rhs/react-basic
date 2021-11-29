@@ -34,9 +34,7 @@ import HouseTypes from './components/HouseTypes';
 import ViewHouseTypeFeedback from './components/ViewHouseTypeFeedback';
 import SurveyResponses from './components/SurveyResponses';
 
-
 export const LocationContext = React.createContext()
-
 
 // Dev Server:
 // export const serverContext = React.createContext("http://localhost:5000")
