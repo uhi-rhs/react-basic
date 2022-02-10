@@ -37,7 +37,7 @@ const Instructions = ({instructions}) => {
                     {item2}
                 </li>
             </ul>
-            <p>{body}</p>
+            <small>{body}</small>
         </div>
         )
     }

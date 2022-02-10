@@ -5,9 +5,8 @@ import Spinner from './Spinner'
 import PageHeader from './PageHeader';
 import { Link } from 'react-router-dom';
 // Icons
-import { FaInfo, FaMapMarkerAlt, FaRegComments, FaRegImage, FaRegThumbsUp, FaRegCommentDots, FaRegChartBar, FaThumbtack, FaClipboardList } from 'react-icons/fa'
+import { FaInfo, FaMapMarkerAlt, FaRegComments, FaRegImage, FaRegCommentDots, FaRegChartBar, FaThumbtack, FaClipboardList } from 'react-icons/fa'
 import {BsFillHouseFill} from 'react-icons/bs'
-import { TiTickOutline } from 'react-icons/ti'
 
 const Location = () => {
 
@@ -57,103 +56,165 @@ const Location = () => {
                     <div  className="landing-page-header-text">
                     <h3>{location.properties.Name.title[0].plain_text}</h3>
                     <p>{location.properties.description.rich_text[0].plain_text}</p>
-                    <p>Proposed Number of Houses: {location.properties.numberOfHouses.number}</p>
+                    {/* <p>Proposed Number of Houses: {location.properties.numberOfHouses.number}</p>
                     <p>Proposed Number of Ameneties: {location.properties.numberOfAmenities.number}</p> 
                     <p>Lat: {location.properties.lat.number}</p> 
-                    <p>Lng: {location.properties.lng.number}</p>
+                    <p>Lng: {location.properties.lng.number}</p> */}
                     </div>
                     </div>
 
                     {/* Grid of active or inactive links to features */}
+                   
                     <div className="location-grid">
                     
+                    {/* Always visible */}
                     <div className="location-feature">
-                    {location.properties.phase1.checkbox ? 
                         <Link to={`/location/${formattedUrl}/story`}>
                             <div>
-                            <FaInfo id="FaInfo" label="Info" style={{height: '3em', width: '3em'}}/>
+                            <FaInfo id="FaInfo" label="Info" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
 
                             <h3>Site Project</h3>
                             <p>Details of the project</p>
                             </div>
-                        </Link> : <h3>false</h3>
-                    }
-                    <TiTickOutline style={{height: '1em', width: '1em'}}/>
+                        </Link> 
                     </div>
+
+
+
+
+                    {/* Phase 2 */}
+                    
+                    {location.properties.phase2.checkbox ? 
+                    <div className="location-feature">
+                    <Link to={`/location/${formattedUrl}/view_site_comments`}>
+                        <div>
+                        <FaMapMarkerAlt id="FaMapMarkerAlt" label="Map" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
+
+                        <h3>View Site Comments</h3>
+                        <p>See what other people are saying, on a map</p>
+                        </div>
+                    </Link>
+                    </div>
+                     : <div className="hidden-div"></div>}
+                    
+                    
+                    {location.properties.phase2.checkbox ? 
+                    <div className="location-feature">
+                    <Link to={`/location/${formattedUrl}/view_basic_comments`}>
+                        <FaRegComments id="FaRegComments" label="Comments" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
+
+                        <h3>View Comments</h3>
+                        <p>See what other people are saying</p>
+                    </Link>
+                    </div>
+                    : <div className="hidden-div"></div>}
+                    
+                    
+                    {location.properties.phase2.checkbox ? 
+                    <div className="location-feature">
+                    <Link to={`/location/${formattedUrl}/house_votes`}>
+                        <FaRegImage id="FaRegImage" label="picture" style={{height: '3em', width: '3em', color: '#ffffff'}} />
+                        <h3>View House Type Feedback</h3>
+                        <p>Feedback on house types for this site</p>
+                        </Link>
+                        </div> 
+                    : <div className="hidden-div"></div>}
+                    
+                    
+                    {location.properties.phase2.checkbox ? 
+                    <div className="location-feature">
+                    <Link to={`/location/${formattedUrl}/survey_responses`}>
+                    <FaRegChartBar id="FaRegChartBar" label="Survey Responses" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
+                        <h3>Survey Responses</h3>
+                        <p>...</p>
+                    </Link></div>
+                    : <div className="hidden-div"></div>}
+
+
+                    {/* Phase 1 */}
 
                     <div className="location-feature">
                     {location.properties.phase1.checkbox ? 
                     <Link to={`/location/${formattedUrl}/site_comment`} >
                         <div>
-                        <FaThumbtack id="FaThumbtack" label="Pin" style={{height: '3em', width: '3em'}}/>
+                        <FaThumbtack id="FaThumbtack" label="Pin" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
                         <h3>Comment on the Site</h3>
                         <p>A Map Based Activity where you can comment on the location</p>
                         </div>
-                    </Link> : <h3>false</h3>
+                    </Link> :  <div className="closed">
+                        <FaThumbtack id="FaThumbtack" label="Pin" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
+                        <h3>Comments are closed for this Site</h3>
+                        </div>
                     }
-                     <TiTickOutline style={{height: '1em', width: '1em'}}/>
                     </div>
 
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? 
-                    <Link to={`/location/${formattedUrl}/view_site_comments`}>
-                        <FaMapMarkerAlt id="FaMapMarkerAlt" label="Map" style={{height: '3em', width: '3em'}}/>
-
-                        <h3>View Site Comments</h3>
-                        <p>See what other people are saying, on a map</p>
-                    </Link> : <h3>false</h3>}
-                    <TiTickOutline style={{height: '1em', width: '1em'}}/>
-                    </div>
-
-                    <div className="location-feature">
-                    {location.properties.phase2.checkbox ? 
+                    {location.properties.phase1.checkbox ? 
                     <Link to={`/location/${formattedUrl}/basic_comments`}>
-                        <FaRegCommentDots id="FaRegCommentDots" label="Comment" style={{height: '3em', width: '3em'}}/>
+                        <div>
+                        <FaRegCommentDots id="FaRegCommentDots" label="Comment" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
 
-                        <h3>Make a Comment</h3>
-                        <p>Nothing Fancy, just a comment re this project</p>
-                    </Link> : <h3>false</h3>}
-                    <TiTickOutline style={{height: '1em', width: '1em'}}/>
+                        <h3>General Comment</h3>
+                        <p>For making comments not specific to the site itself</p>
+                        </div>
+                    </Link> : <div className="closed">
+                        <FaRegCommentDots id="FaRegCommentDots" label="Comment" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
+
+                        <h3>General Comments are closed for this site</h3>
+                        </div>}
                     </div>
 
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? 
-                    <Link to={`/location/${formattedUrl}/view_basic_comments`}>
-                        <FaRegComments id="FaRegComments" label="Comments" style={{height: '3em', width: '3em'}}/>
+                    {location.properties.phase1.checkbox ? 
+                    
+                    <Link to={`/location/${formattedUrl}/form_view`}>
+                    <div>
+                    <FaClipboardList id="FaClipboardList" label="Survey" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
 
-                        <h3>View Comments</h3>
-                        <p>See what other people are saying</p>
-                    </Link> : <h3>false</h3>}
-                    <TiTickOutline style={{height: '1em', width: '1em'}}/>
+                        <h3>Survey</h3>
+                        <p>We'd like your responses to some detailed questions</p>
+                    </div>
+                    </Link> : 
+                    <div className="closed">
+                      <FaClipboardList id="FaClipboardList" label="Survey" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
+
+                      <h3>Survey</h3>
+                  </div>
+                    }
                     </div>
 
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? 
-                    <Link to="#">
-                        <BsFillHouseFill id="BsFillHouseFill" label="house"style={{height: '3em', width: '3em'}} />
-                        <h3>Propose Layout</h3>
-                        <p>We'd like to get your ideas for house positions etc</p>
-                        </Link> : <h3>false</h3>}
-                    </div>
-
-                    <div className="location-feature">
-                    {location.properties.phase2.checkbox ? 
+                    {location.properties.phase1.checkbox ? 
                     <Link to={`/location/${formattedUrl}/house_types`}>
-                        <FaRegImage id="FaRegImage" label="picture" style={{height: '3em', width: '3em'}} />
+                        <div>
+                        <FaRegImage id="FaRegImage" label="picture" style={{height: '3em', width: '3em', color: '#ffffff'}} />
                         <h3>Comment on House Type</h3>
                         <p>We'd like to get your ideas on the type of house(s) for this site</p>
-                        </Link> : <h3>false</h3>}
+                        </div>
+                        </Link> :    <div className="closed">
+                        <FaRegImage id="FaRegImage" label="picture" style={{height: '3em', width: '3em', color: '#ffffff'}} />
+                        <h3>Comments are closed on house types</h3>
+                        </div>}
                     </div>
 
                     <div className="location-feature">
-                    {location.properties.phase2.checkbox ? 
-                    <Link to={`/location/${formattedUrl}/house_votes`}>
-                        <FaRegImage id="FaRegImage" label="picture" style={{height: '3em', width: '3em'}} />
-                        <h3>View House Type Feedback</h3>
-                        <p>Feedback on house types for this site</p>
-                        </Link> : <h3>false</h3>}
-                        <TiTickOutline style={{height: '1em', width: '1em'}}/>
+                    {location.properties.phase1.checkbox ? 
+                    <Link to="#">
+                        <div>
+                        <BsFillHouseFill id="BsFillHouseFill" label="house"style={{height: '3em', width: '3em', color: '#ffffff'}} />
+                        <h3>Propose Layout</h3>
+                        <p>We'd like to get your ideas for house positions etc</p>
+                        </div>
+                    </Link> :    <div className="closed">
+                        <BsFillHouseFill id="BsFillHouseFill" label="house"style={{height: '3em', width: '3em', color: '#ffffff'}} />
+                        <h3>Proposals are closed</h3>
+                        </div>}
+                        
                     </div>
+
+
+
+                    
 
                     {/* <div className="location-feature">
                     {location.properties.phase2.checkbox ? 
@@ -164,33 +225,13 @@ const Location = () => {
                         </Link> : <h3>false</h3>}
                     </div> */}
 
-                    <div className="location-feature">
+                    {/* <div className="location-feature">
                     {location.properties.phase3.checkbox ? <Link to="#">
                     <FaRegThumbsUp id="FaRegThumbsUp" label="Thumbs up" style={{height: '3em', width: '3em'}}/>
 
-                    
                         <h3>Other Feature</h3>
-                        <p>TBC</p></Link> : <h3>false</h3>}
-                    </div>
-
-                    <div className="location-feature">
-                    {location.properties.phase3.checkbox ? <Link to={`/location/${formattedUrl}/form_view`}>
-                    
-                    <FaClipboardList id="FaClipboardList" label="Survey" style={{height: '3em', width: '3em'}}/>
-
-                        <h3>Survey</h3>
-                        <p>...</p>
-                        </Link> : <h3>false</h3>}
-                        <TiTickOutline style={{height: '1em', width: '1em'}}/>
-                    </div>
-
-                    <div className="location-feature">
-                    {location.properties.phase3.checkbox ? <Link to={`/location/${formattedUrl}/survey_responses`}>
-                    <FaRegChartBar id="FaRegChartBar" label="Survey Responses" style={{height: '3em', width: '3em'}}/>
-                        <h3>Survey Responses</h3>
-                        <p>...</p>
-                    </Link> : <h3>false</h3>}
-                    </div>
+                        <p>TBC</p></Link> : <div className="hidden-div"></div>}
+                    </div> */}
 
                     </div>
                 </div>

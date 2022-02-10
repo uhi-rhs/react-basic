@@ -84,10 +84,12 @@ function App() {
     <div className="App">   
     {/* Homepage */}
       <Route exact path="/" component={Intro} />
-      <Route exact path="/" component={MainHeader} />
       <Route exact path="/">
         <Projects dbs={databases} isLoading={isLoading} setIsLoading={setIsLoading} setLocation={location => setLocation(location)} />
       </Route>
+
+      {/* RHS Panel */}
+      <Route exact path="/rhs_panel" component={MainHeader} />
 
           {/* Demo Components */}
         <Route exact path="/gallery" component={Gallery}/>
@@ -110,7 +112,7 @@ function App() {
     {/* Routes for chosen project / location */}
     {/* TO DO  - remove props (usecontext is doing this work) */}
     {/* <LocationContext.Provider value={location} > */}
-      {console.log(location)}
+
       <Route exact path="/location/:id" >
         <Location  location={location} isLoading={isLoading}/>
       </Route>

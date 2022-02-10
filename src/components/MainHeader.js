@@ -57,7 +57,6 @@ const MainHeader = () => {
             <Link to={"/draw_polygon_basic"} >
                 <h2>Draw Polygon 2</h2>
                 <p>For RHS staff to define a site boundary for use in another part of the consultation</p>
-
             </Link>
         </div>
     )

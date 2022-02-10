@@ -20,8 +20,7 @@ const BasicComment = (props) => {
 
     const [ instructions ] = useState({
         header: "How to Play",
-        item1: "Type a comment into the form and submit!",
-        item2: "Add a comment to say what you think about this site",
+        item1: "Add a comment to say what you think about this site",
         body:  "What do you think are the good and bad aspects of the site? Where do you think is the best place for housing on the site, and why? Would you want to live here? Why / why not?"
     })
 
@@ -116,9 +115,11 @@ const BasicComment = (props) => {
     return (
         <div >
             <PageHeader info={pageInfo}/>
-            <Instructions instructions={instructions}/>
-            <div className='basic-comment' style={{backgroundImage: `url(${getImage()})`}}>
            
+            <div className='basic-comment' style={{backgroundImage: `url(${getImage()})`}}>
+            <div className="instructions-pad">
+            <Instructions instructions={instructions}/>
+            </div>
             <form className='add-form' onSubmit={onSubmit}>
             
             <div className='form-control'>

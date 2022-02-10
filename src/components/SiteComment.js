@@ -18,13 +18,20 @@ mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worke
 
 const SiteComment = (props) => {
     // set viewport with latlng from project properties
-
+    console.log(props)
 
     const [localLocation] = useState(() => {
         const saved = localStorage.getItem('location');
         const initialValue = JSON.parse(saved);
         return initialValue || ""
+        
     })
+    // const saved = localStorage.getItem('location')
+    console.log(localLocation)
+
+
+
+
     const getLat= () => {
         let lat
         try{

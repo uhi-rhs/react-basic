@@ -20,7 +20,7 @@ const Story = (props) => {
 
     const [step, setStep] = useState(null)
     const [story, setStory] = useState(null)
-
+    console.log("url", formattedUrl)
     useEffect(() => {     
         const fetchItems = async () => {
             const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/stories/${formattedUrl}`)

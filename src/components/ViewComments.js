@@ -38,7 +38,8 @@ const ViewComments = (props) => {
                     key={comment.properties.user_id.title[0].text.content}
                     className="postit"
                     >
-                    {comment.properties.comment.rich_text[0].text.content}
+                   <p> {comment.properties.comment.rich_text[0].text.content}</p>
+                   <small>{comment.properties.Category ? comment.properties.Category.select.name : ""}</small>
                     </div>
                 ))}
             </div>
