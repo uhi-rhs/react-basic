@@ -43,7 +43,7 @@ const Comment = ({onAdd, marker}) => {
                 <label htmlFor="Comment"></label>
                 {/* <input type="text" placeholder='Type here...' value={comment} onChange={(e) => setComment(e.target.value)}/> */}
 
-                <textarea name="text" rows="8" cols="40" wrap="soft" placeholder='Type here...' value={comment} onChange={(e) => setComment(e.target.value)}> </textarea>
+                <textarea name="text" rows="10" cols="40" wrap="soft" placeholder='Type here...' value={comment} onChange={(e) => setComment(e.target.value)}> </textarea>
 
             </div>
             {/* <input type="submit" value='Submit' className='btn btn-block'/> */}

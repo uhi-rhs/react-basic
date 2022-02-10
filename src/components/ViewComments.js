@@ -39,7 +39,7 @@ const ViewComments = (props) => {
                     className="postit"
                     >
                    <p> {comment.properties.comment.rich_text[0].text.content}</p>
-                   <small>{comment.properties.Category ? comment.properties.Category.select.name : ""}</small>
+                   <small>Category:  {comment.properties.Category ? comment.properties.Category.select.name : ""}</small>
                     </div>
                 ))}
             </div>

@@ -40,7 +40,7 @@ const ViewSiteComments = (props) => {
         longitude: getLng(),
         width: '100vw',
         height: '100vh',
-        zoom: 17
+        zoom: 15
     })
 
     const id = useLocation()
@@ -88,7 +88,7 @@ const ViewSiteComments = (props) => {
         <>
         {/* <PageHeader info={pageInfo}/> */}
         <PageHeader info={pageInfo}/>
-        <div className="location-container">
+        {/* <div className="location-container"> */}
       
            <ReactMapGL 
            {...viewPort} 
@@ -136,7 +136,8 @@ const ViewSiteComments = (props) => {
                    </Popup>
                )}
            </ReactMapGL>
-        </div>
+        {/* </div> */}
+     
         </>
     )
 }

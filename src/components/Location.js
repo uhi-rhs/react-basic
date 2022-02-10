@@ -44,7 +44,7 @@ const Location = () => {
         
         <div>
              <PageHeader info={pageInfo}/>
-             <img src="default_background.jpeg" alt="" />
+             <img src="default_background.jpeg" alt="" className="location-background-image"/>
              <div className="location-container" >
             {dbs.filter(db => db.properties.Name.title[0].plain_text === formattedUrl).map(location => (
                 <div key={location.id} className="location" style={{backgroundImage: `url(${location.properties.mainImage.files[0].file.url})`}} >
@@ -56,10 +56,7 @@ const Location = () => {
                     <div  className="landing-page-header-text">
                     <h3>{location.properties.Name.title[0].plain_text}</h3>
                     <p>{location.properties.description.rich_text[0].plain_text}</p>
-                    {/* <p>Proposed Number of Houses: {location.properties.numberOfHouses.number}</p>
-                    <p>Proposed Number of Ameneties: {location.properties.numberOfAmenities.number}</p> 
-                    <p>Lat: {location.properties.lat.number}</p> 
-                    <p>Lng: {location.properties.lng.number}</p> */}
+             
                     </div>
                     </div>
 

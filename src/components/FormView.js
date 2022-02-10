@@ -43,7 +43,7 @@ const FormView = (props) => {
         <div className="form-view-container">
             <PageHeader info={pageInfo}/>
             <div className="form-view"> 
-                <iframe title="survey" src={surveys[0].properties.URL.url} width="640" height="1054" frameborder="0" marginheight="0" marginwidth="0"><Spinner /></iframe>
+                <iframe title="survey" src={surveys[0].properties.URL.url} width="640" height="1054" frameBorder="0" marginheight="0" marginwidth="0"><Spinner /></iframe>
             </div>
         </div>
     )

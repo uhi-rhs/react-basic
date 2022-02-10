@@ -78,7 +78,6 @@ function App() {
 }, [server])
 
 
-
   return (
     <Router>
     <div className="App">   

@@ -34,9 +34,10 @@ h1 {
 
 .page-header {
   display: flex;
+  height: 70px;
   justify-content: space-around;
-  margin: 0;
-  padding: 0;
+  margin-bottom: 0px;
+  padding-bottom: 30px;
   background: var(--light-color);
 }
 
@@ -45,13 +46,17 @@ h1 {
   align-items: baseline;
 }
 
+.page-header-title h1 {
+  font-size: 1.5rem;
+}
+
 .page-header-body {
   padding-left: 20px;
   padding-top: 21.5px;
 }
 
 #BIUndo {
-  padding: 10px;
+  padding: 6px;
   margin: 10px;
   color: var(--dark-color);
 }
@@ -97,10 +102,32 @@ h1 {
   padding-top: 15px;
 }
 
+
+
+.btn-intro {
+  padding: 5px;
+  margin: 5px;
+} 
+
 /* Projects */
+
+.home-page {
+  text-align: center;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.home-page p {
+  color: black;
+}
+
+.home-page h1 {
+  
+}
 
 .icon-container {
   display: flex;
+  justify-content: center;
   flex-direction: row;
 }
 
@@ -110,6 +137,7 @@ h1 {
 
 .dbs-container {
   padding: 50px;
+  color: (var(--dark-color));
 }
 
 .dbs-container h1 {
@@ -131,11 +159,12 @@ h1 {
   background-color: var(--light-color);
   width: 300px;
   position: absolute;
-  top: 100px;
-  left: 40px;
+  top: 4px;
+  left: 20px;
   
   padding: 0px;
-  margin: 5px;
+  margin-top: 5px;
+  margin-left: 18px;
   border-radius: 5px;
 }
 
@@ -144,10 +173,12 @@ h1 {
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  margin-left: 8px;
+  padding: 0px;
 }
 
 .instructions {
-  padding: 10px;
+  padding: 6px;
 }
 
 #InstructionsClose, #InstructionsOpen {
@@ -201,9 +232,10 @@ h1 {
   background: var(--light-color);
   position: absolute;
   
-  top: 20px;
-  right: 10px;
-  padding: 5px 5px;
+  top: 0px;
+  width: 100%;
+  /* right: 10px; */
+  padding-left: 20px;
   margin: 0;
   font-size: 14px;
   border-radius: 3px;
@@ -213,7 +245,7 @@ h1 {
     margin-bottom: 40px;
     background-color: var(--light-color);
     border-radius: 5px;
-    padding: 10px;
+    padding-left: 10px;
   }
   
   .form-control {
@@ -272,40 +304,43 @@ h1 {
   /* Post it Comments */
 
   .postit-page {
-    /* background: url('images/houses/h-1-terrace.jpg'); */
+    background: url('images/houses/h-1-terrace.jpg');
     background-size: cover;
     background-attachment: fixed;
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw;
+    height: 100vh; */
    
   }
 
   .postit-container {
-    /* background: url('images/houses/h-1-terrace.jpg');
-    background-size: cover; */
     margin: 20px;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
     text-align: center;
-    height: calc(50vw - 5px);
-    
-    /* width: 100vw;
-    height: 100vh; */
+    overflow: scroll;
+    height: 100vh;
+    /* height: calc(50vw - 5px); */
   }
  
 
   .postit {
+    width: 100%;
+    /* height: auto; */
+    height: calc(20vw - 5px);
     padding: 5px;
     background: var(--postit);
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     font-weight: bold;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
+
+
+
 
 
   /* House Styles Component - Display House Images */
@@ -695,4 +730,186 @@ h1 {
       width: 300px;
       height: auto;
     }
+
+
+    /* Page Header */
+    .page-header {
+      display: flex;
+      height: 50px;
+      /* justify-content: space-around; */
+      margin: 0;
+      padding-bottom: 50px;
+      background: var(--light-color);
+    }
+    
+    /* .page-header-title {
+      display: flex;
+      align-items: baseline;
+    } */
+    
+    .page-header-title h1 {
+      font-size: 0.7rem;
+    }
+    
+    .page-header-body {
+      padding-left: 20px;
+      padding-top: 0px;
+    }
+    
+    #BIUndo {
+      padding: 2px;
+      margin: 6px;
+      color: var(--dark-color);
+    }
+
+    /* Intro */
+
+    .intro {
+      padding-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      background: var(--rhs-color);
+    }
+    .intro h1 {
+      color: var(--light-color);
+      padding: 1;
+      margin: 0;
+      font-size: 1rem;;
+    }
+
+    .intro-2 {
+      color: var(--light-color);
+      background: var(--rhs-color);
+    }
+    
+    .intro-image {
+      height: 40px;
+      width: auto;
+      padding-left: 4px;
+      /* padding-top: 15px; */
+    }
+
+    /* Projects */
+
+    .home-page {
+      text-align: center;
+      padding-top: 0px;
+      margin-top: 0px;
+    }
+
+    .home-page p {
+      color: black;
+    }
+
+    .home-page h1 {
+
+    }
+
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+    }
+
+    .icon-container > svg {
+      padding: 5px;
+    }
+
+    .dbs-container {
+      padding: 20px;
+      color: (var(--dark-color));
+    }
+
+    .dbs-container h1 {
+      padding: 0px;
+    }
+
+
+    /* Location */
+
+  
+
+    .landing-page-header {
+      display: block;
+      width: 100%;
+      padding: 0px;
+      margin: 0px;
+      color: black;
+      background: var(--light-color)
+    }
+
+    .landing-page-header img {
+      padding: 0px;
+      margin: 0px;
+      width: 100%;
+      height: auto;
+    }
+
+    .landing-page-header-text {
+       background: var(--light-color);
+       padding-bottom: 12px;
+    }
+    .landing-page-header-text p {
+      color: black;
+    }
+  
+   .location {
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+   }
+  
+   .location-grid {
+     display: grid;
+     grid-template-columns: repeat(1, 1fr);
+     grid-gap: 8px;
+     padding: 8px;
+     padding-top: 180px;
+   }
+  
+    .location-feature {      
+      padding: 8px;
+      font-size: 1rem;
+    }
+
+
+
+
+
+  /* Post it Comments */
+
+  /* .postit-page {
+    background: url('images/houses/h-1-terrace.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+   
+  } */
+
+  .postit-container {
+    /* margin: 10px;
+    padding: 10px;
+    display: grid; */
+    grid-template-columns: repeat(1, 1fr);
+    /* grid-gap: 20px; */
+    text-align: left;
+    /* height: calc(50vw - 5px); */
+  }
+ 
+
+  .postit {
+    width: 100%;
+    height: auto;
+    font-size: 1.4rem;
+  }
+
+  .postit p {
+    padding: 5px;
+  }
+
+
   }

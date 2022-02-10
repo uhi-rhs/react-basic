@@ -50,12 +50,12 @@ const SiteComment = (props) => {
         longitude: getLng(),
         width: '100vw',
         height: '100vh',
-        zoom: 17,
-        scrollZoom: false,
+        zoom: 15,
+        scrollZoom: true,
         doubleClickZoom: false,
-        touchZoom: false,
+        touchZoom: true,
         maxZoom: 17,
-        minZoom: 17
+        minZoom: 8
       });
     
     // create marker with default properties
@@ -87,9 +87,9 @@ const SiteComment = (props) => {
 
     const [ instructions ] = useState({
         header: "How to Play",
-        item1: "Click to drop a pin where you think the site should be",
-        item2: "Add a comment to say why you think about this site",
-        body: "Remember: where are the views? How can you use the sun to help energy savings? How can you create shelter from things like wind and rain?"
+        item1: "Click to drop a pin to locate your comment. You can drag the pin around if you want to change your mind. ",
+        item2: "Add a comment",
+        body: "What is unique here, that you want to tell us about? Where do you think the housing should be?"
     })
     
 
@@ -151,7 +151,9 @@ const SiteComment = (props) => {
       {marker.visible ? 
 
        <Comment marker={marker} onAdd={addComment}/>   : null} 
-        
+        {/* <NavigationControl 
+            position={"bottom-left"}
+        /> */}
       <Marker 
       
       longitude={marker.longitude}
