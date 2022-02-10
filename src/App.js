@@ -58,7 +58,7 @@ function App() {
 //     return initialValue || ""
 // })
 
-  console.log("APP.js", location)
+  // console.log("APP.js", location)
 
   const server = useContext(serverContext)
 

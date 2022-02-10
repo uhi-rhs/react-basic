@@ -11,27 +11,19 @@ import PageHeader from './PageHeader'
 import {serverContext} from '../App'
 import { useLocation } from 'react-router-dom'
 
-
 //eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
-
 const SiteComment = (props) => {
-    // set viewport with latlng from project properties
-    console.log(props)
 
+  
+    // set viewport with latlng from project properties
     const [localLocation] = useState(() => {
         const saved = localStorage.getItem('location');
         const initialValue = JSON.parse(saved);
         return initialValue || ""
-        
     })
-    // const saved = localStorage.getItem('location')
     console.log(localLocation)
-
-
-
-
     const getLat= () => {
         let lat
         try{
@@ -52,7 +44,6 @@ const SiteComment = (props) => {
         }
         return lng
     }
-
 
     const [viewport, setViewport] = useState({
         latitude: getLat(),
@@ -75,8 +66,6 @@ const SiteComment = (props) => {
         visible: false
     })
 
- 
-
     const server = useContext(serverContext)
 
     const [ popup, setPopup] = useState(null)
@@ -87,19 +76,14 @@ const SiteComment = (props) => {
         size: 40
     })
 
-    
-
-
     const id = useLocation()
     // Format
     const formattedUrl = id.pathname.slice(10, -13)
-    console.log(formattedUrl)
 
     const [pageInfo] = useState({
         title: `Comment on ${formattedUrl} proposal`,
         body: "This feature allows you to comment on a site that has already been agreed for RHS development"
     })
-
 
     const [ instructions ] = useState({
         header: "How to Play",
@@ -108,6 +92,7 @@ const SiteComment = (props) => {
         body: "Remember: where are the views? How can you use the sun to help energy savings? How can you create shelter from things like wind and rain?"
     })
     
+
 
     const handleClick = ({ lngLat: [longitude, latitude] }) => {
         if(!marker.visible){
@@ -121,11 +106,13 @@ const SiteComment = (props) => {
             lat: marker.latitude,
             lng: marker.longitude,
             comment: marker.comment,
+            location: localLocation.properties.Name.title[0].plain_text,
             dateTime: "2021-10-01",
             publish: false,
             user_id: user_id
         }
-        axios.post(`${server}/api/rhs/${formattedUrl}/site_comment/add`, submission)
+        // axios.post(`${server}/api/rhs/${formattedUrl}/site_comment/add`, submission)
+        axios.post(`${server}/api/rhs/site_comments/add`, submission)
         console.log("Submission:", submission)
     }
 
@@ -147,19 +134,9 @@ const SiteComment = (props) => {
         )
     },[])
 
-
-    console.log(props)
     return (
-        // <div>
-        //     Hi
-        //     <p>
-        //     {props.location.id}</p>
-        //     <p>{props.location.properties.lat.number}</p>
-        //     <p>{props.location.properties.lng.number}</p>
-        // </div>
         <>
          <PageHeader info={pageInfo}/>
-         
         <InteractiveMap
         {...viewport} 
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}

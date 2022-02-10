@@ -76,7 +76,8 @@ const ViewSiteComments = (props) => {
 
     useEffect(() => {
         const fetchItems = async () => {
-            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/${formattedUrl}`)
+            // const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/${formattedUrl}`)
+            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/site_comments`)
             console.log(result.data)
             setComments(result.data)            
         }
