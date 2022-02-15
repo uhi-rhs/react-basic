@@ -93,7 +93,6 @@ const SiteComment = (props) => {
     })
     
 
-
     const handleClick = ({ lngLat: [longitude, latitude] }) => {
         if(!marker.visible){
             setMarker({...marker, latitude: latitude, longitude: longitude, visible: true}, console.log(marker))
@@ -134,6 +133,8 @@ const SiteComment = (props) => {
         )
     },[])
 
+    const [showInstructions, setShowInstructions] = useState(true)
+
     return (
         <>
          <PageHeader info={pageInfo}/>
@@ -146,11 +147,14 @@ const SiteComment = (props) => {
           }}
           onClick={handleClick}
         >
+           {showInstructions ? 
+            <Instructions instructions={instructions}/>
+            : null
+           }
            
-           <Instructions instructions={instructions}/>
       {marker.visible ? 
 
-       <Comment marker={marker} onAdd={addComment}/>   : null} 
+       <Comment marker={marker} onAdd={addComment} setShowInstructions={setShowInstructions}/>   : null} 
         {/* <NavigationControl 
             position={"bottom-left"}
         /> */}

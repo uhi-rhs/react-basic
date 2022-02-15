@@ -856,8 +856,6 @@ h1 {
    .location {
     background-size: cover;
     background-attachment: fixed;
-    width: 100vw;
-    height: 100vh;
     margin: 0px;
     padding: 0px;
    }
@@ -867,7 +865,7 @@ h1 {
      grid-template-columns: repeat(1, 1fr);
      grid-gap: 8px;
      padding: 8px;
-     padding-top: 180px;
+     padding-top: 330px;   
    }
   
     .location-feature {      

@@ -52,12 +52,12 @@ const Location = () => {
                     {/* EXAMPLE CODE FOR ERROR ON IMAGE onError={(e)=>{e.target.onerror = null; e.target.style={}  */}
                     
                     <div className="landing-page-header">
-                    <img src={location.properties.mainImage.files[0].file.url} alt="" />
-                    <div  className="landing-page-header-text">
-                    <h3>{location.properties.Name.title[0].plain_text}</h3>
-                    <p>{location.properties.description.rich_text[0].plain_text}</p>
-             
-                    </div>
+                        <img src={location.properties.mainImage.files[0].file.url} alt="" />
+                        <div  className="landing-page-header-text">
+                        <h3>{location.properties.Name.title[0].plain_text}</h3>
+                        <p>{location.properties.description.rich_text[0].plain_text}</p>
+                
+                        </div>
                     </div>
 
                     {/* Grid of active or inactive links to features */}
