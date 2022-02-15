@@ -18,10 +18,8 @@ const Comment = ({onAdd, marker, setShowInstructions}) => {
     }
 
     const handleSubmit = () => {
-        
         setSubmitted(false)
     }
-
 
     const [ submitted, setSubmitted] = useState(false)
 

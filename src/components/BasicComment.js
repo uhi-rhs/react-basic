@@ -38,20 +38,6 @@ const BasicComment = (props) => {
 
     const server = useContext(serverContext)
 
-    
-    // const imageUrl = props.location.properties.mainImage.files[0].file.url 
-    
-    // console.log(props.location.properties.mainImage.files[0].file.url)
-    // const [ errors, setErrors ] = useState([])
-    // const getImage = () => {
-    //     let imageUrl = ""
-    //     if(props.location === {}){
-    //          imageUrl = localLocation.properties.mainImage.files[0].file.url
-    //     } else {
-    //          imageUrl = props.location.properties.mainImage.files[0].file.url
-    //     }
-    //     return imageUrl
-    // }
 
     const getImage = () => {
         let imageUrl = ""
@@ -91,24 +77,28 @@ const BasicComment = (props) => {
         .catch((err) => {
             console.log(err)
         })
+        setComment('')
         setSubmitted(true)
         console.log(submission)
     }
+
+    const handleSubmit = () => {
+        setSubmitted(false)
+    }
+
 
     const Form = (props) => {
         return <input type="submit" value='Submit' className='btn btn-block'/>
     }
 
-    const Feedback = (props) => {    
-        return <p>Thank you. Your submission has been received.</p>
-    }
-
-    const Display = (props) => {
-        const submitted = props.submitted        
-        if(submitted){
-            return <Feedback />
-        }
-        return <Form />
+    const Feedback = () => {    
+        return  <div className='comment'><div className='form-control'>
+        <h2>Thank you</h2>
+        <label htmlFor="Feedback"></label>
+        <h4>Your comment has been submitted</h4>
+        <button onClick={handleSubmit} className='btn btn-block'>Click to make another comment</button>
+    </div>
+    </div>
     }
     
     console.log(getImage())
@@ -118,17 +108,26 @@ const BasicComment = (props) => {
            
             <div className='basic-comment' style={{backgroundImage: `url(${getImage()})`}}>
             <div className="instructions-pad">
-            <Instructions instructions={instructions}/>
-            </div>
-            <form className='add-form' onSubmit={onSubmit}>
+                {
+                    !submitted? <Instructions instructions={instructions}/> : null
+                }
             
-            <div className='form-control'>
-                <h2>Write Comment:</h2>
-                <label htmlFor="Comment"></label>
-                <textarea name="text" rows="8" cols="40" wrap="soft" placeholder='Type here...' value={comment} onChange={(e) => setComment(e.target.value)}> </textarea>
             </div>
-            <Display submitted={submitted} />
-            </form>
+
+            {
+                !submitted ?  <form className='add-form' onSubmit={onSubmit}>
+                <div className='form-control'>
+                    <h2>Write Comment:</h2>
+                    <label htmlFor="Comment"></label>
+                    <textarea name="text" rows="8" cols="40" wrap="soft" placeholder='Type here...' value={comment} onChange={(e) => setComment(e.target.value)}> </textarea>
+                </div>
+                <Form />
+                </form>
+                :
+                <Feedback/>
+            }
+           
+
             </div>
         </div>
     )
