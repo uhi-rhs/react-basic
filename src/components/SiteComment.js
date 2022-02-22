@@ -110,8 +110,11 @@ const SiteComment = (props) => {
             publish: false,
             user_id: user_id
         }
+        const headers = {
+            'Content-Type': 'multipart/form-data'
+        }
         // axios.post(`${server}/api/rhs/${formattedUrl}/site_comment/add`, submission)
-        axios.post(`${server}/api/rhs/site_comments/add`, submission)
+        await axios.post(`${server}/api/rhs/site_comments/add`, submission,{headers})
         console.log("Submission:", submission)
     }
 
