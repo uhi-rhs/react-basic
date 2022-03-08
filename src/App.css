@@ -30,6 +30,13 @@ h1 {
 
 /* NAV */
 
+
+/* User */
+
+.profile p, h1, h2{
+  color: black;
+}
+
 /* Page Header */
 
 .page-header {

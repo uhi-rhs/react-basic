@@ -1,7 +1,12 @@
 import './App.css';
 import React, { useState, useEffect, useContext } from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import axios from 'axios';
+import sanityClient from "./readClient"
+
+import Auth0ProviderWithHistory from './auth/auth0-provider-with-history'
+
+
+// import axios from 'axios';
 // DEMO
 import DraggableMarker from './components/demo/DraggableMarker';
 import DropMarker from './components/DropMarker';
@@ -33,6 +38,8 @@ import BuildingMaterials from './components/BuildingMaterials'
 import HouseTypes from './components/HouseTypes';
 import ViewHouseTypeFeedback from './components/ViewHouseTypeFeedback';
 import SurveyResponses from './components/SurveyResponses';
+import Footer from './components/Footer'
+import User from './components/User'
 
 export const LocationContext = React.createContext()
 
@@ -45,12 +52,12 @@ export const serverContext = React.createContext(process.env.REACT_APP_API_URL)
 function App() {
 
   // Spinner if no data
-  const [ isLoading, setIsLoading ] = useState(true)
+  // const [ isLoading, setIsLoading ] = useState(true)
   // databases: all the projects that will display as links 
-  const [ databases, setDatabases ] = useState([])
+  // const [ databases, setDatabases ] = useState([])
 
   // Location data (chosen project) to propogate through application
-  const [location, setLocation] = useState({})
+  // const [location, setLocation] = useState({})
 
 //   const [localLocation, setLocalLocation] = useState(() => {
 //     const saved = localStorage.getItem('location');
@@ -60,35 +67,53 @@ function App() {
 
   // console.log("APP.js", location)
 
-  const server = useContext(serverContext)
+  // const server = useContext(serverContext)
 
-  useEffect(() => {
-    const fetchItems = async () => {
-        const result = await axios(`${server}/api/rhs/project_properties`)
-        if (!result) {
-          throw new Error(`HTTP error! status: ${result.status}`);
-        }
-        setDatabases(result.data)   
-        setIsLoading(false)     
-    }
-    fetchItems()
-    .catch(e => {
-      console.log("There has been an error in the fetch within useEffect" + e.message)
-    })
-}, [server])
+//   useEffect(() => {
+//     const fetchItems = async () => {
+//         const result = await axios(`${server}/api/rhs/project_properties`)
+//         if (!result) {
+//           throw new Error(`HTTP error! status: ${result.status}`);
+//         }
+//         setDatabases(result.data)   
+//         setIsLoading(false)     
+//     }
+//     fetchItems()
+//     .catch(e => {
+//       console.log("There has been an error in the fetch within useEffect" + e.message)
+//     })
+// }, [server])
 
+  const [projects, setProjects] = useState(null)
 
+  useEffect(()=> {
+    sanityClient
+    .fetch(`*[_type == "project"]{
+      name,
+      slug,
+      location->{
+        name,
+        description
+      }
+    }`)
+    .then((data) => setProjects(data))
+    .catch(console.error)
+  },[])
+
+  console.log(projects)
   return (
     <Router>
+      <Auth0ProviderWithHistory>
     <div className="App">   
     {/* Homepage */}
       <Route exact path="/" component={Intro} />
       <Route exact path="/">
-        <Projects dbs={databases} isLoading={isLoading} setIsLoading={setIsLoading} setLocation={location => setLocation(location)} />
+        <Projects projects={projects} />
+        <Footer />
       </Route>
 
       {/* RHS Panel */}
-      <Route exact path="/rhs_panel" component={MainHeader} />
+        <Route exact path="/rhs_panel" component={MainHeader} />
 
           {/* Demo Components */}
         <Route exact path="/gallery" component={Gallery}/>
@@ -107,48 +132,48 @@ function App() {
         <Route exact path="/draw_polygon" component={DrawPolygon} />
         <Route exact path="/draw_polygon_basic" component={DrawPolygonBasic} />
    
-
+        <Route exact path="/user" component={User} />
     {/* Routes for chosen project / location */}
     {/* TO DO  - remove props (usecontext is doing this work) */}
     {/* <LocationContext.Provider value={location} > */}
 
       <Route exact path="/location/:id" >
-        <Location  location={location} isLoading={isLoading}/>
+        <Location />
       </Route>
       <Route exact path="/location/:id/site_comment" >
-        <SiteComment location={location} isLoading={isLoading}/>
+        <SiteComment/>
       </Route>
       <Route exact path="/location/:id/basic_comments" >
-        <BasicComment location={location} isLoading={isLoading}/>
+        <BasicComment/>
       </Route>
       <Route exact path="/location/:id/story" >
-        <Story location={location} isLoading={isLoading}/>
+        <Story/>
       </Route>
       <Route exact path="/location/:id/view_basic_comments" >
-        <ViewComments  location={location} isLoading={isLoading}/>
+        <ViewComments />
       </Route>
       <Route exact path="/location/:id/view_site_comments" >
-        <ViewSiteComments  location={location} isLoading={isLoading}/>
+        <ViewSiteComments />
       </Route>
       <Route exact path="/location/:id/form_view" >
-        <FormView  location={location} isLoading={isLoading} />
+        <FormView  />
       </Route>
       <Route exact path="/location/:id/survey_responses" >
-        <SurveyResponses location={location} isLoading={isLoading} />
+        <SurveyResponses />
       </Route>
       <Route exact path="/location/:id/building_materials" >
-        <BuildingMaterials location={location} isLoading={isLoading} />
+        <BuildingMaterials />
       </Route>
       <Route exact path="/location/:id/house_types" >
-        <HouseTypes location={location} isLoading={isLoading} />
+        <HouseTypes />
       </Route>
       <Route exact path="/location/:id/house_votes" >
-        <ViewHouseTypeFeedback location={location} />
+        <ViewHouseTypeFeedback />
       </Route>
     {/* </LocationContext.Provider> */}
 
     </div>
-  
+    </Auth0ProviderWithHistory>
     </Router>
   );
 }
