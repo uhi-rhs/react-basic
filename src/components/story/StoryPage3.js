@@ -1,11 +1,12 @@
 import React from 'react'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import BlockContent from "@sanity/block-content-to-react"; 
 
 const StoryPage3 = ({pageContent, nextPage, prevPage}) => {
 
     // const {plan1, text2} = pageContent;
-    const plan1 = pageContent.properties.plan_1.files[0].file.url
-    const text2 = pageContent.properties.text_2.rich_text[0].plain_text
+    const plan1 = pageContent.plan1.asset.url
+    const text2 = pageContent.text2
 
     const _continue = (e) => {
         e.preventDefault();
@@ -29,7 +30,8 @@ const StoryPage3 = ({pageContent, nextPage, prevPage}) => {
             </button>
             <div className="story-card">
             <img src={plan1} alt="" />
-            <p>{text2}</p>
+            <BlockContent blocks={text2} projectId="1cepjwt9" dataset="production" className=""/>
+
             </div>
            
             <button

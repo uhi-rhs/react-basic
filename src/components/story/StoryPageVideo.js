@@ -1,11 +1,12 @@
 import React from 'react'
 import { FaAngleLeft } from 'react-icons/fa'
+import BlockContent from "@sanity/block-content-to-react"; 
 
 const StoryPageVideo = ({pageContent, prevPage}) => {
 
 
-    const text3 = pageContent.properties.text_3.rich_text[0].plain_text
-    const vimeolink = pageContent.properties.vimeo_embed.rich_text[0].href
+    const text3 = pageContent.text3
+    const vimeolink = pageContent.videoUrl
 
     const _back = e => {
         e.preventDefault();
@@ -25,7 +26,8 @@ const StoryPageVideo = ({pageContent, prevPage}) => {
             </button>
             
             <div className="story-card">
-                <p>{text3}</p>
+                <BlockContent blocks={text3} projectId="1cepjwt9" dataset="production" className=""/>
+
                  <iframe src={vimeolink} id="vimeo" title='vimeo' width='640' height='360' frameBorder='0' allow='autoplay; fullscreen; picture-in-picture' allowFullScreen></iframe>
             </div>        
         </div>

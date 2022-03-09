@@ -1,20 +1,17 @@
-import React, {useState, useContext} from 'react'
+import React, {useState} from 'react'
 import PageHeader from './PageHeader'
-import uuid from 'react-uuid'
-import axios from 'axios'
-import {serverContext} from '../App'
-import { useLocation } from 'react-router-dom'
+// import uuid from 'react-uuid'
+// import axios from 'axios'
+// import {serverContext} from '../App'
+// import { useLocation } from 'react-router-dom'
 import Instructions from './Instructions'
+import sanityClient from '../writeClient.js'
 
 
-const BasicComment = (props) => {
-
-    const id = useLocation()
-    const formattedUrl = id.pathname.slice(10, -15)
-    console.log(formattedUrl)
+const BasicComment = ({user}) => {
 
     const [pageInfo] = useState({
-        title: `Comment on ${formattedUrl} project`,
+        title: `Comment on project`,
         body: "This feature allows you to comment on a project"
     })
 
@@ -24,32 +21,9 @@ const BasicComment = (props) => {
         body:  "What do you think are the good and bad aspects of the site? Where do you think is the best place for housing on the site, and why? Would you want to live here? Why / why not?"
     })
 
-
-        const [localLocation] = useState(() => {
-        const saved = localStorage.getItem('location');
-        const initialValue = JSON.parse(saved);
-        return initialValue || ""
-    })
-
-    console.log(props)
-
+    console.log(user)
     const [comment, setComment] = useState('')
     const [ submitted, setSubmitted] = useState(false)
-
-    const server = useContext(serverContext)
-
-
-    const getImage = () => {
-        let imageUrl = ""
-        try {
-            imageUrl = props.location.properties.mainImage.files[0].file.url
-        }
-        catch(err){
-            imageUrl = localLocation.properties.mainImage.files[0].file.url
-        }
-        return imageUrl
-    }
-
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -57,26 +31,36 @@ const BasicComment = (props) => {
             alert('Please add a comment')
             return
         }
-        addComment({comment:comment })
+        addComment({comment })
     }
 
     const addComment = (comment) => {
         saveSubmission(comment)
     }
 
+    console.log(comment)
+
     const saveSubmission = async (comment) => {
-        const user_id = uuid()
+        // const user_id = uuid()
         const submission = {
-            comment: comment,
-            dateTime: "2021-10-14",
-            publish: false,
-            user_id: user_id,
-            projectName: formattedUrl
+            _type: 'simpleComment',
+            comment: comment.comment,
+            submittedAt: new Date().toISOString(),
+            published: false,
+            author: {
+                _type: 'reference',
+                _ref: user._id
+            },
+            project: {
+                _type: 'reference',
+                _ref: user.project._ref
+            }
         }
-        axios.post(`${server}/api/rhs/basic_comments/add`, submission)
-        .catch((err) => {
-            console.log(err)
-        })
+        // axios.post(`${server}/api/rhs/basic_comments/add`, submission)
+        // .catch((err) => {
+        //     console.log(err)
+        // })
+        sanityClient.create(submission)
         setComment('')
         setSubmitted(true)
         console.log(submission)
@@ -87,7 +71,7 @@ const BasicComment = (props) => {
     }
 
 
-    const Form = (props) => {
+    const Form = () => {
         return <input type="submit" value='Submit' className='btn btn-block'/>
     }
 
@@ -101,13 +85,13 @@ const BasicComment = (props) => {
     </div>
     }
     
-    console.log(getImage())
+
     return (
         <div >
             <PageHeader info={pageInfo}/>
            
-            <div className='basic-comment' style={{backgroundImage: `url(${getImage()})`}}>
-            <div className="instructions-pad">
+            <div className='basic-comment' style={{backgroundImage: `url(${"/map-with-comments.jpg"})`}}>
+            <div className="basic-instructions">
                 {
                     !submitted? <Instructions instructions={instructions}/> : null
                 }
