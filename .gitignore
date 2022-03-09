@@ -5,10 +5,6 @@
 /.pnp
 .pnp.js
 /rhsapp/node_modules
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
 # testing
 /coverage
 
