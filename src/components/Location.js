@@ -1,72 +1,95 @@
 import React, {useState, useEffect} from 'react'
-import { useLocation } from 'react-router-dom'
-import axios from 'axios';
-import Spinner from './Spinner'
 import PageHeader from './PageHeader';
 import { Link } from 'react-router-dom';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+
 // Icons
 import { FaInfo, FaMapMarkerAlt, FaRegComments, FaRegImage, FaRegCommentDots, FaRegChartBar, FaThumbtack, FaClipboardList } from 'react-icons/fa'
-import {BsFillHouseFill} from 'react-icons/bs'
+import sanityClient from "../readClient"
+import BlockContent from "@sanity/block-content-to-react"; 
+
 
 const Location = () => {
 
-    // get location name from URL
-    const id = useLocation()
-    // Format
-    const formattedUrl = id.pathname.slice(10)
-    // Spinner 
-    const [ isLoading, setIsLoading ] = useState(true)
-    // Data
-    const [ dbs, setDatabases ] = useState([])
-    // data for page header
     const [pageInfo] = useState({
-        title: `${formattedUrl}`,
+        title: "Project Home Page",
         body: "From here you can interact with this particular project"
     })
 
-    useEffect(() => {     
-        const fetchItems = async () => {
-            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/project_properties`)
-            console.log('result.data', result.data)
-            setDatabases(result.data)
-            setIsLoading(false)
-            }          
-            fetchItems() 
-        }, [])
+    const [rhsUser] = useState(()=> {
+        const saved = localStorage.getItem('_id');
+        const initialValue = JSON.parse(saved);
+        return initialValue || ""
+      })
 
-    // const imageError = (e) => {
-    //     e.target.backgroundImage = `url('default_background.jpeg')`}
-    //     console.log('image error function triggered')
-    // }
-        
-    return isLoading? ( <Spinner />
-    ) : (
+    const [project, setProject] = useState()
+
+    useEffect(()=> {
+        sanityClient
+        .fetch(`*[_type == "project" && _id == "${rhsUser.project._ref}"]{
+            name,
+            location->{
+                name
+            },
+            image{
+                asset->{
+                    _id,
+                    url
+                }
+            },
+            numberOfHouses,
+            numberOfAmeneties,
+            lat,
+            lng,
+            phase1,
+            phase2,
+            description,
+            slug,
+            client
+        }`)
+    .then((data) => setProject(data[0]))
+    .catch(console.error)
+    },[rhsUser.project._ref])
+ 
+    if(!project) return <div>loading...</div>
+    return (
         
         <div>
              <PageHeader info={pageInfo}/>
              <img src="default_background.jpeg" alt="" className="location-background-image"/>
              <div className="location-container" >
-            {dbs.filter(db => db.properties.Name.title[0].plain_text === formattedUrl).map(location => (
-                <div key={location.id} className="location" style={{backgroundImage: `url(${location.properties.mainImage.files[0].file.url})`}} >
-
-                    {/* EXAMPLE CODE FOR ERROR ON IMAGE onError={(e)=>{e.target.onerror = null; e.target.style={}  */}
-                    
+                <div className="location" style={{backgroundImage: `url(${project.image.asset.url})`}} >                    
                     <div className="landing-page-header">
-                        <img src={location.properties.mainImage.files[0].file.url} alt="" />
+                        <img src={project.image.asset.url} alt={project.name} />
                         <div  className="landing-page-header-text">
-                        <h3>{location.properties.Name.title[0].plain_text}</h3>
-                        <p>{location.properties.description.rich_text[0].plain_text}</p>
-                
+                        <h3>{project.name}</h3>
+                        <BlockContent blocks={project.description} projectId="" dataset="production" className=""/>
+                        </div>
+                        <div className="info-box">
+                            <ul>
+                            <li>
+                                    Location: {project.location.name}
+                                </li>
+                                <li>
+                                    Houses: {project.numberOfHouses}
+                                </li>
+                                <li>
+                                    Ameneties: {project.numberOfAmeneties}
+                                </li>
+                                <li>
+                                    Client: {project.client}
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
                     {/* Grid of active or inactive links to features */}
                    
                     <div className="location-grid">
-                    
+            
                     {/* Always visible */}
                     <div className="location-feature">
-                        <Link to={`/location/${formattedUrl}/story`}>
+                        <Link to={`/location/story`}>
                             <div>
                             <FaInfo id="FaInfo" label="Info" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
 
@@ -76,14 +99,11 @@ const Location = () => {
                         </Link> 
                     </div>
 
-
-
-
                     {/* Phase 2 */}
                     
-                    {location.properties.phase2.checkbox ? 
+                    {project.phase2 ? 
                     <div className="location-feature">
-                    <Link to={`/location/${formattedUrl}/view_site_comments`}>
+                    <Link to={`/location/view_site_comments`}>
                         <div>
                         <FaMapMarkerAlt id="FaMapMarkerAlt" label="Map" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
 
@@ -95,9 +115,9 @@ const Location = () => {
                      : <div className="hidden-div"></div>}
                     
                     
-                    {location.properties.phase2.checkbox ? 
+                    {project.phase2 ? 
                     <div className="location-feature">
-                    <Link to={`/location/${formattedUrl}/view_basic_comments`}>
+                    <Link to={`/location/view_basic_comments`}>
                         <FaRegComments id="FaRegComments" label="Comments" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
 
                         <h3>View Comments</h3>
@@ -107,9 +127,9 @@ const Location = () => {
                     : <div className="hidden-div"></div>}
                     
                     
-                    {location.properties.phase2.checkbox ? 
+                    {project.phase2 ? 
                     <div className="location-feature">
-                    <Link to={`/location/${formattedUrl}/house_votes`}>
+                    <Link to={`/location/house_votes`}>
                         <FaRegImage id="FaRegImage" label="picture" style={{height: '3em', width: '3em', color: '#ffffff'}} />
                         <h3>View House Type Feedback</h3>
                         <p>Feedback on house types for this site</p>
@@ -118,9 +138,9 @@ const Location = () => {
                     : <div className="hidden-div"></div>}
                     
                     
-                    {location.properties.phase2.checkbox ? 
+                    {project.phase2 ? 
                     <div className="location-feature">
-                    <Link to={`/location/${formattedUrl}/survey_responses`}>
+                    <Link to={`/location/survey_responses`}>
                     <FaRegChartBar id="FaRegChartBar" label="Survey Responses" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
                         <h3>Survey Responses</h3>
                         <p>...</p>
@@ -131,8 +151,8 @@ const Location = () => {
                     {/* Phase 1 */}
 
                     <div className="location-feature">
-                    {location.properties.phase1.checkbox ? 
-                    <Link to={`/location/${formattedUrl}/site_comment`} >
+                    {project.phase1 ? 
+                    <Link to={`/location/site_comment`} >
                         <div>
                         <FaThumbtack id="FaThumbtack" label="Pin" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
                         <h3>Comment on the Site</h3>
@@ -146,8 +166,8 @@ const Location = () => {
                     </div>
 
                     <div className="location-feature">
-                    {location.properties.phase1.checkbox ? 
-                    <Link to={`/location/${formattedUrl}/basic_comments`}>
+                    {project.phase1 ? 
+                    <Link to={`/location/basic_comment`}>
                         <div>
                         <FaRegCommentDots id="FaRegCommentDots" label="Comment" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
 
@@ -162,9 +182,9 @@ const Location = () => {
                     </div>
 
                     <div className="location-feature">
-                    {location.properties.phase1.checkbox ? 
+                    {project.phase1 ? 
                     
-                    <Link to={`/location/${formattedUrl}/form_view`}>
+                    <Link to={`/location/form_view`}>
                     <div>
                     <FaClipboardList id="FaClipboardList" label="Survey" style={{height: '3em', width: '3em', color: '#ffffff'}}/>
 
@@ -181,8 +201,8 @@ const Location = () => {
                     </div>
 
                     <div className="location-feature">
-                    {location.properties.phase1.checkbox ? 
-                    <Link to={`/location/${formattedUrl}/house_types`}>
+                    {project.phase1 ? 
+                    <Link to={`/location/house_types`}>
                         <div>
                         <FaRegImage id="FaRegImage" label="picture" style={{height: '3em', width: '3em', color: '#ffffff'}} />
                         <h3>Comment on House Type</h3>
@@ -194,49 +214,30 @@ const Location = () => {
                         </div>}
                     </div>
 
-                    <div className="location-feature">
-                    {location.properties.phase1.checkbox ? 
-                    <Link to="#">
-                        <div>
-                        <BsFillHouseFill id="BsFillHouseFill" label="house"style={{height: '3em', width: '3em', color: '#ffffff'}} />
-                        <h3>Propose Layout</h3>
-                        <p>We'd like to get your ideas for house positions etc</p>
-                        </div>
-                    </Link> :    <div className="closed">
-                        <BsFillHouseFill id="BsFillHouseFill" label="house"style={{height: '3em', width: '3em', color: '#ffffff'}} />
-                        <h3>Proposals are closed</h3>
-                        </div>}
-                        
-                    </div>
-
-
-
-                    
-
                     {/* <div className="location-feature">
-                    {location.properties.phase2.checkbox ? 
-                    <Link to={`/location/${formattedUrl}/building_materials`}>
-                        <FaRegImage id="FaRegImage" label="picture" style={{height: '3em', width: '3em'}} />
-                        <h3>Building Materials</h3>
-                        <p>We'd like to get your ideas on building materials for this site</p>
-                        </Link> : <h3>false</h3>}
-                    </div> */}
-
-                    {/* <div className="location-feature">
-                    {location.properties.phase3.checkbox ? <Link to="#">
-                    <FaRegThumbsUp id="FaRegThumbsUp" label="Thumbs up" style={{height: '3em', width: '3em'}}/>
-
-                        <h3>Other Feature</h3>
-                        <p>TBC</p></Link> : <div className="hidden-div"></div>}
+                        {project.phase1 ? 
+                        <Link to="#">
+                            <div>
+                            <BsFillHouseFill id="BsFillHouseFill" label="house"style={{height: '3em', width: '3em', color: '#ffffff'}} />
+                            <h3>Propose Layout</h3>
+                            <p>We'd like to get your ideas for house positions etc</p>
+                            </div>
+                        </Link> :    <div className="closed">
+                            <BsFillHouseFill id="BsFillHouseFill" label="house"style={{height: '3em', width: '3em', color: '#ffffff'}} />
+                            <h3>Proposals are closed</h3>
+                            </div>}
                     </div> */}
 
                     </div>
                 </div>
-            ))}
+            ))
+            {/* } */}
             </div>
            
         </div>
     )
 }
 
-export default Location
+export default withAuthenticationRequired(Location, {
+    onRedirecting: () => <div>Loading...</div>
+});

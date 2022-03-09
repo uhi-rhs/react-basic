@@ -37,6 +37,12 @@ h1 {
   color: black;
 }
 
+/* Landing page */
+
+.landing-page p {
+  color: black;
+}
+
 /* Page Header */
 
 .page-header {
@@ -60,6 +66,7 @@ h1 {
 .page-header-body {
   padding-left: 20px;
   padding-top: 21.5px;
+  color: black;
 }
 
 #BIUndo {
@@ -109,7 +116,9 @@ h1 {
   padding-top: 15px;
 }
 
-
+.intro-text {
+  color: black;
+}
 
 .btn-intro {
   padding: 5px;
@@ -161,6 +170,19 @@ h1 {
 
 
 /* Instructions Card */
+
+.basic-instructions {
+  background-color: var(--light-color);
+  width: 300px;
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  padding: 0px;
+  margin-top: 5px;
+  margin-left: 18px;
+  border-radius: 5px;
+}
+
 
 .instructions {
   background-color: var(--light-color);
@@ -762,6 +784,9 @@ h1 {
       padding-left: 20px;
       padding-top: 0px;
     }
+    .page-header-body p {
+      color: black;
+    }
     
     #BIUndo {
       padding: 2px;
@@ -838,7 +863,7 @@ h1 {
 
     .landing-page-header {
       display: block;
-      width: 100%;
+      width: 80%;
       padding: 0px;
       margin: 0px;
       color: black;
@@ -857,6 +882,14 @@ h1 {
        padding-bottom: 12px;
     }
     .landing-page-header-text p {
+      color: black;
+    }
+
+    .info-box {
+      background-color: var(--light-color);
+      width: 200px;
+      padding: 10px;
+      margin: 10px;
       color: black;
     }
   

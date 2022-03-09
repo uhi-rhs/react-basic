@@ -9,8 +9,8 @@ export default {
             type: 'string',
           },
         {
-            name: 'userId',
-            title: 'User ID',
+            name: 'author',
+            title: 'Author',
             type: 'reference',
             to: {type: 'user'}
           },
@@ -36,15 +36,6 @@ export default {
         title: 'Category',
         type: 'reference',
         to: {type: 'category'}
-      },
-      {
-        name: 'slug',
-        title: 'Slug',
-        type: 'slug',
-        options: {
-          source: 'name',
-          maxLength: 96,
-        },
       },
     ],
   }

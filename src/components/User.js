@@ -1,41 +1,59 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import Intro from './Intro'
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import sanityClient from "../readClient"
+import CreateProfile from './CreateProfile'
+import {NavLink} from 'react-router-dom'
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const User = () => {
 
     // Auth0 user data
-    const { isAuthenticated } = useAuth0()
+    // const { isAuthenticated } = useAuth0()
     const {user} = useAuth0()
+    console.log(user)
     const { name, email} = user;
 
-    // Create Profile State
-    const [location, setLocation] = useState("")
-    const username = useRef(null)
-    const connection = useRef(null)
-    const [submission, setSubmission] = useState(null)
+    // Form state logic
+    const [displayForm, setDisplayForm] = useState(false)
+    const [allowCreateProfile, setAllowCreateProfile] = useState(false)
 
-    // RHS user
+
+      // RHS user
     const [rhsUser, setRhsUser] = useState(null)
 
-    // Project info - replace with useContext
-    const [projects, setProjects] = useState(null)
+    // Local storage of user
+    const {setUser} = useLocalStorage("_id", "")
 
-    // Query for project info
     useEffect(()=> {
-      sanityClient
-      .fetch(`*[_type == "project"]{
-        name,
-        slug,
-        location->{
-          name,
-          description
-        }
-      }`)
-      .then((data) => setProjects(data))
-      .catch(console.error)
-    },[])
+        setUser(rhsUser)
+    },[rhsUser, setUser])
+    // // Create Profile State
+    // const [location, setLocation] = useState()
+    // const username = useRef(null)
+    // const connection = useRef(null)
+    // const [submission, setSubmission] = useState(null)
+
+  
+    
+
+    // Project info - replace with useContext
+    // const [projects, setProjects] = useState(null)
+
+    // // Query for project info
+    // useEffect(()=> {
+    //   sanityClient
+    //   .fetch(`*[_type == "project"]{
+    //     name,
+    //     slug,
+    //     location->{
+    //       name,
+    //       description
+    //     }
+    //   }`)
+    //   .then((data) => setProjects(data))
+    //   .catch(console.error)
+    // },[])
 
     // Query to check if profile already exists
     useEffect(() => {
@@ -44,61 +62,86 @@ const User = () => {
             username,
             _id,
             email,
-            location,
+            project,
+            "projectName":project->{
+                name
+            },
             connection,
         }`)
         .then((data) => setRhsUser(data[0]))
         .catch(console.error)
     },[user.email])
 
-    // Form Functions
+    console.log(rhsUser)
 
-    const handleChange = (e) => {
-        setLocation(e.target.value)
+    useEffect(()=> {
+        if(!rhsUser){
+            setAllowCreateProfile(true)
+        }else{
+            setAllowCreateProfile(false)
+        }
+    },[rhsUser])
+
+    const formDisplay = () => {
+        return displayForm ? <CreateProfile user={user} setRhsUser={setRhsUser}/> : <div className="invisible"></div>
     }
+    // // Form Functions
 
-    const handleSubmit = (e) => {
-        setSubmission({
+    // const handleChange = (e) => {
+    //     setLocation(e.target.value)
+    // }
 
-        })
-    }
+    // const handleSubmit = (e) => {
+    //     setSubmission({
+
+    //     })
+    // }
   
 
   return (
     <React.Fragment>
            <Intro />
         <div>Hi User</div>
+
+        {
+            rhsUser ? 
+            
+            <section>
+                <div>
+                    <h2>{rhsUser.username}</h2>
+                    <p>{rhsUser.email}</p>
+                    <p>{rhsUser.connection}</p>
+                    <div>
+                        forthcoming: list of comments, date from interactions, summary etc
+                    </div>
+                    <div><NavLink to="/location">To app///</NavLink></div>
+                </div>
+            </section>
+            :
+       <section>
         <p>This is the information we have from your login</p>
         <div className="profile">
         <p>Login username{name}</p>
         <p>Login email{email}</p>
         <br />
-        <p>Please create a profile so we can let you comment on the various features the app offers. See uour privacy policy here///</p>
+        <p>Please create a profile so we can let you comment on the various features the app offers. See our privacy policy here///</p>
         </div>
-        <div className="profile">
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Username you are happy to have other users see next to your comments:
-                    <input type="text" ref={username} />
+        </section>
+       
+        }
 
-                </label>
+        <section>
+        {
+            allowCreateProfile ? 
+            <button onClick={(e) => setDisplayForm(!displayForm)}>
+            {displayForm ? null: <p>Create Profile</p>}
+            </button>
+            :
+            <div></div> 
+        }
+        {formDisplay()}
+        </section>
 
-                <label>
-                    Choose a location (it should be relevant / local to you)
-                <select name="" id="" value={location} onChange={handleChange}>
-                    {projects && projects.map((project)=>(
-                        <option value={projects.name} key={project.slug.current}>{project.name}</option>
-                    ))}
-                    </select>
-                </label>
-                <label htmlFor="">
-                   {location ? <div><p>Please tell us about your connection to {location}</p> <textarea ref={connection}/></div>: null} 
-                </label>
-                <button>
-                    <input type="submit" value="Submit"/>
-                </button>
-                </form>
-        </div>
     </React.Fragment>
         )
 }

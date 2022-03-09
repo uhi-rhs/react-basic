@@ -1,9 +1,49 @@
 import React from 'react'
 import { useState } from 'react'
+import sanityClient from '../writeClient.js'
 
-const Comment = ({onAdd, marker, setShowInstructions}) => {
+
+const Comment = ({marker, setPopup, project, rhsUser, setMarker, setShowInstructions}) => {
 
     const [comment, setComment] = useState('')
+
+
+        // comment submit functions
+        const saveSubmission = async (marker) => {
+            const submission = {
+                _type: 'siteComment',
+                lat: marker.latitude,
+                lng: marker.longitude,
+                comment: marker.comment,
+                location: project.location,
+                dateTime: new Date().toISOString(),
+                publish: false,
+                author: {
+                    _type: 'reference',
+                    _ref: rhsUser._id
+                },
+                project: {
+                    _type: 'reference',
+                    _ref: rhsUser.project._ref
+                }
+            }
+            sanityClient.create(submission)
+            // const headers = {
+            //     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            //     withCredentials: false,
+            // }
+            // axios.post(`${server}/api/rhs/${formattedUrl}/site_comment/add`, submission)
+            // await axios.post(`${server}/api/rhs/site_comments/add`, submission,{headers})
+            // console.log("Submission:", submission)
+        }
+
+    const addComment = (marker) => {
+        setMarker({...marker, marker})
+        saveSubmission(marker)
+        setPopup(true)
+    }
+
+    
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -11,20 +51,30 @@ const Comment = ({onAdd, marker, setShowInstructions}) => {
             alert('Please add a comment')
             return
         }
-        onAdd({ ...marker, comment:comment })
+        addComment({ ...marker, comment:comment })
         setComment('')
         setSubmitted(true)
         setShowInstructions(false)
     }
 
+
+
+    // submit functions
     const handleSubmit = () => {
         setSubmitted(false)
+        setMarker({
+            latitude: project.lat,
+            longitude: project.lng,
+            comment: '',
+            visible: false
+        })
+        setPopup(false)
     }
 
     const [ submitted, setSubmitted] = useState(false)
 
-
-    const Form = (props) => {
+    // Form & Feedback components
+    const Form = () => {
         return <input type="submit" value='Submit' className='btn btn-block'/>
     }
 
@@ -39,7 +89,6 @@ const Comment = ({onAdd, marker, setShowInstructions}) => {
         </div>
         
     }
-
 
     console.log(submitted)
     return !submitted ? (

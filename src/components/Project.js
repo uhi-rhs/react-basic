@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import useLocalStorage from "../useLocalStorage";
+// import { Link } from 'react-router-dom';
+// import useLocalStorage from "../useLocalStorage";
 
 
 const Project = ({project}) => {
@@ -14,6 +14,7 @@ const Project = ({project}) => {
     //     setLocalLocation(db)
        
     // }
+    
     console.log(project)
 
     return (

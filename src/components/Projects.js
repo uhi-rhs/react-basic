@@ -1,8 +1,12 @@
 import React from 'react'
 import Project from './Project';
 import {FaUsers, FaOtter, FaTractor} from 'react-icons/fa'
+import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 
 const Projects = ({projects}) => {
+
+    const {user} = useAuth0()
     
     if(!projects) return <div>Loading...</div>
    return (
@@ -17,8 +21,17 @@ const Projects = ({projects}) => {
 
             <p>Welcome to the Rural Housing Scotland Community Engagement Portal. You can use this tool to be involved in the new affordable housing project at [insert community name]. Please log in if you have an account or register and follow the instructions so that you can have your say!</p>
 
+            {
+                user ? <div><h4>Hi {user.name}</h4>
+                <p className="intro-text">Please head over to the user profile page to set up a profile. This will allow you to use the features in this app.</p>
+                <Link to={'/user'} label="user">     
+               Create Profile
+                </Link></div> : <div></div>
+            }
+            
             <h2>Current Projects:</h2>
             </div>
+         
             
             {projects.map((project) => (
                 

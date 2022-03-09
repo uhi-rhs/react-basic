@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import sanityClient from "./readClient"
 
@@ -17,7 +17,6 @@ import DrawPolygonBasic from './components/draw/DrawPolygonBasic'
 import Intro from './components/Intro';
 import MarkerComment from './components/MarkerComment';
 import ViewLocations from'./components/ViewLocations';
-import ViewPIComments from './components/ViewPIComments';
 import HouseStyles from './components/demo/HouseStyles';
 import MainHeader from './components/MainHeader';
 
@@ -26,7 +25,7 @@ import Projects from './components/Projects';
 import FormView from './components/FormView'
 import FormResponses from './components/FormResponses';
 import Story from './components/story/Story';
-import LandingPage from './components/demo/LandingPage';
+// import LandingPage from './components/demo/LandingPage';
 import Drawing from './components/Drawing';
 import Location from './components/Location';
 import SiteComment from './components/SiteComment'
@@ -34,12 +33,13 @@ import ViewComments from './components/ViewComments'
 import ViewSiteComments from './components/ViewSiteComments'
 import BasicComment from './components/BasicComment'
 import ProposeSite from './components/ProposeSite'
-import BuildingMaterials from './components/BuildingMaterials'
 import HouseTypes from './components/HouseTypes';
 import ViewHouseTypeFeedback from './components/ViewHouseTypeFeedback';
 import SurveyResponses from './components/SurveyResponses';
 import Footer from './components/Footer'
 import User from './components/User'
+import LandingPage from './components/LandingPage'
+import LogOut from './components/LogOut'
 
 export const LocationContext = React.createContext()
 
@@ -50,6 +50,14 @@ export const serverContext = React.createContext(process.env.REACT_APP_API_URL)
 
 
 function App() {
+
+  const [rhsUser] = useState(()=> {
+    const saved = localStorage.getItem('_id');
+    const initialValue = JSON.parse(saved);
+    return initialValue || ""
+  })
+
+console.log(rhsUser)
 
   // Spinner if no data
   // const [ isLoading, setIsLoading ] = useState(true)
@@ -91,6 +99,7 @@ function App() {
     .fetch(`*[_type == "project"]{
       name,
       slug,
+      _id,
       location->{
         name,
         description
@@ -117,7 +126,6 @@ function App() {
 
           {/* Demo Components */}
         <Route exact path="/gallery" component={Gallery}/>
-        <Route exact path="/view_pi_comments" component={ViewPIComments} />
         <Route exact path="/drop_marker" component={DropMarker} />
         <Route exact path="/draggable_marker" component={DraggableMarker} />
         <Route exact path="/marker_comment" component={MarkerComment} />
@@ -126,48 +134,47 @@ function App() {
         <Route exact path="/form_view" component={FormView} />
         <Route exact path="/form_responses" component={FormResponses} />
         <Route exact path="/story_example" component={Story} />
-        <Route exact path="/landing_page" component={LandingPage} />
+        <Route exact path="/landing-page" component={LandingPage} />
         <Route exact path="/drawing" component={Drawing} />
         <Route exact path="/site_proposal_national" component={ProposeSite} />
         <Route exact path="/draw_polygon" component={DrawPolygon} />
         <Route exact path="/draw_polygon_basic" component={DrawPolygonBasic} />
    
         <Route exact path="/user" component={User} />
+        <Route exact path="/logout" component={LogOut} />
     {/* Routes for chosen project / location */}
     {/* TO DO  - remove props (usecontext is doing this work) */}
     {/* <LocationContext.Provider value={location} > */}
 
-      <Route exact path="/location/:id" >
+      <Route exact path="/location" >
         <Location />
       </Route>
-      <Route exact path="/location/:id/site_comment" >
+      <Route exact path="/location/site_comment" >
         <SiteComment/>
       </Route>
-      <Route exact path="/location/:id/basic_comments" >
-        <BasicComment/>
+      <Route exact path="/location/basic_comment" >
+        <BasicComment user={rhsUser}/>
       </Route>
-      <Route exact path="/location/:id/story" >
-        <Story/>
+      <Route exact path="/location/story" >
+        <Story user={rhsUser}/>
       </Route>
-      <Route exact path="/location/:id/view_basic_comments" >
-        <ViewComments />
+      <Route exact path="/location/view_basic_comments" >
+        <ViewComments user={rhsUser}/>
       </Route>
-      <Route exact path="/location/:id/view_site_comments" >
+      <Route exact path="/location/view_site_comments" >
         <ViewSiteComments />
       </Route>
-      <Route exact path="/location/:id/form_view" >
-        <FormView  />
+      <Route exact path="/location/form_view" >
+        <FormView />
       </Route>
-      <Route exact path="/location/:id/survey_responses" >
+      <Route exact path="/location/survey_responses" >
         <SurveyResponses />
       </Route>
-      <Route exact path="/location/:id/building_materials" >
-        <BuildingMaterials />
-      </Route>
-      <Route exact path="/location/:id/house_types" >
+
+      <Route exact path="/location/house_types" >
         <HouseTypes />
       </Route>
-      <Route exact path="/location/:id/house_votes" >
+      <Route exact path="/location/house_votes" >
         <ViewHouseTypeFeedback />
       </Route>
     {/* </LocationContext.Provider> */}

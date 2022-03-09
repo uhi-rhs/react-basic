@@ -3,6 +3,7 @@ import AuthenticationButton from './AuthenticationButton'
 import { Link } from 'react-router-dom';
 
 export default function Intro() {
+
     return (
         <div className="intro">
             <Link to={'/'} label="home">

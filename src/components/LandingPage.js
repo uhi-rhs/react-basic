@@ -1,9 +1,14 @@
 import React from 'react'
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 
 const LandingPage = () => {
   return (
-    <div>LandingPage</div>
+    <div className="landing-page">
+        <p>Landing Page</p>
+        </div>
   )
 }
 
-export default LandingPage
+export default withAuthenticationRequired(LandingPage, {
+    onRedirecting: () => <div>Loading...</div>
+});

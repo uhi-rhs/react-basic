@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import PageHeader from './PageHeader';
+import sanityClient from "../readClient"
 
-const ViewComments = (props) => {
+const ViewComments = ({user}) => {
     
     const [ comments, setComments ] = useState([])
 
@@ -12,34 +13,40 @@ const ViewComments = (props) => {
     })
 
 
-    console.log(props)
-    useEffect(() => {
-        const fetchItems = async () => {
-            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/basic_comments`)
-            console.log(result)
-            setComments(result.data)
-        }
-        fetchItems()
-    }, [])
+    console.log(user)
 
-    // To do: filter data to return only comments for a specific location / project (from props)
+    useEffect(()=> {
+        sanityClient
+        .fetch(`*[_type == "simpleComment" && project._ref == "${user.project._ref}"]{
+            comment, 
+            userId,
+            project,
+            category->{
+                title
+            },
+        }`)
+
+    .then((data) => setComments(data))
+    .catch(console.error)
+    },[user.project._ref])
+
+    console.log(comments)
 
     return (
         <div className="postit-page" 
-        // style={{backgroundImage: `url(${props.location.properties.mainImage.files[0].file.url})`}}
         >
              <PageHeader info={pageInfo}/>
             
              <div className="postit-container" >     
            
                 {console.log(comments)}
-                {comments.map((comment) => (
+                {comments.map((comment, index) => (
                     <div 
-                    key={comment.properties.user_id.title[0].text.content}
+                    key={index}
                     className="postit"
                     >
-                   <p> {comment.properties.comment.rich_text[0].text.content}</p>
-                   <small>Category:  {comment.properties.Category ? comment.properties.Category.select.name : ""}</small>
+                   <p> {comment.comment}</p>
+                   <small>Category:  {comment.category.title ? comment.category.title : ""}</small>
                     </div>
                 ))}
             </div>

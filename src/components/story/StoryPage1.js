@@ -1,13 +1,15 @@
 import React from 'react'
 import { FaAngleRight } from 'react-icons/fa'
 import Spinner from '../Spinner'
+import BlockContent from "@sanity/block-content-to-react"; 
 
 const StoryPage1 = ({pageContent, nextPage}) => {
 
+    console.log(pageContent)
     // const {name, client, intro} = pageContent;
-    const name = pageContent.properties.Name.title[0].plain_text
-    const client = pageContent.properties.client.rich_text[0].plain_text
-    const intro = pageContent.properties.intro.rich_text[0].plain_text
+    const name = pageContent.name
+    const client = pageContent.client
+    const intro = pageContent.intro
 
     // console.log("page content:",pageContent)
 
@@ -22,7 +24,8 @@ const StoryPage1 = ({pageContent, nextPage}) => {
             <div className="story-card">
             <h1>{name}</h1>
             <h3>{client}</h3>
-            <p>{intro}</p>
+            <BlockContent blocks={intro} projectId="1cepjwt9" dataset="production" className=""/>
+
             </div>
             <button
                 label="continue"

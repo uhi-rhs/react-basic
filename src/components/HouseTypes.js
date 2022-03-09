@@ -1,12 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react'
-import { useLocation } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
 import HouseVote from './HouseVote'
-import axios from 'axios'
-import uuid from 'react-uuid'
-
 import PageHeader from './PageHeader'
-import {serverContext} from '../App'
-import Spinner from './Spinner'
+import sanityClient from "../readClient"
 
 const HouseTypes = (props) => {
 
@@ -15,30 +10,26 @@ const HouseTypes = (props) => {
         body: "Showing house types for feedback"
     })
 
-
-    const server = useContext(serverContext)
-
-    const [isLoading, setIsLoading] = useState(true)
-
     const [ houses, setHouses ] = useState([])
 
-    useEffect(() => {
-        const fetchItems = async () => {
-            const result = await axios(`${server}/api/rhs/precedents`)
-            console.log(result)
-            setHouses(result.data)
-        }
-        fetchItems()
-        setIsLoading(false)
-    }, [server])
+    useEffect(()=> {
+        sanityClient
+        .fetch(`[_type == "precedents"]{
+            name,
+            alt, 
+            slug,
+            image{
+                asset->{
+                    _id,
+                    url
+                }
+            }
+        }`)
+        .then((data)=> setHouses(data))
+        .catch(console.error)
+    },[])
 
-    // const [ instructions ] = useState({
-    //     header: "How to Play",
-    //     item1: "Click a picture to select your favourite house type.",
-    //     item2: "Add a comment to say why.",
-    //     body: "Remember: what would suit the area? What local materials are available?"
-    // })
-
+    console.log(houses)
 
     const [selectedHouse, setSelectedHouse] = useState({
         properties: {
@@ -80,8 +71,7 @@ const HouseTypes = (props) => {
 
     const handleClick = (e) => {
         setSelectedHouse(e)
-        showModal()
-        
+        showModal() 
     }
 
     const showModal = () => {
@@ -95,33 +85,33 @@ const HouseTypes = (props) => {
 
     const addComment = (vote) => {
         setVote({...vote, vote})
-        saveSubmission(vote)
+        // saveSubmission(vote)
         console.log(vote)
     }
 
     console.log(vote)
 
     //  // get location name from URL
-    const id = useLocation()
+    // const id = useLocation()
     //  // Format
-    const formattedUrl = id.pathname.slice(10, -12)
+    // const formattedUrl = id.pathname.slice(10, -12)
 
-    const saveSubmission = async (vote) => {
-        const user_id = uuid()
-        const submission = {
-            user_id: user_id,
-            house_id: selectedHouse.id,
-            location: formattedUrl,
-            comment: vote.comment
-        }
-        console.log("Submission:", submission)
-        console.log("Submission", vote.comment)
-        axios.post(`${server}/api/rhs/house_votes/add`, submission)
+    // const saveSubmission = async (vote) => {
+    //     const user_id = uuid()
+    //     const submission = {
+    //         user_id: user_id,
+    //         house_id: selectedHouse.id,
+    //         location: formattedUrl,
+    //         comment: vote.comment
+    //     }
+    //     console.log("Submission:", submission)
+    //     console.log("Submission", vote.comment)
+    //     axios.post(`${server}/api/rhs/house_votes/add`, submission)
         
-    }
+    // }
 
-    return isLoading? ( <Spinner />
-        ) : (
+    if(!houses) return <div>loading...</div>
+    return (
         <div className="container">
             <PageHeader info={pageInfo}/>
             <HouseVote show={show} handleClose={hideModal} vote={vote} house={selectedHouse} setVote={() => setVote()} onAdd={addComment}>

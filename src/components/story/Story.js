@@ -1,34 +1,69 @@
 import React, {useState, useEffect} from 'react'
-import { useLocation } from 'react-router-dom'
 import StoryPage1 from './StoryPage1';
 import StoryPage2 from './StoryPage2';
 import StoryPage3 from './StoryPage3';
 import StoryPageVideo from './StoryPageVideo';
 import PageHeader from '../PageHeader';
-import axios from 'axios';
 import Spinner from '../Spinner'
 
-const Story = (props) => {
+import sanityClient from "../../readClient"
+
+const Story = ({user}) => {
 
     const [pageInfo] = useState({
         title: "Example of a project outline",
         body: "Pre feedback information"
     })
 
-    const id = useLocation()
-    const formattedUrl = id.pathname.slice(10, -6)
-
-    const [step, setStep] = useState(null)
+    const [step, setStep] = useState(1)
     const [story, setStory] = useState(null)
-    console.log("url", formattedUrl)
-    useEffect(() => {     
-        const fetchItems = async () => {
-            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/stories/${formattedUrl}`)
-            setStory(result.data)
-            setStep(1)
-            }          
-            fetchItems() 
-        }, [formattedUrl])
+    
+    console.log(story)
+    console.log(step)
+    console.log(user)
+   
+    useEffect(()=> {
+        sanityClient
+        .fetch(`*[_type == "project" && _id == "${user.project._ref}"]{
+            name,
+            location->{
+                name
+            },
+            image{
+                asset->{
+                    _id,
+                    url
+                }
+            },
+            numberOfHouses,
+            numberOfAmeneties,
+            description,
+            slug,
+            client,
+            intro,
+            secondImage{
+                asset->{
+                    _id,
+                    url
+                }
+            },
+            text1,
+            plan1{
+                asset->{
+                    _id,
+                    url
+                }
+            },
+            text2,
+            text3,
+            videoUrl
+
+
+        }`)
+
+    .then((data) => setStory(data[0]))
+    .catch(console.error)
+    },[user.project._ref])
 
     // Move to next page
     const nextPage = () => {
@@ -41,7 +76,9 @@ const Story = (props) => {
         const newStep = step;
         setStep(newStep - 1);
     }
-
+    if(!story){
+        return <div>loading</div>
+    }
 
     if (step === 1) {
         return  <div className="story">

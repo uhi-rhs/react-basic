@@ -19,10 +19,16 @@ export default {
         type: 'string',
       },
       {
-        name: 'location',
-        title: 'Location',
+        name: 'auth_id',
+        title: 'Auth ID',
+        type: 'string',
+        description: 'will be populated by front end code'
+      },
+      {
+        name: 'project',
+        title: 'Project',
         type: 'reference',
-        to: {type: 'location'}
+        to: {type: 'project'}
       },
       {
         name: 'slug',
