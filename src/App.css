@@ -33,9 +33,49 @@ h1 {
 
 /* User */
 
+.profile {
+  margin: auto;
+  padding: 12px;
+}
+
 .profile p, h1, h2{
   color: black;
 }
+
+.form {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.form-group {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.form-group label {
+  text-align: left;
+  display: block;
+  margin: 0 0 5px 3px;
+}
+
+/* #FormSelect {
+  margin-top: 20px;
+  margin-left: 200px;
+  width: 150px;
+} */
+
+
 
 /* Landing page */
 
@@ -98,6 +138,41 @@ h1 {
 }
 
 
+
+/* User */
+
+.user-main {
+  padding: 10px;
+  margin: 10px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: url('images/houses/h-4-l-shape.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.user-info {
+  background-color: white;
+  padding: 20px;
+  color: black
+}
+
+.user-info p {
+  color: black
+}
+
+.to-app {
+  display: flex;
+  padding-top: 10px;
+}
+
+.user-bold {
+  font-weight: 600;
+}
+
+
+
 /* Intro */
 
 .intro {
@@ -135,10 +210,6 @@ h1 {
 
 .home-page p {
   color: black;
-}
-
-.home-page h1 {
-  
 }
 
 .icon-container {
@@ -374,6 +445,15 @@ h1 {
 
   /* House Styles Component - Display House Images */
 
+  .house-title {
+    font-size: 1.4rem;
+    padding-left: 10px
+  }
+
+  .house-para {
+    padding-left: 10px;
+  }
+
   .image-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -387,6 +467,7 @@ h1 {
     justify-content: center;
     padding: 0;
     margin: 0;
+    background-color: var(--mid);
     /* z-index: 1; */
   }
 
@@ -396,7 +477,7 @@ h1 {
   }
 
   .image img {
-    width: 400px;
+    width: 100%;
     height: auto;
   }
 
@@ -468,8 +549,8 @@ h1 {
   }
 
   .landing-page-header {
-    display: flex;
-    height: 300px;
+    /* display: flex; */
+    /* height: 300px; */
     background-color: var(--rhs-color);
     color: var(--light-color);
     position: relative;
@@ -477,13 +558,21 @@ h1 {
     margin: 20px;
   }
 
-  .landing-page-header-text {
-    padding-left: 40px;
+  .landing-page-header p {
+    padding: 10px;
+  }
+
+  .landing-page-img-container {
+    /* width: inherit;
+    display: block; */
+   
   }
 
   .landing-page-header img {
-    height: 90%;
-    width: auto;
+    /* height: 90%;
+    width: auto; */
+    width: 100%;
+    
   }
 
   .landing-page-grid {
@@ -535,7 +624,7 @@ h1 {
     background: var(--mid);
     border-radius: 5px;
     padding: 10px;
-    color: var(--light-color);
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -547,7 +636,12 @@ h1 {
   }
 
   .location-feature h3, p {
-    color: var(--light-color);
+    color: black;
+  }
+
+  .block-content{
+    color: black;
+
   }
 
   .location-feature a {
@@ -787,6 +881,7 @@ h1 {
     .page-header-body p {
       color: black;
     }
+
     
     #BIUndo {
       padding: 2px;
@@ -863,7 +958,7 @@ h1 {
 
     .landing-page-header {
       display: block;
-      width: 80%;
+      width: 100%;
       padding: 0px;
       margin: 0px;
       color: black;
@@ -878,18 +973,21 @@ h1 {
     }
 
     .landing-page-header-text {
+       color: black;
        background: var(--light-color);
+       padding: 0;
        padding-bottom: 12px;
     }
     .landing-page-header-text p {
       color: black;
+      padding: 12px;
     }
 
     .info-box {
       background-color: var(--light-color);
-      width: 200px;
+      width: 100%;
+      margin-top: 10px;
       padding: 10px;
-      margin: 10px;
       color: black;
     }
   
@@ -904,8 +1002,7 @@ h1 {
      display: grid;
      grid-template-columns: repeat(1, 1fr);
      grid-gap: 8px;
-     padding: 8px;
-     padding-top: 330px;   
+     padding: 8px;  
    }
   
     .location-feature {      
@@ -944,6 +1041,10 @@ h1 {
     height: auto;
     font-size: 1.4rem;
   }
+
+.postit small {
+  color: white;
+}
 
   .postit p {
     padding: 5px;

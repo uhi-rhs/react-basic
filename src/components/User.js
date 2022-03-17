@@ -2,23 +2,19 @@ import React, {useState, useEffect} from 'react'
 import Intro from './Intro'
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import sanityClient from "../readClient"
-import CreateProfile from './CreateProfile'
-import {NavLink} from 'react-router-dom'
 import useLocalStorage from "../hooks/useLocalStorage";
+import {FaAngleRight} from 'react-icons/fa'
+import {NavLink} from 'react-router-dom'
 
 const User = () => {
 
-    // Auth0 user data
-    // const { isAuthenticated } = useAuth0()
     const {user} = useAuth0()
     console.log(user)
     const { name, email} = user;
 
     // Form state logic
-    const [displayForm, setDisplayForm] = useState(false)
-    const [allowCreateProfile, setAllowCreateProfile] = useState(false)
-
-
+    // const [displayForm, setDisplayForm] = useState(false)
+    // const [allowCreateProfile, setAllowCreateProfile] = useState(false)
       // RHS user
     const [rhsUser, setRhsUser] = useState(null)
 
@@ -28,32 +24,6 @@ const User = () => {
     useEffect(()=> {
         setUser(rhsUser)
     },[rhsUser, setUser])
-    // // Create Profile State
-    // const [location, setLocation] = useState()
-    // const username = useRef(null)
-    // const connection = useRef(null)
-    // const [submission, setSubmission] = useState(null)
-
-  
-    
-
-    // Project info - replace with useContext
-    // const [projects, setProjects] = useState(null)
-
-    // // Query for project info
-    // useEffect(()=> {
-    //   sanityClient
-    //   .fetch(`*[_type == "project"]{
-    //     name,
-    //     slug,
-    //     location->{
-    //       name,
-    //       description
-    //     }
-    //   }`)
-    //   .then((data) => setProjects(data))
-    //   .catch(console.error)
-    // },[])
 
     // Query to check if profile already exists
     useEffect(() => {
@@ -74,75 +44,75 @@ const User = () => {
 
     console.log(rhsUser)
 
-    useEffect(()=> {
-        if(!rhsUser){
-            setAllowCreateProfile(true)
-        }else{
-            setAllowCreateProfile(false)
-        }
-    },[rhsUser])
+    // useEffect(()=> {
+    //     if(!rhsUser){
+    //         setAllowCreateProfile(true)
+    //     }else{
+    //         setAllowCreateProfile(false)
+    //     }
+    // },[rhsUser])
 
-    const formDisplay = () => {
-        return displayForm ? <CreateProfile user={user} setRhsUser={setRhsUser}/> : <div className="invisible"></div>
-    }
-    // // Form Functions
-
-    // const handleChange = (e) => {
-    //     setLocation(e.target.value)
+    // const formDisplay = () => {
+    //     return displayForm ? <CreateProfile user={user} setRhsUser={setRhsUser}/> : <div className="invisible"></div>
     // }
-
-    // const handleSubmit = (e) => {
-    //     setSubmission({
-
-    //     })
-    // }
-  
+  console.log(rhsUser)
 
   return (
-    <React.Fragment>
+    <main className="">
            <Intro />
-        <div>Hi User</div>
+           <div className="user-main">
+                
 
-        {
-            rhsUser ? 
-            
-            <section>
-                <div>
-                    <h2>{rhsUser.username}</h2>
-                    <p>{rhsUser.email}</p>
-                    <p>{rhsUser.connection}</p>
-                    <div>
-                        forthcoming: list of comments, date from interactions, summary etc
+                {
+                    rhsUser ? 
+                    
+                    <section >
+                        <div className="user-info">
+                            <h2>Hi {rhsUser.username}</h2>
+                            <p><span className="user-bold">Email: </span>{rhsUser.email}</p>
+                            <p><span className="user-bold">Project you are associated with: </span>{rhsUser.projectName.name}</p>
+                            <p><span className="user-bold">Connection to it: </span>{rhsUser.connection}</p>
+                            <div>
+                                forthcoming: information about the current state of the consultation etc
+                            </div>
+                            <NavLink to="/location">
+                            <div className="to-app">
+                                <h1>Consultation App</h1> <h1><FaAngleRight id="consultation" label="Consultation" style={{height: '2em', width: '2em'}}/></h1>
+                            </div>
+                            </NavLink>
+                        </div>
+                    </section>
+                    :
+            <section >
+                <div className="user-info">
+                    <p>This is the information we have from your login</p>
+                    <div className="profile">
+                    <p>Login username{name}</p>
+                    <p>Login email{email}</p>
+                    <br />
+                    <NavLink to="/create-profile">
+                    <p>Please create a profile so we can let you comment on the various features the app offers. See our privacy policy here///</p>
+                    </NavLink>
                     </div>
-                    <div><NavLink to="/location">To app///</NavLink></div>
+                    {/* <CreateProfile user={user} setRhsUser={setRhsUser}/> */}
                 </div>
-            </section>
-            :
-       <section>
-        <p>This is the information we have from your login</p>
-        <div className="profile">
-        <p>Login username{name}</p>
-        <p>Login email{email}</p>
-        <br />
-        <p>Please create a profile so we can let you comment on the various features the app offers. See our privacy policy here///</p>
+                </section>
+            
+                }
         </div>
-        </section>
-       
-        }
-
         <section>
-        {
+        {/* {
             allowCreateProfile ? 
             <button onClick={(e) => setDisplayForm(!displayForm)}>
             {displayForm ? null: <p>Create Profile</p>}
             </button>
             :
             <div></div> 
-        }
-        {formDisplay()}
+        } */}
+        {/* {formDisplay()} */}
         </section>
 
-    </React.Fragment>
+    </main>
         )
 }
 

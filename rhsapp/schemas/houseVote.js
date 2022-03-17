@@ -8,12 +8,12 @@ export default {
             title: 'Comment',
             type: 'string'
         },
-      {
-        name: 'userId',
-        title: 'User ID',
-        type: 'reference',
-        to: {type: 'user'}
-      },
+        {
+          name: 'author',
+          title: 'Author',
+          type: 'reference',
+          to: {type: 'user'}
+        },
       {
         name: 'precedent',
         title: 'Precedent',
@@ -31,6 +31,11 @@ export default {
         type: 'reference',
         to: {type: 'project'}
       },
+      {
+        name: 'published',
+        title: 'Published',
+        type: 'boolean'
+      }, 
       {
         name: 'category',
         title: 'Category',

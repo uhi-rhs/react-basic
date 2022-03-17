@@ -30,7 +30,7 @@ const ViewComments = ({user}) => {
     },[user.project._ref])
 
     console.log(comments)
-
+    if(!comments) return <div>Loading...</div>
     return (
         <div className="postit-page" 
         >
@@ -45,7 +45,9 @@ const ViewComments = ({user}) => {
                     className="postit"
                     >
                    <p> {comment.comment}</p>
-                   <small>Category:  {comment.category.title ? comment.category.title : ""}</small>
+                   {
+                       comment.category ? <small className="category">Category:  {comment.category.title ? comment.category.title : ""}</small> : null
+                   }
                     </div>
                 ))}
             </div>

@@ -40,6 +40,7 @@ import Footer from './components/Footer'
 import User from './components/User'
 import LandingPage from './components/LandingPage'
 import LogOut from './components/LogOut'
+import CreateProfile from './components/CreateProfile'
 
 export const LocationContext = React.createContext()
 
@@ -53,44 +54,16 @@ function App() {
 
   const [rhsUser] = useState(()=> {
     const saved = localStorage.getItem('_id');
-    const initialValue = JSON.parse(saved);
-    return initialValue || ""
+    try {
+      const initialValue = JSON.parse(saved);
+      return initialValue || ""
+    } catch (error) {
+      return ""
+    }
+  
   })
 
 console.log(rhsUser)
-
-  // Spinner if no data
-  // const [ isLoading, setIsLoading ] = useState(true)
-  // databases: all the projects that will display as links 
-  // const [ databases, setDatabases ] = useState([])
-
-  // Location data (chosen project) to propogate through application
-  // const [location, setLocation] = useState({})
-
-//   const [localLocation, setLocalLocation] = useState(() => {
-//     const saved = localStorage.getItem('location');
-//     const initialValue = JSON.parse(saved);
-//     return initialValue || ""
-// })
-
-  // console.log("APP.js", location)
-
-  // const server = useContext(serverContext)
-
-//   useEffect(() => {
-//     const fetchItems = async () => {
-//         const result = await axios(`${server}/api/rhs/project_properties`)
-//         if (!result) {
-//           throw new Error(`HTTP error! status: ${result.status}`);
-//         }
-//         setDatabases(result.data)   
-//         setIsLoading(false)     
-//     }
-//     fetchItems()
-//     .catch(e => {
-//       console.log("There has been an error in the fetch within useEffect" + e.message)
-//     })
-// }, [server])
 
   const [projects, setProjects] = useState(null)
 
@@ -141,6 +114,7 @@ console.log(rhsUser)
         <Route exact path="/draw_polygon_basic" component={DrawPolygonBasic} />
    
         <Route exact path="/user" component={User} />
+        <Route exact path="/create-profile" component={CreateProfile} />
         <Route exact path="/logout" component={LogOut} />
     {/* Routes for chosen project / location */}
     {/* TO DO  - remove props (usecontext is doing this work) */}

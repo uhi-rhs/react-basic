@@ -1,21 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import sanityClient from '../writeClient.js'
-// import { uuid } from 'uuidv4';
-// import {useHistory} from "react-router-dom"
+import {FaAngleRight} from 'react-icons/fa'
+import {NavLink} from 'react-router-dom'
 
 const CreateProfile = ({user, setRhsUser}) => {
         // Create Profile State
         const [project, setProject] = useState()
         const [username, setUsername] = useState("")
         const [connection, setConnection] = useState("")
-        // const [submission, setSubmission] = useState(null)
         const [submitted, setSubmitted] = useState(false)
-
-        // const formatSlug = (text) => {
-        //     return text.replace(/ /g, "-")
-        //     // write a more comprehensive slugify function to exclude problem chars
-        // }
-
         const [projects, setProjects] = useState(null)
 
         const saveSubmission = () => {
@@ -93,29 +86,41 @@ const CreateProfile = ({user, setRhsUser}) => {
 
     console.log(projects)
 
-  return submitted ? <div>Profile Created  </div> : (
+  return submitted ? (<div>
+      <h2>Profile Created</h2>
+      <NavLink to="/location">
+            <div className="to-app">
+            <h1>Consultation App</h1> <h1><FaAngleRight id="consultation" label="Consultation" style={{height: '2em', width: '2em'}}/></h1>
+            </div>
+        </NavLink>
+  </div>) : (
     <div className="profile">
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form">
+        <div className="form-group">
         <label>
             Username you are happy to have other users see next to your comments:
-            <input type="text" value={username} onChange={handleUsername}/>
-
         </label>
-
+            <input type="text" value={username} onChange={handleUsername}/>
+        </div>
+        
+        <div className="form-group">
         <label>
             Choose a location (it should be relevant / local to you)
-            </label>
-        <select name="" id="" value={project} onChange={handleProject}>
+         </label>
+        <select name="project" id="FormSelect" value={project} onChange={handleProject}>
             <option value="">Please choose an option</option>
-            {projects && projects.map((project, index)=>(
-                <option value={project._id} key={project.slug.current}>{project.name}</option>
+            {projects && projects.map((project)=>(
+                <option key={project.slug.current} value={project._id} >{project.name}</option>
             ))}
-            </select>
+        </select>
+        </div>
         
-        <label htmlFor="">
+        <div className="form-group">
+        <label>
            {project ? <div><p>Please tell us about your connection to this location</p> <textarea onChange={handleConnection}/></div>: null} 
         </label>
-        <button>
+        </div>
+        <button className="btn">
             <input type="submit" value="Submit"/>
         </button>
         </form>

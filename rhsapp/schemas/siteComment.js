@@ -15,6 +15,11 @@ export default {
         to: {type: 'user'}
       },
       {
+        name: 'published',
+        title: 'Published',
+        type: 'boolean'
+      }, 
+      {
         name: 'submittedAt',
         title: 'Submitted at',
         type: 'datetime',

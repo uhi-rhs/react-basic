@@ -7,7 +7,7 @@ const LoginButton = () => {
 
   return <button 
   
-  className=""
+  className="log-btn"
   onClick={() => loginWithRedirect()}
   name="login button"
     aria-label="login button"

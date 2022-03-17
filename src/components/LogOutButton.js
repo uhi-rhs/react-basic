@@ -7,7 +7,7 @@ const LogOutButton = () => {
 console.log(window.location.origin)
 
   return <button
-  className=""
+  className="log-btn" id="log"
     onClick={()=> logout({
         returnTo: window.location.origin+"/logout",
     })}

@@ -1,52 +1,121 @@
 import React, {useState, useEffect} from 'react'
 import ReactMapGL, {Marker, Popup} from 'react-map-gl'
-import axios from 'axios';
 import Pin from './Pin'
 import PageHeader from './PageHeader';
-import { useLocation } from 'react-router-dom'
+import sanityClient from "../writeClient"
 
 
 const ViewSiteComments = (props) => {
 
-    const [localLocation] = useState(() => {
-        const saved = localStorage.getItem('location');
+    // const [localLocation] = useState(() => {
+    //     const saved = localStorage.getItem('location');
+    //     const initialValue = JSON.parse(saved);
+    //     return initialValue || ""
+    // })
+
+    const [rhsUser] = useState(()=> {
+        const saved = localStorage.getItem('_id');
         const initialValue = JSON.parse(saved);
         return initialValue || ""
+      })
+
+      const [comments, setComments] = useState([])
+
+      // Get Data
+  
+      useEffect(()=> {
+          sanityClient
+          .fetch(`*[_type == "siteComment" && project._ref == "${rhsUser.project._ref}"]{
+              comment,
+              published,
+              project,
+              lat, 
+              lng,
+              category,
+              _id,
+          }`)
+          .then((data) => setComments(data))
+          .catch(console.error)
+      },[rhsUser.project._ref])
+
+    const [pageInfo] = useState({
+        title: `View Site Comments for ${rhsUser.projectName.name}`,
+        body: "Showing comments and where they relate to"
     })
 
-    const getLat= () => {
-        let lat
-        try{
-            lat = props.location.properties.lat.number
-        }
-        catch{
-            lat = localLocation.properties.lat.number
-        }
-        return lat
-    }
-    const getLng= () => {
-        let lng
-        try{
-            lng = props.location.properties.lng.number
-        }
-        catch{
-            lng = localLocation.properties.lng.number
-        }
-        return lng
-    }
+    // const getLat= () => {
+    //     let lat
+    //     try{
+    //         lat = comments[0].lat
+    //     }
+    //     catch{
+    //         lat = 0.000
+    //     }
+    //     return lat
+    // }
+    // const getLng= () => {
+    //     let lng
+    //     try{
+    //         lng = comments[0].lng
+    //     }
+    //     catch{
+    //         lng = 0.000
+    //     }
+    //     return lng
+    // }
 
+// Mapbox Setup
     const [viewPort, setViewport] = useState({
-        latitude: getLat(),
-        longitude: getLng(),
+        
+        latitude: 0.000,
+        longitude: 0.000,
         width: '100vw',
         height: '100vh',
         zoom: 15
     })
 
-    const id = useLocation()
-    // Format
-    const formattedUrl = id.pathname.slice(10, -19)
-    console.log(formattedUrl)
+    useEffect(()=> {
+        const getLat= () => {
+            let lat
+            try{
+                lat = comments[0].lat
+            }
+            catch{
+                lat = 0.000
+            }
+            return lat
+        }
+        const getLng= () => {
+            let lng
+            try{
+                lng = comments[0].lng
+            }
+            catch{
+                lng = 0.000
+            }
+            return lng
+        }
+        setViewport({
+            latitude: getLat(),
+            longitude: getLng(),
+            width: '100vw',
+            height: '100vh',
+            zoom: 15
+        })
+    },[comments])
+
+
+    // const colour = (id) => {
+    //     const col = '#'
+    //     const hex = id.slice(-7, -1)
+    //     const hexcol = col.concat(hex);
+    //     return hexcol
+    // }
+
+    // const id = useLocation()
+    // // Format
+    // const formattedUrl = id.pathname.slice(10, -19)
+    // console.log(formattedUrl)
 
     // useEffect(() => {
     //     window.addEventListener("beforeunload", alertUser);
@@ -59,31 +128,30 @@ const ViewSiteComments = (props) => {
     //     e.returnValue = "";
     //   };
 
+
+    // UI
     const [ selectedSite, setSelectedSite ] = useState(null)
-    const [comments, setComments] = useState([])
+  
+    console.log(selectedSite)
 
-    const colour = (id) => {
-        const col = '#'
-        const hex = id.slice(-7, -1)
-        const hexcol = col.concat(hex);
-        return hexcol
-    }
+// const value = 57.14853732960749
+// console.log(value.toString().slice(-7,-1))
 
-    const [pageInfo] = useState({
-        title: `View Site Comments for ${formattedUrl}`,
-        body: "Showing comments and where they relate to"
-    })
+  
 
-    useEffect(() => {
-        const fetchItems = async () => {
-            // const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/${formattedUrl}`)
-            const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/site_comments`)
-            console.log(result.data)
-            setComments(result.data)            
-        }
-        fetchItems()
-    }, [formattedUrl])
+    
+    // useEffect(() => {
+    //     const fetchItems = async () => {
+    //         // const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/${formattedUrl}`)
+    //         const result = await axios(`${process.env.REACT_APP_API_URL}/api/rhs/site_comments`)
+    //         console.log(result.data)
+    //         setComments(result.data)            
+    //     }
+    //     fetchItems()
+    // }, [formattedUrl])
 
+
+    if(!comments) return <div>Loading...</div>
     return (
         <>
         {/* <PageHeader info={pageInfo}/> */}
@@ -100,9 +168,9 @@ const ViewSiteComments = (props) => {
            >
                {comments.map((comment) => (
                    <Marker
-                    key={comment.id}
-                    latitude={comment.properties.lat.number}
-                    longitude={comment.properties.lng.number}
+                    key={comment._id}
+                    latitude={comment.lat}
+                    longitude={comment.lng}
                    >
                        
                        <button className="marker-btn"
@@ -111,7 +179,8 @@ const ViewSiteComments = (props) => {
                            setSelectedSite(comment)
                        }}
                        >
-                       <Pin pin={{size: 60, stroke: 'none', fill: colour(comment.id)}}/>
+                       <Pin pin={{size: 20, stroke: 'white', fill: `#${comment.lat.toString().slice(-7,-1)}`                       
+                       }}/>
                        </button>
                        
                    </Marker>
@@ -124,14 +193,14 @@ const ViewSiteComments = (props) => {
                     dynamicPosition={true}
                     offsetLeft={55}
                     offsetTop={0}
-                    latitude={selectedSite.properties.lat.number}
-                    longitude={selectedSite.properties.lng.number}
+                    latitude={selectedSite.lat}
+                    longitude={selectedSite.lng}
                     onClose={() => {
                         setSelectedSite(null);
                     }}
                    >
                        <div className="popup">
-                           <h2>{selectedSite.properties.comment.rich_text[0].plain_text}</h2>
+                           <h2>{selectedSite.comment}</h2>
                        </div>
                    </Popup>
                )}
