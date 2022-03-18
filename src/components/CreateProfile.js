@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import sanityClient from '../writeClient.js'
 import {FaAngleRight} from 'react-icons/fa'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useHistory} from 'react-router-dom'
+
 
 const CreateProfile = ({user, setRhsUser}) => {
         // Create Profile State
@@ -10,6 +11,8 @@ const CreateProfile = ({user, setRhsUser}) => {
         const [connection, setConnection] = useState("")
         const [submitted, setSubmitted] = useState(false)
         const [projects, setProjects] = useState(null)
+
+        const history = useHistory()
 
         const saveSubmission = () => {
             const submission = {
@@ -82,6 +85,9 @@ const CreateProfile = ({user, setRhsUser}) => {
         saveSubmission()
         setProject()
         setSubmitted(true)
+        alert("Thank you!")
+        history.push("/location")
+
     }
 
     console.log(projects)

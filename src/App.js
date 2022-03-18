@@ -41,6 +41,7 @@ import User from './components/User'
 import LandingPage from './components/LandingPage'
 import LogOut from './components/LogOut'
 import CreateProfile from './components/CreateProfile'
+import Login from './components/Login'
 
 export const LocationContext = React.createContext()
 
@@ -52,18 +53,18 @@ export const serverContext = React.createContext(process.env.REACT_APP_API_URL)
 
 function App() {
 
-  const [rhsUser] = useState(()=> {
-    const saved = localStorage.getItem('_id');
-    try {
-      const initialValue = JSON.parse(saved);
-      return initialValue || ""
-    } catch (error) {
-      return ""
-    }
+  // const [rhsUser] = useState(()=> {
+  //   const saved = localStorage.getItem('_id');
+  //   try {
+  //     const initialValue = JSON.parse(saved);
+  //     return initialValue || ""
+  //   } catch (error) {
+  //     return ""
+  //   }
   
-  })
+  // })
 
-console.log(rhsUser)
+
 
   const [projects, setProjects] = useState(null)
 
@@ -114,6 +115,7 @@ console.log(rhsUser)
         <Route exact path="/draw_polygon_basic" component={DrawPolygonBasic} />
    
         <Route exact path="/user" component={User} />
+        <Route exact path="/login" component={Login} />
         <Route exact path="/create-profile" component={CreateProfile} />
         <Route exact path="/logout" component={LogOut} />
     {/* Routes for chosen project / location */}
@@ -127,13 +129,13 @@ console.log(rhsUser)
         <SiteComment/>
       </Route>
       <Route exact path="/location/basic_comment" >
-        <BasicComment user={rhsUser}/>
+        <BasicComment />
       </Route>
       <Route exact path="/location/story" >
-        <Story user={rhsUser}/>
+        <Story />
       </Route>
       <Route exact path="/location/view_basic_comments" >
-        <ViewComments user={rhsUser}/>
+        <ViewComments />
       </Route>
       <Route exact path="/location/view_site_comments" >
         <ViewSiteComments />

@@ -8,7 +8,13 @@ import Instructions from './Instructions'
 import sanityClient from '../writeClient.js'
 
 
-const BasicComment = ({user}) => {
+const BasicComment = () => {
+
+    const [rhsUser] = useState(()=> {
+        const saved = localStorage.getItem('_id');
+        const initialValue = JSON.parse(saved);
+        return initialValue || ""
+      })
 
     const [pageInfo] = useState({
         title: `Comment on project`,
@@ -21,7 +27,7 @@ const BasicComment = ({user}) => {
         body:  "What do you think are the good and bad aspects of the site? Where do you think is the best place for housing on the site, and why? Would you want to live here? Why / why not?"
     })
 
-    console.log(user)
+    console.log(rhsUser)
     const [comment, setComment] = useState('')
     const [ submitted, setSubmitted] = useState(false)
 
@@ -49,11 +55,11 @@ const BasicComment = ({user}) => {
             published: false,
             author: {
                 _type: 'reference',
-                _ref: user._id
+                _ref: rhsUser._id
             },
             project: {
                 _type: 'reference',
-                _ref: user.project._ref
+                _ref: rhsUser.project._ref
             }
         }
         // axios.post(`${server}/api/rhs/basic_comments/add`, submission)

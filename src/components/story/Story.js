@@ -8,7 +8,13 @@ import Spinner from '../Spinner'
 
 import sanityClient from "../../readClient"
 
-const Story = ({user}) => {
+const Story = () => {
+
+    const [rhsUser] = useState(()=> {
+        const saved = localStorage.getItem('_id');
+        const initialValue = JSON.parse(saved);
+        return initialValue || ""
+      })
 
     const [pageInfo] = useState({
         title: "Example of a project outline",
@@ -20,11 +26,10 @@ const Story = ({user}) => {
     
     console.log(story)
     console.log(step)
-    console.log(user)
    
     useEffect(()=> {
         sanityClient
-        .fetch(`*[_type == "project" && _id == "${user.project._ref}"]{
+        .fetch(`*[_type == "project" && _id == "${rhsUser.project._ref}"]{
             name,
             location->{
                 name
@@ -63,7 +68,7 @@ const Story = ({user}) => {
 
     .then((data) => setStory(data[0]))
     .catch(console.error)
-    },[user.project._ref])
+    },[rhsUser.project._ref])
 
     // Move to next page
     const nextPage = () => {

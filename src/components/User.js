@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import Intro from './Intro'
+// import Intro from './Intro'
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import sanityClient from "../readClient"
 import useLocalStorage from "../hooks/useLocalStorage";
 import {FaAngleRight} from 'react-icons/fa'
 import {NavLink} from 'react-router-dom'
+import AppHeader from './AppHeader'
+import CreateProfile from './CreateProfile'
 
 const User = () => {
 
@@ -13,8 +15,10 @@ const User = () => {
     const { name, email} = user;
 
     // Form state logic
-    // const [displayForm, setDisplayForm] = useState(false)
-    // const [allowCreateProfile, setAllowCreateProfile] = useState(false)
+    const [displayForm] = useState(false)
+    const [allowCreateProfile, setAllowCreateProfile] = useState(false)
+    console.log(allowCreateProfile)
+    console.log(displayForm)
       // RHS user
     const [rhsUser, setRhsUser] = useState(null)
 
@@ -44,25 +48,24 @@ const User = () => {
 
     console.log(rhsUser)
 
-    // useEffect(()=> {
-    //     if(!rhsUser){
-    //         setAllowCreateProfile(true)
-    //     }else{
-    //         setAllowCreateProfile(false)
-    //     }
-    // },[rhsUser])
+    useEffect(()=> {
+        if(!rhsUser){
+            setAllowCreateProfile(true)
+        }else{
+            setAllowCreateProfile(false)
+        }
+    },[rhsUser])
 
     // const formDisplay = () => {
     //     return displayForm ? <CreateProfile user={user} setRhsUser={setRhsUser}/> : <div className="invisible"></div>
     // }
+
   console.log(rhsUser)
 
   return (
     <main className="">
-           <Intro />
+           <AppHeader/>
            <div className="user-main">
-                
-
                 {
                     rhsUser ? 
                     
@@ -91,10 +94,10 @@ const User = () => {
                     <p>Login email{email}</p>
                     <br />
                     <NavLink to="/create-profile">
-                    <p>Please create a profile so we can let you comment on the various features the app offers. See our privacy policy here///</p>
+                    <p>Please create a profile so we can let you comment on the various features the app offers. </p>
                     </NavLink>
                     </div>
-                    {/* <CreateProfile user={user} setRhsUser={setRhsUser}/> */}
+                    <CreateProfile user={user} setRhsUser={setRhsUser}/>
                 </div>
                 </section>
             

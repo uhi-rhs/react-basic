@@ -2,7 +2,13 @@ import React, {useState, useEffect} from 'react'
 import PageHeader from './PageHeader';
 import sanityClient from "../readClient"
 
-const ViewComments = ({user}) => {
+const ViewComments = () => {
+
+    const [rhsUser] = useState(()=> {
+        const saved = localStorage.getItem('_id');
+        const initialValue = JSON.parse(saved);
+        return initialValue || ""
+      })
     
     const [ comments, setComments ] = useState([])
 
@@ -12,11 +18,11 @@ const ViewComments = ({user}) => {
     })
 
 
-    console.log(user)
+    console.log(rhsUser)
 
     useEffect(()=> {
         sanityClient
-        .fetch(`*[_type == "simpleComment" && project._ref == "${user.project._ref}"]{
+        .fetch(`*[_type == "simpleComment" && project._ref == "${rhsUser.project._ref}"]{
             comment, 
             userId,
             project,
@@ -27,7 +33,7 @@ const ViewComments = ({user}) => {
 
     .then((data) => setComments(data))
     .catch(console.error)
-    },[user.project._ref])
+    },[rhsUser.project._ref])
 
     console.log(comments)
     if(!comments) return <div>Loading...</div>

@@ -14,8 +14,8 @@ export default function Intro() {
             <img src="RHS_White_Light-1.png" alt="" className="intro-image"/>
             </Link>
             {
-                isAuthenticated ? <AuthenticationButton /> :  <Link to={'/user'} label="user">     
-                Login
+                isAuthenticated ? <AuthenticationButton /> :  <Link to={'/login'} label="user">     
+                Login Page
              </Link>
             }
         </div>

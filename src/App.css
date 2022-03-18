@@ -137,6 +137,18 @@ h1 {
   border-radius: 5px;
 }
 
+/* Login */
+
+.login {
+  margin: auto
+}
+
+.login button {
+  width: 100px;
+  height: 80px;
+  border-radius: 5px;
+  font-weight: 600;
+}
 
 
 /* User */
@@ -963,6 +975,10 @@ h1 {
 
     .dbs-container h1 {
       padding: 0px;
+    }
+
+    .greeting {
+      
     }
 
 

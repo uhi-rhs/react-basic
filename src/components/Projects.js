@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Project from './Project';
 import {FaUsers, FaOtter, FaTractor} from 'react-icons/fa'
 import { useAuth0 } from '@auth0/auth0-react';
@@ -8,11 +8,11 @@ const Projects = ({projects}) => {
 
     const {user} = useAuth0()
 
-    const [rhsUser] = useState(()=> {
-        const saved = localStorage.getItem('_id');
-        const initialValue = JSON.parse(saved);
-        return initialValue || ""
-      })
+    // const [rhsUser] = useState(()=> {
+    //     const saved = localStorage.getItem('_id');
+    //     const initialValue = JSON.parse(saved);
+    //     return initialValue || ""
+    //   })
 
     // if(!rhsUser){
     //     console.log("no user")
@@ -34,7 +34,16 @@ const Projects = ({projects}) => {
             <p>Welcome to the Rural Housing Scotland Community Engagement Portal. You can use this tool to be involved in the new affordable housing project at [insert community name]. Please log in if you have an account or register and follow the instructions so that you can have your say!</p>
 
             {
-                user && !rhsUser ? <div><h4>Hi {user.name}</h4>
+                !user ? (<div>
+                    <Link to={'/login'} label="user">     
+                Login Page
+             </Link>
+                </div>) : null
+            }
+
+            {
+                user ? <div className="greeting">
+                    <h4>Hi {user.name}</h4>
                 <p className="intro-text">Please head over to the user profile page to set up a profile. This will allow you to use the features in this app.</p>
                 <Link to={'/user'} label="user">     
                Create Profile
@@ -42,7 +51,7 @@ const Projects = ({projects}) => {
             }
 
             {
-                user && rhsUser ?  <Link to={'/location'} label="user">     
+                user ? <Link to={'/location'} label="user">     
                 Consultation App
                  </Link>
                  : null
