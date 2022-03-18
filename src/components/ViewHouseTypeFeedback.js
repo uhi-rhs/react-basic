@@ -3,6 +3,7 @@ import PageHeader from './PageHeader'
 import sanityClient from "../readClient"
 import {FaStar} from 'react-icons/fa'
 
+
 const ViewHouseTypeFeedback = (props) => {
 
     const [rhsUser] = useState(()=> {
@@ -24,10 +25,10 @@ const ViewHouseTypeFeedback = (props) => {
     const countItems = (arr) => {
         let count = {}
         for(let i = 0; i < arr.length; i++){
-            if(count[arr[i].project._ref]){
-                count[arr[i].project._ref] +=1
+            if(count[arr[i].precedent._ref]){
+                count[arr[i].precedent._ref] +=1
             }else{
-                count[arr[i].project._ref] = 1
+                count[arr[i].precedent._ref] = 1
             }
         }
         setHouseTypeCount(count)

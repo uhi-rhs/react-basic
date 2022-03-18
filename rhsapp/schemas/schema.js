@@ -15,6 +15,7 @@ import simpleComment from './simpleComment'
 import siteComment from './siteComment'
 import survey from './survey'
 import user from './user'
+import surveyReport from './surveyReport'
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -33,6 +34,7 @@ export default createSchema({
     precedent,
     category,
     project,
+    surveyReport,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,

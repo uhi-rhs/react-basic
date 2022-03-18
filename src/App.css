@@ -509,13 +509,28 @@ h1 {
 
   /* Survey Responses */
 
-  .survey-responses-container{
-
+  .survey-report-container{
+    background: url('images/map-with-comments.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
   }
 
-  .question-container {
-    display: flex;
-    flex-direction: column;
+  .survey-report-header {
+    background-color: white;
+  }
+
+  .responses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .question {
+    padding: 12px;
+   background-color: var(--light-color);
+   border-radius: 5px;
   }
 
   .answer {
@@ -528,13 +543,12 @@ h1 {
 
   .markers {
     display: flex;
-    flex-direction: row;
   }
 
   /* Landing Page */
 
   .landing-page {
-    background: url('images/map-with-comments.jpeg');
+    background: url('images/map-with-comments.jpg');
     background-size: cover;
     background-attachment: fixed;
     height: 100%;
@@ -1010,8 +1024,17 @@ h1 {
       font-size: 1rem;
     }
 
+    /* Survey Report Page */
 
+    .responses-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
 
+    .markers{
+      display: flex;
+      flex-wrap: wrap;
+    }
 
 
   /* Post it Comments */
