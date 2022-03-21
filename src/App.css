@@ -150,6 +150,20 @@ h1 {
   font-weight: 600;
 }
 
+.login-btn {
+  background-color: #ff61b8;
+  margin: auto;
+  padding: 10px;
+  width: 200px;
+  color: white;
+  font-size: 1.4rem;
+  border-radius: 5px;
+}
+
+.login-btn a {
+  color: white;
+  font-weight: 400;
+}
 
 /* User */
 
@@ -241,6 +255,42 @@ h1 {
 
 .dbs-container h1 {
   padding: 0px;
+}
+
+.intro-container {
+  text-align: left;
+  margin: auto;
+  width: 100%;
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.project {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #1D81EA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+/* Footer */
+
+.footer {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  color: white;
+  margin-top: 15px;
+  padding-top: 15px;
 }
 
 /* Spinner */
@@ -979,6 +1029,27 @@ h1 {
 
     .greeting {
       
+    }
+
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 10px;
+    }
+
+    .project {
+      width: 100%;
+      border-radius: 5px;
+      background-color: #1D81EA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .footer {
+
     }
 
 

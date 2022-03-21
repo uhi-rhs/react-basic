@@ -31,12 +31,14 @@ const Projects = ({projects}) => {
                 <FaTractor id="FaTractor" label="Tractor" style={{height: '3em', width: '3em'}}/>
             </div>
 
-            <p>Welcome to the Rural Housing Scotland Community Engagement Portal. You can use this tool to be involved in the new affordable housing project at [insert community name]. Please log in if you have an account or register and follow the instructions so that you can have your say!</p>
+            <div className="intro-container">
+            <p>Welcome to the Rural Housing Scotland Community Engagement Portal. You can use this tool to be involved in new affordable housing projects in your area. More projects will be added in due course. Please log in if you have an account, or register so that you can have your say!</p>
+            </div>
 
             {
-                !user ? (<div>
+                !user ? (<div className="login-btn">
                     <Link to={'/login'} label="user">     
-                Login Page
+                Sign Up / Login
              </Link>
                 </div>) : null
             }
@@ -60,14 +62,15 @@ const Projects = ({projects}) => {
             <h2>Current Projects:</h2>
             </div>
          
-            
+            <div className="projects-container">
             {projects.map((project) => (
                 
-                <div key={project.slug.current}>
+                <div key={project.slug.current} className="project">
                     {console.log(project)}
                     <Project project={project}/>
                 </div>
             ))}
+            </div>
         </div>
     )
 }
