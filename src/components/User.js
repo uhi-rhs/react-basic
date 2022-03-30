@@ -119,6 +119,7 @@ const User = () => {
         )
 }
 
+
 export default withAuthenticationRequired(User, {
     onRedirecting: () => <div>Loading...</div>
 });

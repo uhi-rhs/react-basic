@@ -85,8 +85,7 @@ const CreateProfile = ({user, setRhsUser}) => {
         saveSubmission()
         setProject()
         setSubmitted(true)
-        alert("Thank you!")
-        history.push("/location")
+        history.push("/user")
 
     }
 

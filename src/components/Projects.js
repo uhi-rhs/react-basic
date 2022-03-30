@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Project from './Project';
 import {FaUsers, FaOtter, FaTractor} from 'react-icons/fa'
 import { useAuth0 } from '@auth0/auth0-react';
@@ -8,11 +8,15 @@ const Projects = ({projects}) => {
 
     const {user} = useAuth0()
 
-    // const [rhsUser] = useState(()=> {
-    //     const saved = localStorage.getItem('_id');
-    //     const initialValue = JSON.parse(saved);
-    //     return initialValue || ""
-    //   })
+    const [rhsUser] = useState(()=> {
+        const saved = localStorage.getItem('_id');
+        try {
+            const initialValue = JSON.parse(saved);
+            return initialValue || ""
+        } catch (error) {
+            return ""
+        }
+      })
 
     // if(!rhsUser){
     //     console.log("no user")
@@ -53,7 +57,7 @@ const Projects = ({projects}) => {
             }
 
             {
-                user ? <Link to={'/location'} label="user">     
+                rhsUser ? <Link to={'/location'} label="user">     
                 Consultation App
                  </Link>
                  : null

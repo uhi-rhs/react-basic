@@ -16,7 +16,6 @@ const Auth0ProviderWithHistory = ({ children }) => {
     history.push(appState && appState.returnTo ? appState.returnTo : window.location.pathname);
     console.log(appState)
     console.log(window.location.pathname)
-    // history.push("/user");
   };
 
   return (
