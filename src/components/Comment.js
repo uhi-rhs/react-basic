@@ -15,7 +15,6 @@ const Comment = ({marker, setPopup, project, rhsUser, setMarker, setShowInstruct
                 lat: marker.latitude,
                 lng: marker.longitude,
                 comment: marker.comment,
-                location: project.location,
                 submittedAt: new Date().toISOString(),
                 published: false,
                 author: {
