@@ -17,10 +17,9 @@ const ViewHouseTypeFeedback = (props) => {
         body: "Number of stars = number of votes for that building type"
     })
 
-    const [houseTypeCount, setHouseTypeCount] = useState()
-    // const [ votes, setVotes] = useState([])
 
-    console.log(houseTypeCount)
+    // Count votes for each house type and store in an array to be accessed by house id
+    const [houseTypeCount, setHouseTypeCount] = useState()
 
     const countItems = (arr) => {
         let count = {}
@@ -33,7 +32,6 @@ const ViewHouseTypeFeedback = (props) => {
         }
         setHouseTypeCount(count)
     }
-
 
 
     const [ houses, setHouses ] = useState([])
@@ -57,9 +55,6 @@ const ViewHouseTypeFeedback = (props) => {
         .catch(console.error)
     },[])
 
-console.log(houses)
-console.log(votes)
-
     useEffect(()=> {
         sanityClient
         .fetch(`*[_type == "houseVote" && project._ref == "${rhsUser.project._ref}"]{
@@ -76,26 +71,10 @@ console.log(votes)
         countItems(votes)
     },[votes])
 
-
-    // useEffect(() => {
-    //     const fetchItems = async () => {
-    //         const result = await axios(`${server}/api/rhs/house_votes`)
-    //         const filteredData = result.data.filter(data => data.properties.location.rich_text[0].plain_text === formattedUrl)
-    //         countItems(filteredData)
-    //         // setVotes(filteredData)
-    //     }
-    //     fetchItems()
-    //     setIsLoading(false)
-    // }, [server, formattedUrl])
-
-
-
-
     const houseCount = (house) => {
-        const key = house.id
+        const key = house._id
         return houseTypeCount[key]
     }
-
 
     if(!houses) return <div>Loading....</div>
     return (
@@ -104,20 +83,15 @@ console.log(votes)
             <div className="image-grid">
                 {houses.map((house, index) => (
                     <div className="image" key={index} >
+                        {console.log(house)}
                         <div className="image-overlay">
                             <img src={house.image ? house.image.asset.url : "/house.png"} alt={house.name}/>
                             <span className="star-display">
                                 { 
-                                houseCount(house) > 0 ? 
+                                houseCount(house) > 0 ?
                                 Array(houseCount(house)).fill(
                                 <FaStar id="star" label="Star" style={{height: '2em', width: '2em', color: "yellow"}}/>
                                 ) : <div style={{height: '2em', width: '2em'}}></div>
-                                }
-
-                                {
-                                    houseCount(house) > 0 ? 
-                                    Array.from(Array(houseCount(house)).map((x, index) => <FaStar key={index} id="star" label="Star" style={{height: '2em', width: '2em', color: "yellow"}}/>))
-                                    : <div style={{height: '2em', width: '2em'}}></div>
                                 }
                             </span>
                         </div>
