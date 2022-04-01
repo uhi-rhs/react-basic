@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import PageHeader from './PageHeader'
 import sanityClient from "../readClient"
 import {FaStar} from 'react-icons/fa'
+import HouseVoteCommentDisplay from './HouseVoteCommentDisplay'
 
 
 const ViewHouseTypeFeedback = (props) => {
@@ -76,6 +77,24 @@ const ViewHouseTypeFeedback = (props) => {
         return houseTypeCount[key]
     }
 
+    console.log(votes)
+
+    const getComments = (item, arr) => {
+        
+        let comments = []
+        // console.log(arr.length)
+        for(let i = 0; i < arr.length; i++){
+            // console.log(arr[i])
+            if(arr[i].precedent._ref === item._id){
+                comments.push(arr[i].comment)
+                // console.log(arr[i].comment)
+                
+            }
+            
+        }
+        return comments
+    }
+
     if(!houses) return <div>Loading....</div>
     return (
         <div className="container">
@@ -83,7 +102,6 @@ const ViewHouseTypeFeedback = (props) => {
             <div className="image-grid">
                 {houses.map((house, index) => (
                     <div className="image" key={index} >
-                        {console.log(house)}
                         <div className="image-overlay">
                             <img src={house.image ? house.image.asset.url : "/house.png"} alt={house.name}/>
                             <span className="star-display">
@@ -97,7 +115,8 @@ const ViewHouseTypeFeedback = (props) => {
                         </div>
                         <h4>{house.name}</h4>
                         <p>{house.alt}</p>
-                        {/* <small>{dotDisplay(house)}</small>   */}     
+                        {/* <small>{dotDisplay(house)}</small>   */}   
+                        <HouseVoteCommentDisplay comments={getComments(house, votes)}/>  
                     </div>
                 ))}
             
